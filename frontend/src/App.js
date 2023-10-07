@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./Main/Main.js";
-import Navigation from "./Nav/Navigation.js";
+import Main from "./Component/Main/Main.js";
+import Navigation from "./Component/Nav/Navigation.js";
 export default function App() {
   return (
     <div className="App">

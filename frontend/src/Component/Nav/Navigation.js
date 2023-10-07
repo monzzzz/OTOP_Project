@@ -10,7 +10,7 @@ export default function Navigation() {
   });
 
   return (
-    <div className="Navigation-container container-fluid">
+    <div className="Navigation-container">
       {isSmallDevice && (
         <div>
           <SmallDevice />
