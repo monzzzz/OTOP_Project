@@ -43,23 +43,12 @@
   display: flex;
   justify-content: center;
 }
-/*marketplace*/
-.sidebar_item_marketplace {
-  display: flex;
-  align-items: center;
-}
-.sidebar_item_marketplace a {
-  font-size: 100%;
-  font-weight: 500;
-  color: #1d1d1f;
-  text-decoration: none;
-}
 
-.sidebar_item_profile {
+.nav_bar_item_left {
   display: flex;
   align-items: center;
 }
-.sidebar_item_profile a {
+.nav_bar_item_left a {
   font-size: 100%;
   font-weight: 500;
   color: #1d1d1f;
@@ -67,6 +56,6 @@
 }
 
 .nav_icon {
-  margin-right: 0.3rem;
+  margin-right: 0.4rem;
   font-size: 95%;
 }

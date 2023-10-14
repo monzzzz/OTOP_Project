@@ -1,5 +1,15 @@
 # Welcome to the OTOP Free Marketplace
 
+## PORT
+
+### Backend
+
+#### port 3001
+
+### frontend
+
+#### port 3000 (proxy 3001)
+
 ## Page Component
 
 ### Main Page

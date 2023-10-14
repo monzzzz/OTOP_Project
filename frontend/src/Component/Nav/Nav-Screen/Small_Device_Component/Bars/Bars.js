@@ -1,9 +1,8 @@
 import "../../../../../Assets/style/Nav/Nav-Screen/Small_Device_Component/Bars/Bars.css";
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStore } from "@fortawesome/free-solid-svg-icons";
 
-const Bars = () => {
+const Bars = (props) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -30,18 +29,14 @@ const Bars = () => {
             <i className="fa fa-arrow-right fa-lg" onClick={toggleSidebar}></i>
           </div>
         </div>
-        <li className="sidebar_item_marketplace">
-          <a href="/marketplace">
-            <FontAwesomeIcon icon={faStore} className="nav_icon" />
-            Marketplace
-          </a>
-        </li>
-        <li className="sidebar_item_profile">
-          <a href="/profile">
-            <i className="fa fa-user nav_icon"></i>
-            Profile
-          </a>
-        </li>
+        {props.data.map((item, index) => (
+          <li key={index} className="nav_bar_item_left">
+            <a href={item.href}>
+              <FontAwesomeIcon icon={item.icon} className="nav_icon" />
+              {item.text}
+            </a>
+          </li>
+        ))}
       </div>
     </div>
   );
