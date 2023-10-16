@@ -1,0 +1,38 @@
+.login_page_container {
+  display: flex;
+  justify-content: center;
+  padding-top: 5rem;
+  padding-inline: 1rem;
+}
+
+.login_container {
+  background-color: #f4f4f4;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.button_method {
+  display: flex;
+  justify-content: center;
+}
+
+.button_off {
+  color: #2d81e1;
+  border-color: #2d81e1;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0.2rem 1.5rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.5s ease;
+}
+.button_on {
+  color: #ffffff;
+  background-color: #2d81e1;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0.3rem 1.5rem;
+  margin-bottom: 1rem;
+  transition: background-color 0.5s ease;
+}

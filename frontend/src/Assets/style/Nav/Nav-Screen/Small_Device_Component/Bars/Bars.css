@@ -59,3 +59,28 @@
   margin-right: 0.4rem;
   font-size: 95%;
 }
+@media only screen and (max-width: 400px) {
+  .nav_bar_login_button {
+    display: flex;
+    align-items: center;
+    padding: 4% 30%;
+    background-color: #efefef;
+    box-shadow: rgba(0, 0, 0, 0.15) 0.5px 0.5px 0.7px;
+  }
+}
+@media only screen and (min-width: 400px) {
+  .nav_bar_login_button {
+    display: flex;
+    align-items: center;
+    padding: 1rem 7rem;
+    background-color: #efefef;
+    box-shadow: rgba(0, 0, 0, 0.15) 0.5px 0.5px 0.7px;
+  }
+}
+
+.login_button {
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 95%;
+  color: #1d1d1f;
+}

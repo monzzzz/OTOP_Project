@@ -37,6 +37,11 @@ const Bars = (props) => {
             </a>
           </li>
         ))}
+        <li className="nav_bar_login_button rounded-2 ">
+          <a href="/login" className="login_button">
+            Login
+          </a>
+        </li>
       </div>
     </div>
   );

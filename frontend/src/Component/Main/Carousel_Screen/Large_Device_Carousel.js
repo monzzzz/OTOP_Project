@@ -17,7 +17,7 @@ export default function Large_Device_Carousel({ data }) {
             <img
               src={image.image}
               alt={image.title}
-              className="d-block w-100 rounded-5 shadow"
+              className="d-block w-100 rounded-5 picture-carousel"
             />
             <div className="carousel-caption">
               <h2>{image.title}</h2>

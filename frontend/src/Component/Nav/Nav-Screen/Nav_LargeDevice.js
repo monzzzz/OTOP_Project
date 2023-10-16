@@ -11,7 +11,7 @@ export default function LargeDevice() {
             <img
               alt="logo"
               src="../../../../public/logo.png"
-              width="100px"
+              width="80px"
               height="30px"
             />
           </a>
@@ -35,15 +35,9 @@ export default function LargeDevice() {
           <Search />
         </span>
       </span>
-
       <span className="text-end">
-        <a href="/profile" className="nav_profile ">
-          <i className="fa fa-user nav_icon text-dark"></i>
-          {Nav_data.map((component) => {
-            if (component.id === "profile") {
-              return component.text;
-            }
-          })}
+        <a href="/login" className="nav_profile ">
+          Login
         </a>
       </span>
     </nav>
