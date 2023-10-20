@@ -2,7 +2,9 @@ import "../../../Assets/style/Nav/Nav-Screen/Nav_Large_Device_Container.css";
 import Search from "./Large_Device_Component/Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Nav_data } from "../../../Data/Nav/Nav_Data";
+import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
 export default function LargeDevice() {
+  const { user } = useAuthContext();
   return (
     <nav className="Nav_Large_Device_Container ">
       <span className="path_container">
@@ -36,9 +38,12 @@ export default function LargeDevice() {
         </span>
       </span>
       <span className="text-end">
-        <a href="/login" className="nav_profile ">
-          Login
-        </a>
+        {!user && (
+          <a href="/login" className="nav_profile ">
+            Login
+          </a>
+        )}
+        {user && <p>{user.email}</p>}
       </span>
     </nav>
   );

@@ -29,23 +29,24 @@ BuyUserSchema.statics.signup = async function (email, password) {
   if (exists) {
     throw Error("Email already existed");
   }
+
   const salt = await bcrypt.genSalt();
   const hash = await bcrypt.hash(password, salt);
   const user = await this.create({ email, password: hash });
   return user;
 };
 
-BuyUserSchema.statics.login = async function (emil, password) {
+BuyUserSchema.statics.login = async function (email, password) {
   if (!email || !password) {
     throw Error("All field must be filled");
   }
   if (!validator.isEmail(email)) {
-    throw Error("email is invalid");
+    throw Error("Email is invalid");
   }
   // check if the email is exist
-  const user = statics.findOne({ email });
+  const user = await this.findOne({ email });
   if (!user) {
-    throw Error("account doesn't exist");
+    throw Error("Account doesn't exist");
   }
   const match = bcrypt.compare(password, user.password);
   if (!match) {

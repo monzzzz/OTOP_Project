@@ -21,3 +21,8 @@
   margin-top: 0.75rem;
   margin-bottom: 1rem;
 }
+
+.error {
+  font-size: 10px;
+  color: red;
+}

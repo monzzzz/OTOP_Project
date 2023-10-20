@@ -1,33 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "../../../Assets/style/Login/Method/BuyLogin.css";
+import { useLogin } from "../../../Hook/Authentication/useLogin";
 export default function BuyLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const { emailError, passwordError, isLoading, login } = useLogin();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = { email, password };
-    const response = await fetch("/api/user/buy/login", {
-      method: "POST",
-      body: JSON.stringify(user),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
-    if (!response.ok) {
-      setError(json.error);
-    }
-    if (response.ok) {
-      setEmail("");
-      setPassword("");
-      setError(null);
-      console.log("new email added");
-      navigate(-1);
-      navigate("home");
-    }
+    await login(email, password);
   };
   return (
     <div className="buy_login_page_container">
@@ -37,7 +17,7 @@ export default function BuyLogin() {
           <form onSubmit={handleSubmit}>
             <label className="mb-1">Email</label>
             <input
-              className="form-control mb-3 input"
+              className="form-control mb-1 input"
               type="email"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -45,17 +25,21 @@ export default function BuyLogin() {
               value={email}
               required
             />
+            <p className=" mb-3 error">{emailError}</p>
             <label className="mb-1">Password</label>
             <input
-              className="form-control mb-3 input"
-              type="text"
+              className="form-control mb-1 input"
+              type="password"
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
               value={password}
               required
             />
-            <button className="buy_login_submit_button">Submit</button>
+            <p className=" mb-4 error">{passwordError}</p>
+            <button disabled={isLoading} className="buy_login_submit_button">
+              Submit
+            </button>
           </form>
         </div>
         <p className="no_account_text">

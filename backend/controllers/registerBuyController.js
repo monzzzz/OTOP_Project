@@ -12,6 +12,7 @@ const loginUser_buy = async (req, res) => {
     const user = await BuyUser.login(email, password);
     const token = createToken(user._id);
     res.status(200).json({ email, token });
+    console.log(req.method);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
