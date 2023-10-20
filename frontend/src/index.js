@@ -7,11 +7,15 @@ import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "popper.js/dist/umd/popper";
 import "font-awesome/css/font-awesome.css";
+// Context
+import { AuthContextProvider } from "./Context/AuthenticationContext/AuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

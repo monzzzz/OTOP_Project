@@ -7,7 +7,7 @@ const {
 const express = require("express");
 const router = express.Router();
 
-router.get("/login", loginUser_buy);
-router.get("/signup", signupUser_buy);
+router.post("/login", loginUser_buy);
+router.post("/signup", signupUser_buy);
 
 module.exports = router;
