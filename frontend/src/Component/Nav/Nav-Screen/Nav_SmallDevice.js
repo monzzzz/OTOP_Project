@@ -3,7 +3,6 @@ import Bars from "./Small_Device_Component/Bars/Bars";
 import Search from "./Small_Device_Component/Search/Search";
 import { Nav_data } from "../../../Data/Nav/Nav_Data";
 export default function SmallDevice() {
-  console.log(Nav_data);
   return (
     <nav className="Nav_Small_Device_Container">
       <a href="/" className="LOGO">

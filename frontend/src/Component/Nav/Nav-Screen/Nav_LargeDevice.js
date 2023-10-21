@@ -5,7 +5,8 @@ import { Nav_data } from "../../../Data/Nav/Nav_Data";
 import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function LargeDevice() {
-  const { user } = useAuthContext();
+  const { user, method } = useAuthContext();
+  const methodValid = method === "sell";
   return (
     <nav className="Nav_Large_Device_Container ">
       <span className="path_container">
@@ -38,7 +39,12 @@ export default function LargeDevice() {
           <Search />
         </span>
       </span>
-      <span className="text-end">
+      <span className="text-end end_group">
+        {methodValid && (
+          <a href="/sell" className="sell_button">
+            Sell
+          </a>
+        )}
         {!user && (
           <a href="/login" className="login_button">
             Login

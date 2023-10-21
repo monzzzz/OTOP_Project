@@ -2,10 +2,13 @@ import "../../../../../Assets/style/Nav/Nav-Screen/Small_Device_Component/Bars/B
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuthContext } from "../../../../../Hook/Authentication/useAuthContext";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faMagnifyingGlassDollar,
+} from "@fortawesome/free-solid-svg-icons";
 const Bars = (props) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  const { user } = useAuthContext();
+  const { user, method } = useAuthContext();
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
@@ -16,7 +19,7 @@ const Bars = (props) => {
       document.body.classList.remove("disable-scroll");
     }
   }, [isSidebarOpen]);
-
+  const methodValid = method === "sell";
   return (
     <div className="sidebar-container">
       <div className="bar_nav">
@@ -38,6 +41,17 @@ const Bars = (props) => {
             </a>
           </li>
         ))}
+        <li className="sell_li">
+          {methodValid && (
+            <a href="/sell" className="sell_button_small">
+              <FontAwesomeIcon
+                icon={faMagnifyingGlassDollar}
+                className="nav_icon"
+              />
+              Sell
+            </a>
+          )}
+        </li>
 
         {!user && (
           <li className="nav_bar_login_button rounded-2 ">

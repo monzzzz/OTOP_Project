@@ -83,6 +83,18 @@
   font-weight: 500;
 }
 
+.sell_button_small {
+  font-weight: 500;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 95%;
+  color: #1d1d1f;
+}
+
+.sell_li {
+  list-style: none;
+}
+
 .profile_text {
   font-weight: 500;
   text-decoration: none;

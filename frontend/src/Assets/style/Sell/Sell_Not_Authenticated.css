@@ -1,0 +1,12 @@
+.not_authenticated {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  padding: 1.5rem;
+}
+
+.not_authenticated h4 {
+  text-align: center;
+}
