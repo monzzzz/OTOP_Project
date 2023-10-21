@@ -4,6 +4,11 @@ const bcrypt = require("bcrypt");
 const validator = require("validator");
 
 const BuyUserSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   email: {
     type: String,
     required: true,
@@ -15,8 +20,8 @@ const BuyUserSchema = new Schema({
   },
 });
 
-BuyUserSchema.statics.signup = async function (email, password) {
-  if (!email || !password) {
+BuyUserSchema.statics.signup = async function (username, email, password) {
+  if (!email || !password || !username) {
     throw Error("All field must be filled");
   }
   if (!validator.isEmail(email)) {
@@ -25,14 +30,18 @@ BuyUserSchema.statics.signup = async function (email, password) {
   if (!validator.isStrongPassword(password)) {
     throw Error("Password is not strong enough");
   }
-  const exists = await this.findOne({ email });
-  if (exists) {
+  const emailExists = await this.findOne({ email });
+  if (emailExists) {
     throw Error("Email already existed");
+  }
+  const usernameExists = await this.findOne({ username });
+  if (usernameExists) {
+    throw Error(`${username} already in use`);
   }
 
   const salt = await bcrypt.genSalt();
   const hash = await bcrypt.hash(password, salt);
-  const user = await this.create({ email, password: hash });
+  const user = await this.create({ username, email, password: hash });
   return user;
 };
 

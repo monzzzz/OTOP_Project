@@ -6,6 +6,7 @@ import Sell from "./Component/Sell/Sell.js";
 import Login from "./Component/Login/Login.js";
 import BuySignup from "./Component/Signup/BuySignup.js";
 import SellSignup from "./Component/Signup/BuySignup.js";
+import Profile from "./Component/Profile/Profile.js";
 export default function App() {
   return (
     <div className="App">
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/sell" element={<Sell />}></Route>
           <Route path="/buysignup" element={<BuySignup />}></Route>
           <Route path="/sellsignup" element={<SellSignup />}></Route>
+          <Route path="/profile" element={<Profile />}></Route>
         </Routes>
       </BrowserRouter>
       <></>

@@ -1,23 +1,24 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useAuthContext } from "../useAuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const useSignup = () => {
+export const useSellSignup = () => {
   const [passwordError, setPasswordError] = useState(null);
   const [emailError, setEmailError] = useState(null);
+  const [usernameError, setUsernameError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
 
-  const signup = async (email, password) => {
+  const signup = async (username, email, password) => {
     setIsLoading(true);
     setEmailError(null);
     setPasswordError(null);
 
-    const response = await fetch("/api/user/buy/signup", {
+    const response = await fetch("/api/user/sell/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ username, email, password }),
     });
     const json = await response.json();
     if (!response.ok) {
@@ -34,16 +35,20 @@ export const useSignup = () => {
       if (json.error === "Email already existed") {
         setEmailError(json.error);
       }
+      if (json.error === `${username} already in use`) {
+        setUsernameError(json.error);
+      }
     }
     if (response.ok) {
       // save the user to local storage
-      localStorage.setItem("user", JSON.stringify(json));
+      const data = { json: json, method: "sell" };
+      localStorage.setItem("user", JSON.stringify(data));
       // update the useAuthContext
-      dispatch({ type: "LOGIN", payload: json });
+      dispatch({ type: "LOGIN", payload: json, method: "sell" });
       navigate(-1);
-      navigate("login");
+      navigate("home");
       setIsLoading(false);
     }
   };
-  return { signup, isLoading, passwordError, emailError };
+  return { signup, isLoading, passwordError, emailError, usernameError };
 };

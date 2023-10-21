@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useAuthContext } from "../useAuthContext";
 import { useNavigate } from "react-router-dom";
-export const useLogin = () => {
+export const useBuyLogin = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -32,8 +32,10 @@ export const useLogin = () => {
     }
     if (response.ok) {
       setIsLoading(false);
-      localStorage.setItem("user", JSON.stringify(json));
-      dispatch({ type: "LOGIN", payload: json });
+      const data = { json: json, method: "buy" };
+      localStorage.setItem("user", JSON.stringify(data));
+      dispatch({ type: "LOGIN", payload: json, method: "buy" });
+      navigate(-1);
       navigate("home");
     }
   };

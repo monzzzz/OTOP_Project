@@ -1,17 +1,31 @@
 const SellUser = require("../database_schema/sellUserSchema");
+const jwt = require("jsonwebtoken");
+
+const createToken = (_id) => {
+  return jwt.sign({ _id }, process.env.SECRET_SELL, { expiresIn: "3d" });
+};
 
 const loginUser_sell = async (req, res) => {
-  res.status(200).json({ mssg: "login" });
+  const { email, password } = req.body;
+  try {
+    const user = await SellUser.login(email, password);
+    const token = createToken(user._id);
+    const username = user.username;
+    res.status(200).json({ username: username, email, token });
+    console.log(req.method);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 const signupUser_sell = async (req, res) => {
-  const { email, password } = req.body;
-
+  const { username, email, password } = req.body;
   try {
-    const user = await SellUser.signup(email, password); // use the static function created in the database schema
-    res.status(200).json({ email, user });
+    const user = await SellUser.signup(username, email, password);
+    res.status(200).json({ username, email, user });
+    console.log(req.method);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = { signupUser_sell, loginUser_sell };
+module.exports = { loginUser_sell, signupUser_sell };

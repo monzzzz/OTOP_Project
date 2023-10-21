@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useSignup } from "../../Hook/Authentication/useSignup";
+import { useBuySignup } from "../../Hook/Authentication/Buy/useBuySignup";
 import "../../Assets/style/Signup/BuySignup.css";
 export default function BuySignup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { signup, isLoading, passwordError, emailError } = useSignup();
+  const [username, setUsername] = useState("");
+  const { signup, isLoading, passwordError, emailError, usernameError } =
+    useBuySignup();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(email, password);
+    await signup(username, email, password);
   };
   return (
     <div className="buy_signup_page_container">
@@ -15,6 +17,17 @@ export default function BuySignup() {
         <div className="buy_form_container">
           <form onSubmit={handleSubmit}>
             <h3 className="mb-4">Sign Up</h3>
+            <label className="mb-1">Username</label>
+            <input
+              type="text"
+              className="form-control mb-1 input"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+              value={username}
+              required
+            />
+            <p className=" mb-3 error">{usernameError}</p>
             <label className="mb-1">Email</label>
             <input
               type="email"

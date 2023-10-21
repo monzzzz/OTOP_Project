@@ -1,10 +1,11 @@
 import "../../../../../Assets/style/Nav/Nav-Screen/Small_Device_Component/Bars/Bars.css";
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { useAuthContext } from "../../../../../Hook/Authentication/useAuthContext";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 const Bars = (props) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-
+  const { user } = useAuthContext();
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
@@ -37,11 +38,20 @@ const Bars = (props) => {
             </a>
           </li>
         ))}
-        <li className="nav_bar_login_button rounded-2 ">
-          <a href="/login" className="login_button">
-            Login
+
+        {!user && (
+          <li className="nav_bar_login_button rounded-2 ">
+            <a href="/login" className="nav_small_login_button">
+              Login
+            </a>
+          </li>
+        )}
+        {user && (
+          <a href="/profile" className="profile_text">
+            <FontAwesomeIcon icon={faUser} className="nav_icon" />
+            {user.username}
           </a>
-        </li>
+        )}
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "../../../Assets/style/Login/Method/BuyLogin.css";
-import { useLogin } from "../../../Hook/Authentication/useLogin";
+import { useBuyLogin } from "../../../Hook/Authentication/Buy/useBuyLogin";
 export default function BuyLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { emailError, passwordError, isLoading, login } = useLogin();
+  const { emailError, passwordError, isLoading, login } = useBuyLogin();
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);

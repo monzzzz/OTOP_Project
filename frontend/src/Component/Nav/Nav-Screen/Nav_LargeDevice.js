@@ -3,6 +3,7 @@ import Search from "./Large_Device_Component/Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Nav_data } from "../../../Data/Nav/Nav_Data";
 import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function LargeDevice() {
   const { user } = useAuthContext();
   return (
@@ -39,11 +40,16 @@ export default function LargeDevice() {
       </span>
       <span className="text-end">
         {!user && (
-          <a href="/login" className="nav_profile ">
+          <a href="/login" className="login_button">
             Login
           </a>
         )}
-        {user && <p>{user.email}</p>}
+        {user && (
+          <a href="/profile" className="nav_profile">
+            <FontAwesomeIcon icon={faUser} className="nav_icon" />
+            {user.username}
+          </a>
+        )}
       </span>
     </nav>
   );

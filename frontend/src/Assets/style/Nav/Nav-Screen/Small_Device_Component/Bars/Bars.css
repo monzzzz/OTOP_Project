@@ -72,13 +72,19 @@
   .nav_bar_login_button {
     display: flex;
     align-items: center;
-    padding: 1rem 7rem;
+    padding: 0.9rem 7rem;
     background-color: #efefef;
     box-shadow: rgba(0, 0, 0, 0.15) 0.5px 0.5px 0.7px;
   }
 }
+.nav_small_login_button {
+  text-decoration: none;
+  color: #1d1d1f;
+  font-weight: 500;
+}
 
-.login_button {
+.profile_text {
+  font-weight: 500;
   text-decoration: none;
   font-weight: 500;
   font-size: 95%;
