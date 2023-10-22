@@ -1,0 +1,16 @@
+.Sell_Small_Device_Container {
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.sell_submit_button {
+  color: #ffffff;
+  background-color: #318ce7;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0.55rem 1.5rem;
+  transition: 0.5s;
+  width: 100%;
+}

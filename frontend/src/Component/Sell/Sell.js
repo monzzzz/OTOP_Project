@@ -1,10 +1,12 @@
 import { useMediaQuery } from "react-responsive";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import Sell_SmallDevice from "./Sell_SmallDevice";
+import Sell_LargeDevice from "./Sell_LargeDevice";
 import {
   Not_Authenticated_Large_Screen,
   Not_Authenticated_Small_Screen,
 } from "./Sell_Not_Authenticated";
+
 export default function Sell() {
   const isSmallDevice = useMediaQuery({
     query: "(max-width: 640px)",
@@ -24,7 +26,11 @@ export default function Sell() {
               <Sell_SmallDevice />
             </div>
           )}
-          {isLargeDevice && <div></div>}
+          {isLargeDevice && (
+            <div>
+              <Sell_LargeDevice />
+            </div>
+          )}
         </>
       )}
       {!user ||

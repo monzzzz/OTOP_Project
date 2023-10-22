@@ -1,27 +1,27 @@
-import "../../Assets/style/Sell/Sell_SmallDevice.css";
+import "../../Assets/style/Sell/Sell_LargeDevice.css";
 import { province_eng } from "../../Data/Sell/Sell";
 import { category_eng } from "../../Data/Sell/Sell";
 import { useState } from "react";
 import useOffer from "../../Hook/Offer/useOffer";
-export default function Sell_SmallDevice() {
+export default function Sell_LargeDevice() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [province, setProvince] = useState("");
   const [history, setHistory] = useState("");
-  const { offer, isLoading } = useOffer();
+  const { offer } = useOffer();
   const handleSubmit = (e) => {
     e.preventDefault();
     offer(title, price, category, province, history);
   };
   return (
-    <div className="Sell_Small_Device_Container">
+    <div className="Sell_Large_Device_Container">
       <h2>Product Details</h2>
-      <form className="px-3 py-2" onSubmit={handleSubmit}>
+      <form className="py-2" onSubmit={handleSubmit}>
         <label className="mb-1">Title</label>
         <input
           type="text"
-          className="form-control mb-3"
+          className="form-control  mb-3"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -78,16 +78,14 @@ export default function Sell_SmallDevice() {
             setHistory(e.target.value);
           }}
           value={history}
-          maxLength={2000}
           required
+          maxLength={2000}
         />
-        <div className="mb-3">
+        <div className="mb-4">
           <label className="form-label">Picture</label>
-          <input className="form-control mb-4" type="file" id="formFile" />
+          <input className="form-control" type="file" id="formFile" />
         </div>
-        <button disabled={isLoading} className="sell_submit_button">
-          Submit
-        </button>
+        <button className="sell_submit_button">Submit</button>
       </form>
     </div>
   );

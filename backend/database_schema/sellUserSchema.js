@@ -57,7 +57,7 @@ SellUserSchema.statics.login = async function (email, password) {
   if (!user) {
     throw Error("Account doesn't exist");
   }
-  const match = bcrypt.compare(password, user.password);
+  const match = await bcrypt.compare(password, user.password);
   if (!match) {
     throw Error("The password is incorrect");
   }
