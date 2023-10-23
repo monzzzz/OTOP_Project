@@ -43,7 +43,8 @@ export const useSellSignup = () => {
       // save the user to local storage
       const data = { json: json, method: "sell" };
       localStorage.setItem("user", JSON.stringify(data));
-      // update the useAuthContext
+      // update the useAuthCont
+      // information sent through response.json({username, email, id, token})
       dispatch({ type: "LOGIN", payload: json, method: "sell" });
       navigate(-1);
       navigate("home");

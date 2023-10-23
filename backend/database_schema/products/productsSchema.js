@@ -6,6 +6,10 @@ const ProductInfo = new Schema({
     type: String,
     require: true,
   },
+  sellerId: {
+    type: String,
+    require: true,
+  },
   price: {
     type: Number,
     require: true,
@@ -23,15 +27,32 @@ const ProductInfo = new Schema({
 
 ProductInfo.statics.offer = async function (
   title,
+  sellerId,
   price,
   history,
   province,
-  type
+  category
 ) {
-  if (!title || !price) {
-    throw Error("Title and prince must be filled");
+  if (!title) {
+    throw Error("Title must be filled");
   }
-  const user = await this.create({ title, price, history, province, type });
+  if (!price) {
+    throw Error("Price must be filled");
+  }
+  if (!sellerId) {
+    throw Error("Seller ID must be filled");
+  }
+  if (price < 0) {
+    throw Error("Price is incorrect");
+  }
+  const user = await this.create({
+    title,
+    sellerId,
+    price,
+    history,
+    province,
+    category,
+  });
   return user;
 };
 

@@ -3,16 +3,19 @@ import { province_eng } from "../../Data/Sell/Sell";
 import { category_eng } from "../../Data/Sell/Sell";
 import { useState } from "react";
 import useOffer from "../../Hook/Offer/useOffer";
+import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 export default function Sell_SmallDevice() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [province, setProvince] = useState("");
   const [history, setHistory] = useState("");
+  const { user } = useAuthContext();
   const { offer, isLoading } = useOffer();
+  const id = user.id;
   const handleSubmit = (e) => {
     e.preventDefault();
-    offer(title, price, category, province, history);
+    offer(title, id, price, category, province, history);
   };
   return (
     <div className="Sell_Small_Device_Container">

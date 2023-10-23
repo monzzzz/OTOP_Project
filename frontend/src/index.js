@@ -9,12 +9,15 @@ import "popper.js/dist/umd/popper";
 import "font-awesome/css/font-awesome.css";
 // Context
 import { AuthContextProvider } from "./Context/AuthenticationContext/AuthContext";
+import { ProductContextProvider } from "./Context/AuthenticationContext/ProductContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <ProductContextProvider>
+        <App />
+      </ProductContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

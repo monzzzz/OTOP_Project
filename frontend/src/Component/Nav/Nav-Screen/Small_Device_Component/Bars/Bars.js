@@ -41,8 +41,9 @@ const Bars = (props) => {
             </a>
           </li>
         ))}
-        <li className="sell_li">
-          {methodValid && (
+
+        {methodValid && (
+          <li className="sell_li">
             <a href="/sell" className="sell_button_small">
               <FontAwesomeIcon
                 icon={faMagnifyingGlassDollar}
@@ -50,8 +51,8 @@ const Bars = (props) => {
               />
               Sell
             </a>
-          )}
-        </li>
+          </li>
+        )}
 
         {!user && (
           <li className="nav_bar_login_button rounded-2 ">

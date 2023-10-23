@@ -33,21 +33,20 @@ export default function Sell() {
           )}
         </>
       )}
-      {!user ||
-        (!validMethod && (
-          <>
-            {isSmallDevice && (
-              <div>
-                <Not_Authenticated_Small_Screen />
-              </div>
-            )}
-            {isLargeDevice && (
-              <div>
-                <Not_Authenticated_Large_Screen />
-              </div>
-            )}
-          </>
-        ))}
+      {(!user || !validMethod) && (
+        <>
+          {isSmallDevice && (
+            <div>
+              <Not_Authenticated_Small_Screen />
+            </div>
+          )}
+          {isLargeDevice && (
+            <div>
+              <Not_Authenticated_Large_Screen />
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }

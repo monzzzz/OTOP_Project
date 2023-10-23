@@ -2,16 +2,17 @@
 const ProductInfo = require("../../database_schema/products/productsSchema");
 
 const sellProducts = async (req, res) => {
-  const { title, price, history, province, type } = req.body;
+  const { title, sellerId, price, history, province, category } = req.body;
   try {
     const product = await ProductInfo.offer(
       title,
+      sellerId,
       price,
       history,
       province,
-      type
+      category
     );
-    res.status(200).json({ product });
+    res.status(200).json(product);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

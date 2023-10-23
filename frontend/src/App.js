@@ -7,6 +7,7 @@ import Login from "./Component/Login/Login.js";
 import BuySignup from "./Component/Signup/BuySignup.js";
 import SellSignup from "./Component/Signup/BuySignup.js";
 import Profile from "./Component/Profile/Profile.js";
+import Marketplace from "./Component/Marketplace/Marketplace.js";
 export default function App() {
   return (
     <div className="App">
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/buysignup" element={<BuySignup />}></Route>
           <Route path="/sellsignup" element={<SellSignup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/marketplace" element={<Marketplace />}></Route>
         </Routes>
       </BrowserRouter>
       <></>

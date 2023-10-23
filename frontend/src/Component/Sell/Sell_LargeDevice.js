@@ -3,6 +3,7 @@ import { province_eng } from "../../Data/Sell/Sell";
 import { category_eng } from "../../Data/Sell/Sell";
 import { useState } from "react";
 import useOffer from "../../Hook/Offer/useOffer";
+import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 export default function Sell_LargeDevice() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -10,9 +11,12 @@ export default function Sell_LargeDevice() {
   const [province, setProvince] = useState("");
   const [history, setHistory] = useState("");
   const { offer } = useOffer();
+  const { user } = useAuthContext();
+  const id = user.id;
   const handleSubmit = (e) => {
     e.preventDefault();
-    offer(title, price, category, province, history);
+    // store the product information in the database
+    offer(title, id, price, category, province, history);
   };
   return (
     <div className="Sell_Large_Device_Container">
