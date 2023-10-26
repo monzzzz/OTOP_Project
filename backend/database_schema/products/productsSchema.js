@@ -20,7 +20,10 @@ const ProductInfo = new Schema({
   province: {
     type: String,
   },
-  type: {
+  category: {
+    type: String,
+  },
+  image: {
     type: String,
   },
 });
@@ -31,7 +34,8 @@ ProductInfo.statics.offer = async function (
   price,
   history,
   province,
-  category
+  category,
+  image
 ) {
   if (!title) {
     throw Error("Title must be filled");
@@ -52,6 +56,7 @@ ProductInfo.statics.offer = async function (
     history,
     province,
     category,
+    image,
   });
   return user;
 };

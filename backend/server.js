@@ -12,6 +12,7 @@ app.use(express.json());
 app.use("/api/user/sell", userSellRoute);
 app.use("/api/user/buy", userBuyRoute);
 app.use("/api/market", marketProducts);
+app.use("/images", express.static(__dirname + "/images"));
 
 // app.use("/api/register/");
 mongoose

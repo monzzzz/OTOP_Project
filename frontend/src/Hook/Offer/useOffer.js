@@ -7,22 +7,31 @@ export default function useOffer() {
   const [priceError, setPriceError] = useState(null);
   const navigate = useNavigate();
   const { dispatch } = useProductContext();
-  const offer = async (title, sellerId, price, history, province, category) => {
+  const offer = async (
+    title,
+    sellerId,
+    price,
+    history,
+    province,
+    category,
+    file
+  ) => {
     setIsLoading(true);
     setTitleError(null);
     setPriceError(null);
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("sellerId", sellerId);
+    formData.append("price", price);
+    formData.append("history", history);
+    formData.append("province", province);
+    formData.append("category", category);
+    formData.append("file", file);
     const response = await fetch("/api/market/products", {
       method: "POST",
-      body: JSON.stringify({
-        title,
-        sellerId,
-        price,
-        history,
-        province,
-        category,
-      }),
-      headers: { "Content-Type": "application/json" },
+      body: formData,
     });
+    console.log(response);
     const json = await response.json();
     if (!response.ok) {
       setIsLoading(false);
@@ -40,7 +49,7 @@ export default function useOffer() {
       // dispatch to the Product context
       dispatch({ type: "ADD", payload: json });
       setIsLoading(false);
-      navigate("/marketplace");
+      navigate("/main");
     }
   };
   return { offer, isLoading, titleError, priceError };

@@ -10,13 +10,14 @@ export default function Sell_LargeDevice() {
   const [category, setCategory] = useState("");
   const [province, setProvince] = useState("");
   const [history, setHistory] = useState("");
-  const { offer } = useOffer();
+  const [file, setFile] = useState();
+  const { offer, isLoading, titleError, priceError } = useOffer();
   const { user } = useAuthContext();
   const id = user.id;
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // store the product information in the database
-    offer(title, id, price, category, province, history);
+    await offer(title, id, price, category, province, history, file);
   };
   return (
     <div className="Sell_Large_Device_Container">
@@ -25,23 +26,25 @@ export default function Sell_LargeDevice() {
         <label className="mb-1">Title</label>
         <input
           type="text"
-          className="form-control  mb-3"
+          className="form-control  mb-1"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
           value={title}
           required
         />
+        <p className=" mb-3 error">{titleError}</p>
         <label className="mb-1">Price</label>
         <input
           type="number"
-          className="form-control mb-3"
+          className="form-control mb-1"
           onChange={(e) => {
             setPrice(e.target.value);
           }}
           value={price}
           required
         />
+        <p className=" mb-3">{priceError}</p>
         <label className="mb-1">Category</label>
         <select
           className="form-select mb-3"
@@ -87,9 +90,17 @@ export default function Sell_LargeDevice() {
         />
         <div className="mb-4">
           <label className="form-label">Picture</label>
-          <input className="form-control" type="file" id="formFile" />
+          <input
+            className="form-control"
+            type="file"
+            onChange={(e) => {
+              setFile(e.target.files[0]);
+            }}
+          />
         </div>
-        <button className="sell_submit_button">Submit</button>
+        <button disabled={isLoading} className="sell_submit_button">
+          Submit
+        </button>
       </form>
     </div>
   );
