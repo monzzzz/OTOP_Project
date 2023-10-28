@@ -25,16 +25,37 @@ const sellProducts = async (req, res) => {
   }
 };
 
-const getProducts = async (req, res) => {
-  const product = await ProductInfo.find({}).sort({ createAt: -1 }); // newest one at the top
-  const finalProduct = product.map((item) => {
-    return {
-      ...item,
-      image: `http://localhost:${process.env.PORT}/images/${item.image}`,
+const getProductById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const product = await ProductInfo.findById(id);
+    const finalProduct = {
+      ...product,
+      image: `http://localhost:${process.env.PORT}/images/${product.image}`,
     };
-  });
-  console.log(finalProduct);
-  res.status(200).json(finalProduct);
+    if (finalProduct) {
+      res.status(200).json(finalProduct);
+    } else {
+      res.status(404).json({ error: "Product not found" });
+    }
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const getProducts = async (req, res) => {
+  try {
+    const product = await ProductInfo.find({}).sort({ createAt: -1 }); // newest one at the top
+    const finalProduct = product.map((item) => {
+      return {
+        ...item,
+        image: `http://localhost:${process.env.PORT}/images/${item.image}`,
+      };
+    });
+    res.status(200).json(finalProduct);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
 const deleteProducts = async (req, res) => {
@@ -42,4 +63,4 @@ const deleteProducts = async (req, res) => {
   res.status(200).json(product);
 };
 
-module.exports = { sellProducts, getProducts, deleteProducts };
+module.exports = { sellProducts, getProducts, deleteProducts, getProductById };

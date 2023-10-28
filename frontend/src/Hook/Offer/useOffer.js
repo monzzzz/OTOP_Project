@@ -11,9 +11,9 @@ export default function useOffer() {
     title,
     sellerId,
     price,
-    history,
-    province,
     category,
+    province,
+    history,
     file
   ) => {
     setIsLoading(true);
@@ -49,7 +49,7 @@ export default function useOffer() {
       // dispatch to the Product context
       dispatch({ type: "ADD", payload: json });
       setIsLoading(false);
-      navigate("/main");
+      navigate("/");
     }
   };
   return { offer, isLoading, titleError, priceError };

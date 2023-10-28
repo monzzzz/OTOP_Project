@@ -10,12 +10,13 @@ export default function Sell_SmallDevice() {
   const [category, setCategory] = useState("");
   const [province, setProvince] = useState("");
   const [history, setHistory] = useState("");
+  const [file, setFile] = useState();
   const { user } = useAuthContext();
   const { offer, isLoading } = useOffer();
   const id = user.id;
   const handleSubmit = (e) => {
     e.preventDefault();
-    offer(title, id, price, category, province, history);
+    offer(title, id, price, category, province, history, file);
   };
   return (
     <div className="Sell_Small_Device_Container">
@@ -86,7 +87,13 @@ export default function Sell_SmallDevice() {
         />
         <div className="mb-3">
           <label className="form-label">Picture</label>
-          <input className="form-control mb-4" type="file" id="formFile" />
+          <input
+            className="form-control"
+            type="file"
+            onChange={(e) => {
+              setFile(e.target.files[0]);
+            }}
+          />
         </div>
         <button disabled={isLoading} className="sell_submit_button">
           Submit

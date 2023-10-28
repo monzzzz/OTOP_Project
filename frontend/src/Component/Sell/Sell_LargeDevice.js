@@ -4,6 +4,7 @@ import { category_eng } from "../../Data/Sell/Sell";
 import { useState } from "react";
 import useOffer from "../../Hook/Offer/useOffer";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
+import { useNavigate } from "react-router-dom";
 export default function Sell_LargeDevice() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -16,7 +17,6 @@ export default function Sell_LargeDevice() {
   const id = user.id;
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // store the product information in the database
     await offer(title, id, price, category, province, history, file);
   };
   return (

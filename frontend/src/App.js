@@ -8,6 +8,7 @@ import BuySignup from "./Component/Signup/BuySignup.js";
 import SellSignup from "./Component/Signup/BuySignup.js";
 import Profile from "./Component/Profile/Profile.js";
 import Marketplace from "./Component/Marketplace/Marketplace.js";
+import SingleProduct from "./Component/Marketplace/SingleProduct.js";
 export default function App() {
   return (
     <div className="App">
@@ -25,6 +26,10 @@ export default function App() {
           <Route path="/sellsignup" element={<SellSignup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/marketplace" element={<Marketplace />}></Route>
+          <Route
+            path="/products/:productId"
+            element={<SingleProduct />}
+          ></Route>
         </Routes>
       </BrowserRouter>
       <></>
