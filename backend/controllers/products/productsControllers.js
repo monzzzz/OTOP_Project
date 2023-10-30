@@ -1,7 +1,6 @@
 // Schema
 const ProductInfo = require("../../database_schema/products/productsSchema");
 require("dotenv").config();
-const path = require("path");
 
 const sellProducts = async (req, res) => {
   const { title, sellerId, price, history, province, category } = req.body;

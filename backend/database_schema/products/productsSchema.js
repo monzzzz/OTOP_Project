@@ -26,6 +26,9 @@ const ProductInfo = new Schema({
   image: {
     type: String,
   },
+  quantity: {
+    type: Number,
+  },
 });
 
 ProductInfo.statics.offer = async function (

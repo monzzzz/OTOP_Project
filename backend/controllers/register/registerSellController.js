@@ -1,4 +1,4 @@
-const SellUser = require("../database_schema/sellUserSchema");
+const SellUser = require("../../database_schema/sellUserSchema");
 const jwt = require("jsonwebtoken");
 
 const createToken = (_id) => {

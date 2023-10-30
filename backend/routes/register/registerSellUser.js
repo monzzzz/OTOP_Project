@@ -2,7 +2,7 @@
 const {
   signupUser_sell,
   loginUser_sell,
-} = require("../controllers/registerSellController");
+} = require("../../controllers/register/registerSellController");
 
 // library
 const express = require("express");

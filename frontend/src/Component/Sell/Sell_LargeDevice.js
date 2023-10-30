@@ -4,8 +4,7 @@ import { category_eng } from "../../Data/Sell/Sell";
 import { useState } from "react";
 import useOffer from "../../Hook/Offer/useOffer";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
-import { useNavigate } from "react-router-dom";
-export default function Sell_LargeDevice() {
+export default function SellLargeDevice() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");

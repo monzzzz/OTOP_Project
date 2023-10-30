@@ -1,10 +1,10 @@
 import { useMediaQuery } from "react-responsive";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
-import Sell_SmallDevice from "./Sell_SmallDevice";
-import Sell_LargeDevice from "./Sell_LargeDevice";
+import SellSmallDevice from "./Sell_SmallDevice";
+import SellLargeDevice from "./Sell_LargeDevice";
 import {
-  Not_Authenticated_Large_Screen,
-  Not_Authenticated_Small_Screen,
+  NotAuthenticatedLargeScreen,
+  NotAuthenticatedSmallScreen,
 } from "./Sell_Not_Authenticated";
 
 export default function Sell() {
@@ -23,12 +23,12 @@ export default function Sell() {
         <>
           {isSmallDevice && (
             <div>
-              <Sell_SmallDevice />
+              <SellSmallDevice />
             </div>
           )}
           {isLargeDevice && (
             <div>
-              <Sell_LargeDevice />
+              <SellLargeDevice />
             </div>
           )}
         </>
@@ -37,12 +37,12 @@ export default function Sell() {
         <>
           {isSmallDevice && (
             <div>
-              <Not_Authenticated_Small_Screen />
+              <NotAuthenticatedSmallScreen />
             </div>
           )}
           {isLargeDevice && (
             <div>
-              <Not_Authenticated_Large_Screen />
+              <NotAuthenticatedLargeScreen />
             </div>
           )}
         </>

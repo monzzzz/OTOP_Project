@@ -8,7 +8,7 @@ export default function Marketplace() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const handleBuy = (productId) => {
-    navigate(`/products/${productId}`);
+    navigate(`/products/${productId}?quantity=0`);
     return false;
   };
 
@@ -36,7 +36,11 @@ export default function Marketplace() {
               key={index}
               className="card card_container rounded-4 col-sm-4 col-lg-3 mb-4"
             >
-              <img className="card-img-top" src={product.image} />
+              <img
+                className="card-img-top"
+                src={product.image}
+                alt={product._doc.title}
+              />
               <div className="card-body">
                 <h5 className="card-title">{product._doc.title}</h5>
                 <p className="card-text">{product._doc.province}</p>

@@ -2,7 +2,7 @@
 const {
   loginUser_buy,
   signupUser_buy,
-} = require("../controllers/registerBuyController");
+} = require("../../controllers/register/registerBuyController");
 
 const express = require("express");
 const router = express.Router();

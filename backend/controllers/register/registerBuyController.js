@@ -1,5 +1,5 @@
 // Schema
-const BuyUser = require("../database_schema/buyUserSchema");
+const BuyUser = require("../../database_schema/buyUserSchema");
 const jwt = require("jsonwebtoken");
 
 const createToken = (_id) => {

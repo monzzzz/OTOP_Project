@@ -9,6 +9,8 @@ import SellSignup from "./Component/Signup/BuySignup.js";
 import Profile from "./Component/Profile/Profile.js";
 import Marketplace from "./Component/Marketplace/Marketplace.js";
 import SingleProduct from "./Component/Marketplace/SingleProduct.js";
+import Error from "./Component/Error/Error.js";
+import Cart from "./Component/Cart/Cart.js";
 export default function App() {
   return (
     <div className="App">
@@ -30,6 +32,8 @@ export default function App() {
             path="/products/:productId"
             element={<SingleProduct />}
           ></Route>
+          <Route path="/error" element={<Error />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
       <></>

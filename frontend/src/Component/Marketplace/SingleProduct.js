@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../../Assets/style/Marketplace/SingleProduct.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { formatPrice } from "../../Utils/PriceFormat";
+import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 export default function SingleProduct() {
   const { productId } = useParams();
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useAuthContext();
   useEffect(() => {
+    const getQuantityFromURL = () => {
+      const searchParams = new URLSearchParams(location.search);
+      const quantityParam = searchParams.get("quantity");
+      if (quantityParam) {
+        setQuantity(parseInt(quantityParam));
+      }
+    };
+    getQuantityFromURL();
+
     const fetchSingleProduct = async () => {
       const response = await fetch(`/api/market/products/${productId}`);
       const json = await response.json();
@@ -24,12 +36,47 @@ export default function SingleProduct() {
     };
     fetchSingleProduct();
   });
+
   const addQuantity = () => {
-    setQuantity(quantity + 1);
+    const newQuantity = quantity + 1;
+    updateURL(newQuantity);
   };
   const removeQuantity = () => {
     if (quantity > 0) {
-      setQuantity(quantity - 1);
+      const newQuantity = quantity - 1;
+      updateURL(newQuantity);
+    }
+  };
+  // quantity update in the URL
+  const updateURL = (newQuantity) => {
+    const searchParams = new URLSearchParams(location.search);
+    if (!newQuantity) {
+      newQuantity = 0;
+    }
+    searchParams.set("quantity", newQuantity);
+    const pathname = location.pathname;
+    const newURL = pathname + "?" + searchParams.toString();
+    navigate(newURL, { replace: true });
+  };
+  const handleAddtoCart = async (itemId) => {
+    // in the database before navigate to the cart page, we have to check if the quantity numberr user summited less than the quantity of products avaiable
+    const searchParams = new URLSearchParams(location.search);
+    const quantityParam = searchParams.get("quantity");
+    const ownerID = user.id;
+    if (quantityParam !== "0") {
+      const response = await fetch(
+        `/api/cart/${itemId}?quantity=${quantityParam}`,
+        {
+          method: "POST",
+          body: JSON.stringify({ ownerID: ownerID }),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const json = await response.json();
+      if (!response.ok) {
+        setError(json.error);
+      }
+      console.log("success");
     }
   };
   return (
@@ -38,7 +85,7 @@ export default function SingleProduct() {
         <div className="single-product-container">
           <div className="row g-0">
             <div className="col-sm-12 col-lg-6 product-image">
-              <img src={productData.image} />
+              <img src={productData.image} alt={productData._doc.title} />
             </div>
             <div className="col-sm-12 col-lg-6">
               <div className="top-part mb-4 border-bottom">
@@ -77,7 +124,12 @@ export default function SingleProduct() {
                   </button>
                 </span>
                 <span>
-                  <button className="btn btn-primary add-to-cart-button">
+                  <button
+                    className="btn btn-primary add-to-cart-button"
+                    onClick={() => {
+                      handleAddtoCart(productData._doc._id);
+                    }}
+                  >
                     Add to Cart
                   </button>
                 </span>

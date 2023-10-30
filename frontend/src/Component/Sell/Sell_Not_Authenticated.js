@@ -1,6 +1,6 @@
 import "../../Assets/style/Sell/Sell_Not_Authenticated.css";
 import notAuthenticatedImage from "../../Assets/picture/sell_not_authenticated.png";
-export function Not_Authenticated_Large_Screen() {
+export function NotAuthenticatedLargeScreen() {
   return (
     <div className="not_authenticated">
       <img
@@ -14,7 +14,7 @@ export function Not_Authenticated_Large_Screen() {
   );
 }
 
-export function Not_Authenticated_Small_Screen() {
+export function NotAuthenticatedSmallScreen() {
   return (
     <div className="not_authenticated">
       <img

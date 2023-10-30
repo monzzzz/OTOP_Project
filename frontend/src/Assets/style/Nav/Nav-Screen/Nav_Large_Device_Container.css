@@ -71,9 +71,15 @@
 
 .nav_profile {
   letter-spacing: 0.2px;
-  margin-top: 0.2rem;
+
   text-decoration: none;
   color: #1d1f1d;
+}
+
+.cart_button {
+  text-decoration: none;
+  color: #1d1f1d;
+  margin-right: 1.25rem;
 }
 
 .end_group {
