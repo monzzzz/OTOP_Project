@@ -58,7 +58,7 @@ export default function SingleProduct() {
     const newURL = pathname + "?" + searchParams.toString();
     navigate(newURL, { replace: true });
   };
-  const handleAddtoCart = async (itemId) => {
+  const handleAddtoCart = async (itemId, price) => {
     // in the database before navigate to the cart page, we have to check if the quantity numberr user summited less than the quantity of products avaiable
     const searchParams = new URLSearchParams(location.search);
     const quantityParam = searchParams.get("quantity");
@@ -68,7 +68,7 @@ export default function SingleProduct() {
         `/api/cart/${itemId}?quantity=${quantityParam}`,
         {
           method: "POST",
-          body: JSON.stringify({ ownerID: ownerID }),
+          body: JSON.stringify({ ownerID: ownerID, price }),
           headers: { "Content-Type": "application/json" },
         }
       );
@@ -127,7 +127,10 @@ export default function SingleProduct() {
                   <button
                     className="btn btn-primary add-to-cart-button"
                     onClick={() => {
-                      handleAddtoCart(productData._doc._id);
+                      handleAddtoCart(
+                        productData._doc._id,
+                        productData._doc.price
+                      );
                     }}
                   >
                     Add to Cart

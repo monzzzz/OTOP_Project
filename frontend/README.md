@@ -4,11 +4,11 @@
 
 ### Backend
 
-#### port 3001
+#### port 5000
 
 ### frontend
 
-#### port 3000 (proxy 3001)
+#### port 3000 (proxy 5000)
 
 ## Page Component
 

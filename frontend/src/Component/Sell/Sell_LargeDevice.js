@@ -95,6 +95,7 @@ export default function SellLargeDevice() {
             onChange={(e) => {
               setFile(e.target.files[0]);
             }}
+            accept=".png, .jpg, .jpeg"
           />
         </div>
         <button disabled={isLoading} className="sell_submit_button">

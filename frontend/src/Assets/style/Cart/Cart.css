@@ -1,0 +1,33 @@
+@media (min-width: 641px) {
+  .cart-page-container {
+    padding: 3rem 5rem;
+  }
+  .title-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+}
+@media (max-width: 640px) {
+  .cart-page-container {
+    padding: 1rem 3rem;
+  }
+}
+
+.left-item-container {
+}
+
+.left-item-container img {
+  width: 8rem;
+  display: inline-block;
+}
+.text-left {
+  display: inline-block;
+}
+
+.right-item-container {
+  display: inline-block;
+}
+
+.conclusion-price-container {
+  padding: 1rem;
+}

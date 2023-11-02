@@ -54,7 +54,7 @@
   }
   .buy-function {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
   }
   .single-product-history-title {
@@ -88,7 +88,7 @@
   }
   .buy-function {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
   }
   .single-product-history-title {
@@ -113,7 +113,7 @@
   }
   .buy-function {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
   }
   .single-product-history-title {

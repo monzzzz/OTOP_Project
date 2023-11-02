@@ -58,7 +58,7 @@ const getProducts = async (req, res) => {
 };
 
 const deleteProducts = async (req, res) => {
-  const product = await ProductInfo.deleteMany({ price: { $lt: 100001 } });
+  const product = await ProductInfo.deleteMany({});
   res.status(200).json(product);
 };
 
