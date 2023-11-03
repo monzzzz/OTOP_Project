@@ -5,6 +5,7 @@ import { useAuthContext } from "../../../../../Hook/Authentication/useAuthContex
 import {
   faUser,
   faMagnifyingGlassDollar,
+  faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 const Bars = (props) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -53,6 +54,12 @@ const Bars = (props) => {
             </a>
           </li>
         )}
+        <li className="sell_li">
+          <a href="/cart" className="sell_button_small">
+            <FontAwesomeIcon icon={faCartShopping} className="nav_icon" />
+            Cart
+          </a>
+        </li>
 
         {!user && (
           <li className="nav_bar_login_button rounded-2 ">

@@ -7,6 +7,7 @@ const cart = require("./routes/cart/cart");
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+
 const app = express();
 
 app.use(express.json());
@@ -16,7 +17,6 @@ app.use("/api/market", marketProducts);
 app.use("/api/cart", cart);
 app.use("/images", express.static(__dirname + "/images"));
 
-// app.use("/api/register/");
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
