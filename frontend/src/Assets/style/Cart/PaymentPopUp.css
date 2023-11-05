@@ -1,0 +1,41 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.payment-pop-up-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 1rem 1rem;
+  animation: fadeIn 0.3s;
+}
+.payment-pop-up-container button {
+  border: none;
+  background: none;
+}
+
+.type-payment-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem 2.5rem;
+}
+
+.type-payment-container img {
+  width: 10rem;
+}
+
+.payment-pop-up-container a {
+  text-decoration: none;
+  padding: 0.5rem;
+  color: #1d1d1f;
+}

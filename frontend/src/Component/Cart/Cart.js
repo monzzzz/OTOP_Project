@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import "../../Assets/style/Cart/Cart.css";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import { formatPrice } from "../../Utils/PriceFormat";
+import PaymentPopUp from "./PaymentPopUp";
 export default function Cart() {
   const [cartInfo, setCartInfo] = useState("");
   const [error, setError] = useState(null);
   const [hook, setHook] = useState(false);
-
+  const [active, setActive] = useState(false);
   const { user } = useAuthContext();
   const userId = user ? user.id : null;
 
@@ -80,7 +81,7 @@ export default function Cart() {
   return (
     <div className="cart-page-container">
       {cartInfo && (
-        <div>
+        <div className={active ? "blur" : ""}>
           <h1 className="mb-3">Cart</h1>
           <div className="items-container">
             {cartInfo.result.map((item) => (
@@ -141,13 +142,21 @@ export default function Cart() {
                   Total price: {formatPrice(cartInfo.total_price)}
                 </span>
                 <span>
-                  <button className="btn btn-primary">Check out</button>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => {
+                      setActive(true);
+                    }}
+                  >
+                    Check out
+                  </button>
                 </span>
               </div>
             </div>
           </div>
         </div>
       )}
+      <PaymentPopUp active={active} setActive={setActive} />
     </div>
   );
 }

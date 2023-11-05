@@ -1,3 +1,7 @@
+.blur {
+  filter: blur(2px);
+}
+
 @media (min-width: 641px) {
   .cart-page-container {
     padding: 3rem 5rem;
