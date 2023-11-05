@@ -16,7 +16,7 @@ const addItem = async (req, res) => {
 // use in debugging with postman
 
 const getItem = async (req, res) => {
-  const items = await CartSchema.find({}).sort({ createAt: -1 });
+  const items = await CartSchema.find({});
   res.status(200).json(items);
 };
 
@@ -25,20 +25,28 @@ const getItemByID = async (req, res) => {
   const ownerID = req.params.id;
   try {
     const cart = await CartSchema.find({ owner: ownerID });
-
     const result = [];
-    await Promise.all(
-      cart[0].items.map(async (item) => {
-        const eachItemId = item.itemId;
-        const productInfo = await ProductInfo.findById(eachItemId);
-
-        result.push({
-          ...item,
-          productInfo,
-          image: `http://localhost:${process.env.PORT}/images/${productInfo.image}`,
-        });
-      })
-    );
+    for (const item of cart[0].items) {
+      const eachItemId = item.itemId;
+      const productInfo = await ProductInfo.findById(eachItemId);
+      result.push({
+        ...item,
+        productInfo,
+        image: `http://localhost:${process.env.PORT}/images/${productInfo.image}`,
+      });
+    }
+    // await Promise.all(
+    //   cart[0].items.map(async (item) => {
+    //     const eachItemId = item.itemId;
+    //     const productInfo = await ProductInfo.findById(eachItemId);
+    //     console.log(item);
+    //     result.push({
+    //       ...item,
+    //       productInfo,
+    //       image: `http://localhost:${process.env.PORT}/images/${productInfo.image}`,
+    //     });
+    //   })
+    // );
     const total_price = cart[0].total_price;
     res.status(200).json({ result, total_price });
   } catch (error) {
@@ -62,6 +70,10 @@ const updateQuantity = async (req, res) => {
     }
 
     const product = cart.items.find((item) => item.itemId === productID);
+    // add price to the dictionary
+    const productInfo = await ProductInfo.findById(productID);
+    cart.total_price =
+      cart.total_price + (quantity - product.quantity) * productInfo.price;
 
     if (!product) {
       return res.status(404).json({ error: "Product not found in the cart" });

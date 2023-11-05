@@ -7,8 +7,8 @@ export const useSellSignup = () => {
   const [emailError, setEmailError] = useState(null);
   const [usernameError, setUsernameError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
   const navigate = useNavigate();
+  const { dispatch: authDispatch } = useAuthContext();
 
   const signup = async (username, email, password) => {
     setIsLoading(true);
@@ -21,6 +21,7 @@ export const useSellSignup = () => {
       body: JSON.stringify({ username, email, password }),
     });
     const json = await response.json();
+    console.log(json);
     if (!response.ok) {
       setIsLoading(false);
       if (json.error === "Password is not strong enough") {
@@ -45,9 +46,10 @@ export const useSellSignup = () => {
       localStorage.setItem("user", JSON.stringify(data));
       // update the useAuthCont
       // information sent through response.json({username, email, id, token})
-      dispatch({ type: "LOGIN", payload: json, method: "sell" });
-      navigate(-1);
-      navigate("home");
+      authDispatch({ type: "LOGIN", payload: json, method: "sell" });
+
+      console.log("update");
+
       setIsLoading(false);
     }
   };

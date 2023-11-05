@@ -43,7 +43,7 @@ export default function SellLogin() {
           </form>
         </div>
         <p className="no_account_text">
-          Don't have an account? <a href="/buysignup">Sign Up</a>
+          Don't have an account? <a href="/sellsignup">Sign Up</a>
         </p>
       </div>
     </div>

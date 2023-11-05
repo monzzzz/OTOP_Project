@@ -5,7 +5,7 @@ import Navigation from "./Component/Nav/Navigation.js";
 import Sell from "./Component/Sell/Sell.js";
 import Login from "./Component/Login/Login.js";
 import BuySignup from "./Component/Signup/BuySignup.js";
-import SellSignup from "./Component/Signup/BuySignup.js";
+import SellSignup from "./Component/Signup/SellSignup.js";
 import Profile from "./Component/Profile/Profile.js";
 import Marketplace from "./Component/Marketplace/Marketplace.js";
 import SingleProduct from "./Component/Marketplace/SingleProduct.js";

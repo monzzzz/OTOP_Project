@@ -6,6 +6,7 @@ export default function Cart() {
   const [cartInfo, setCartInfo] = useState("");
   const [error, setError] = useState(null);
   const [hook, setHook] = useState(false);
+
   const { user } = useAuthContext();
   const userId = user ? user.id : null;
 
@@ -30,27 +31,51 @@ export default function Cart() {
   }, [userId, hook]);
 
   const addQuantity = async (quantity, productID) => {
-    const newQuantity = quantity + 1;
-    const response = await fetch("/api/cart", {
-      method: "PUT",
-      body: JSON.stringify({
-        quantity: newQuantity,
-        ownerID: userId,
-        productID: productID,
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
+    if (quantity < 10) {
+      const newQuantity = quantity + 1;
+      const response = await fetch("/api/cart", {
+        method: "PUT",
+        body: JSON.stringify({
+          quantity: newQuantity,
+          ownerID: userId,
+          productID: productID,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
 
-    const json = await response.json();
-    console.log(json);
-    if (!response.ok) {
-      setError(json.error);
-    }
-    if (response.ok) {
-      setHook(true);
+      const json = await response.json();
+      console.log(json);
+      if (!response.ok) {
+        setError(json.error);
+      }
+      if (response.ok) {
+        setHook(true);
+      }
     }
   };
-  const decreaseQuantity = (quantity, id) => {};
+  const decreaseQuantity = async (quantity, productID) => {
+    if (quantity > 0) {
+      const newQuantity = quantity - 1;
+      const response = await fetch("/api/cart", {
+        method: "PUT",
+        body: JSON.stringify({
+          quantity: newQuantity,
+          ownerID: userId,
+          productID: productID,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const json = await response.json();
+      console.log(json);
+      if (!response.ok) {
+        setError(json.error);
+      }
+      if (response.ok) {
+        setHook(true);
+      }
+    }
+  };
 
   return (
     <div className="cart-page-container">
@@ -71,13 +96,26 @@ export default function Cart() {
                         <div className="title-text">
                           {item.productInfo.title}
                         </div>
+                        <div className="category-text">
+                          {item.productInfo.category}
+                        </div>
                       </div>
                     </span>
                   </div>
                   <div className="col-6 d-flex justify-content-end align-items-center">
                     <span className="right-item-container">
                       <span className="quantity-container">
-                        <button className="remove-quantity-button">-</button>
+                        <button
+                          className="remove-quantity-button"
+                          onClick={() => {
+                            decreaseQuantity(
+                              item._doc.quantity,
+                              item._doc.itemId
+                            );
+                          }}
+                        >
+                          -
+                        </button>
                         <span className="quantity-amount">
                           {item._doc.quantity}
                         </span>

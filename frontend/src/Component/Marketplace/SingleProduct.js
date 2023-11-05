@@ -4,6 +4,7 @@ import "../../Assets/style/Marketplace/SingleProduct.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
+// import { useCartContext } from "../../Hook/Cart/useCartContext";
 export default function SingleProduct() {
   const { productId } = useParams();
   const [productData, setProductData] = useState(null);
@@ -12,6 +13,7 @@ export default function SingleProduct() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuthContext();
+  // const { dispatch } = useCartContext();
   useEffect(() => {
     const getQuantityFromURL = () => {
       const searchParams = new URLSearchParams(location.search);
@@ -60,23 +62,27 @@ export default function SingleProduct() {
   };
   const handleAddtoCart = async (itemId, price) => {
     // in the database before navigate to the cart page, we have to check if the quantity numberr user summited less than the quantity of products avaiable
-    const searchParams = new URLSearchParams(location.search);
-    const quantityParam = searchParams.get("quantity");
-    const ownerID = user.id;
-    if (quantityParam !== "0") {
-      const response = await fetch(
-        `/api/cart/${itemId}?quantity=${quantityParam}`,
-        {
-          method: "POST",
-          body: JSON.stringify({ ownerID: ownerID, price }),
-          headers: { "Content-Type": "application/json" },
+    if (!user.id) {
+    }
+    if (user.id) {
+      const searchParams = new URLSearchParams(location.search);
+      const quantityParam = searchParams.get("quantity");
+      const ownerID = user.id;
+      if (quantityParam !== "0") {
+        const response = await fetch(
+          `/api/cart/${itemId}?quantity=${quantityParam}`,
+          {
+            method: "POST",
+            body: JSON.stringify({ ownerID: ownerID, price }),
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        const json = await response.json();
+        if (!response.ok) {
+          setError(json.error);
         }
-      );
-      const json = await response.json();
-      if (!response.ok) {
-        setError(json.error);
+        console.log("success");
       }
-      console.log("success");
     }
   };
   return (
