@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "../../Assets/style/Cart/Cart.css";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import { formatPrice } from "../../Utils/PriceFormat";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import PaymentPopUp from "./PaymentPopUp";
 export default function Cart() {
   const [cartInfo, setCartInfo] = useState("");
@@ -15,7 +17,7 @@ export default function Cart() {
   useEffect(() => {
     const getCartItem = async () => {
       if (userId) {
-        const response = await fetch(`/api/cart/${userId}`);
+        const response = await fetch(`/api/cart/${userId}`, { method: "GET" });
         const json = await response.json();
         if (response.ok) {
           setCartInfo(json);
@@ -78,6 +80,21 @@ export default function Cart() {
     }
   };
 
+  const deleteItemById = async (itemId) => {
+    const response = await fetch(`/api/cart/${userId}`, {
+      method: "DELETE",
+      body: JSON.stringify({ itemId: itemId }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await response.json();
+    if (response.ok) {
+      setHook(true);
+    }
+    if (!response.ok) {
+      setError(json.error);
+    }
+  };
+
   return (
     <div className="cart-page-container">
       {cartInfo && (
@@ -103,33 +120,45 @@ export default function Cart() {
                       </div>
                     </span>
                   </div>
-                  <div className="col-6 d-flex justify-content-end align-items-center">
-                    <span className="right-item-container">
-                      <span className="quantity-container">
-                        <button
-                          className="remove-quantity-button"
+                  <div className="col-6 d-flex justify-content-end ">
+                    <div className="d-flex flex-column justify-content-between align-items-end ">
+                      <div>
+                        <FontAwesomeIcon
+                          className="pe-auto"
                           onClick={() => {
-                            decreaseQuantity(
-                              item._doc.quantity,
-                              item._doc.itemId
-                            );
+                            deleteItemById(item._doc.itemId);
                           }}
-                        >
-                          -
-                        </button>
-                        <span className="quantity-amount">
-                          {item._doc.quantity}
+                          icon={faRemove}
+                        />
+                      </div>
+                      <span className="right-item-container mb-3">
+                        <span className="quantity-container">
+                          <button
+                            className="remove-quantity-button"
+                            onClick={() => {
+                              decreaseQuantity(
+                                item._doc.quantity,
+                                item._doc.itemId
+                              );
+                            }}
+                          >
+                            -
+                          </button>
+                          <span className="quantity-amount">
+                            {item._doc.quantity}
+                          </span>
+                          <button
+                            className="add-quantity-button"
+                            onClick={() => {
+                              addQuantity(item._doc.quantity, item._doc.itemId);
+                            }}
+                          >
+                            +
+                          </button>
                         </span>
-                        <button
-                          className="add-quantity-button"
-                          onClick={() => {
-                            addQuantity(item._doc.quantity, item._doc.itemId);
-                          }}
-                        >
-                          +
-                        </button>
                       </span>
-                    </span>
+                      <div></div>
+                    </div>
                   </div>
                 </div>
               </div>

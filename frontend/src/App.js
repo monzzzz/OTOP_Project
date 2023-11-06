@@ -11,6 +11,7 @@ import Marketplace from "./Component/Marketplace/Marketplace.js";
 import SingleProduct from "./Component/Marketplace/SingleProduct.js";
 import Error from "./Component/Error/Error.js";
 import Cart from "./Component/Cart/Cart.js";
+import PromptPay from "./Component/Cart/PaymentType/PromptPay.js";
 export default function App() {
   return (
     <div className="App">
@@ -34,6 +35,7 @@ export default function App() {
           ></Route>
           <Route path="/error" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/payment/promtpay" element={<PromptPay />} />
         </Routes>
       </BrowserRouter>
       <></>

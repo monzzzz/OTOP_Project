@@ -29,24 +29,14 @@ const getItemByID = async (req, res) => {
     for (const item of cart[0].items) {
       const eachItemId = item.itemId;
       const productInfo = await ProductInfo.findById(eachItemId);
+
       result.push({
         ...item,
         productInfo,
         image: `http://localhost:${process.env.PORT}/images/${productInfo.image}`,
       });
     }
-    // await Promise.all(
-    //   cart[0].items.map(async (item) => {
-    //     const eachItemId = item.itemId;
-    //     const productInfo = await ProductInfo.findById(eachItemId);
-    //     console.log(item);
-    //     result.push({
-    //       ...item,
-    //       productInfo,
-    //       image: `http://localhost:${process.env.PORT}/images/${productInfo.image}`,
-    //     });
-    //   })
-    // );
+
     const total_price = cart[0].total_price;
     res.status(200).json({ result, total_price });
   } catch (error) {
@@ -57,6 +47,34 @@ const getItemByID = async (req, res) => {
 const deleteItem = async (req, res) => {
   await CartSchema.deleteMany({});
   res.status(200).json({ message: "All items deleted successfully" });
+};
+
+const deleteById = async (req, res) => {
+  const ownerID = req.params.id;
+  const { itemId } = req.body;
+  try {
+    const cart = await CartSchema.findOne({ owner: ownerID });
+    if (!cart) {
+      return res.status(404).json({ error: "Cart not found" });
+    }
+
+    // update price
+    const product = cart.items.find((item) => item.itemId === itemId);
+    const productInfo = await ProductInfo.findById(itemId);
+    cart.total_price = cart.total_price - product.quantity * productInfo.price;
+
+    // delete the elementn from the cart
+    await CartSchema.updateOne(
+      { owner: ownerID },
+      { $pull: { items: { itemId } } }
+    );
+
+    await cart.save();
+    res.status(200).json({ mssg: "deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ error: error.message });
+  }
 };
 
 // update item (update quantity (cart page))
@@ -86,4 +104,11 @@ const updateQuantity = async (req, res) => {
   }
 };
 
-module.exports = { addItem, getItem, deleteItem, getItemByID, updateQuantity };
+module.exports = {
+  addItem,
+  getItem,
+  deleteItem,
+  getItemByID,
+  updateQuantity,
+  deleteById,
+};

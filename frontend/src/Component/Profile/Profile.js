@@ -1,13 +1,22 @@
-import { useLogout } from "../../Hook/Authentication/useLogout";
-
+import { useMediaQuery } from "react-responsive";
+import Large_Screen_Profile from "./Profile_Screen/Large_Screen_Profile";
 export default function Profile() {
-  const { logout } = useLogout();
-  const handleClick = async () => {
-    await logout();
-  };
+  const isSmallDevice = useMediaQuery({
+    query: "(max-width: 640px)",
+  });
+  const isLargeDevice = useMediaQuery({
+    query: "(min-width: 640px)",
+  });
   return (
     <div>
-      <button onClick={handleClick}>Logout</button>
+      <>
+        {isSmallDevice && <div></div>}
+        {isLargeDevice && (
+          <div>
+            <Large_Screen_Profile />
+          </div>
+        )}
+      </>
     </div>
   );
 }

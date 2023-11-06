@@ -1,0 +1,12 @@
+.large-screen-profile-container {
+  padding: 5rem 15rem;
+}
+
+.side-bar li {
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.side-bar {
+  list-style: none;
+}

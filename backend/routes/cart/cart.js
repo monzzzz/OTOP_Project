@@ -5,6 +5,7 @@ const {
   deleteItem,
   getItemByID,
   updateQuantity,
+  deleteById,
 } = require("../../controllers/cart/cartController");
 
 const express = require("express");
@@ -16,5 +17,6 @@ router.get("/", getItem);
 router.get("/:id", getItemByID);
 router.delete("/", deleteItem);
 router.put("/", updateQuantity);
+router.delete("/:id", deleteById);
 
 module.exports = router;
