@@ -26,7 +26,7 @@ export default function Marketplace() {
       }
     };
     fetchProduct();
-  });
+  }, []);
   return (
     <div className="marketplace-page-container">
       <div className="row">

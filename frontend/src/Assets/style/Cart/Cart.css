@@ -35,3 +35,7 @@
 .conclusion-price-container {
   padding: 0.75rem;
 }
+
+.remove-icon {
+  cursor: pointer;
+}

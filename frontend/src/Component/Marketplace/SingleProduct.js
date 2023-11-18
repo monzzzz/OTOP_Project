@@ -4,11 +4,12 @@ import "../../Assets/style/Marketplace/SingleProduct.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
-// import { useCartContext } from "../../Hook/Cart/useCartContext";
+import Review from "./Review/Review";
 export default function SingleProduct() {
   const { productId } = useParams();
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);
+  const [hook, setHook] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,6 +21,7 @@ export default function SingleProduct() {
       const quantityParam = searchParams.get("quantity");
       if (quantityParam) {
         setQuantity(parseInt(quantityParam));
+        setHook(false);
       }
     };
     getQuantityFromURL();
@@ -29,6 +31,7 @@ export default function SingleProduct() {
       const json = await response.json();
       if (response.ok) {
         setProductData(json);
+        setHook(false);
       }
       if (!response.ok) {
         setError(json.error);
@@ -37,16 +40,18 @@ export default function SingleProduct() {
       }
     };
     fetchSingleProduct();
-  });
+  }, [hook]);
 
   const addQuantity = () => {
     const newQuantity = quantity + 1;
     updateURL(newQuantity);
+    setHook(true);
   };
   const removeQuantity = () => {
     if (quantity > 0) {
       const newQuantity = quantity - 1;
       updateURL(newQuantity);
+      setHook(true);
     }
   };
   // quantity update in the URL
@@ -89,7 +94,7 @@ export default function SingleProduct() {
     <div className="single-product-page-container">
       {productData && (
         <div className="single-product-container">
-          <div className="row g-0">
+          <div className="row g-0 mb-5">
             <div className="col-sm-12 col-lg-6 product-image">
               <img src={productData.image} alt={productData._doc.title} />
             </div>
@@ -145,8 +150,10 @@ export default function SingleProduct() {
               </div>
             </div>
           </div>
+          <Review />
         </div>
       )}
+      {/*add the review and able specific user to comment the product qualiity*/}
     </div>
   );
 }

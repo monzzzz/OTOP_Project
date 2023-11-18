@@ -9,4 +9,5 @@
 
 .side-bar {
   list-style: none;
+  border-right: solid 1px #dddddd;
 }

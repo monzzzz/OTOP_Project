@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Home_Profile from "./Context/Home_Profile";
 import "../../../Assets/style/Profile/Large_Screen_Profile.css";
-export default function Large_Screen_Profile() {
+export default function LargeScreenProfile() {
   const [render, setRender] = useState("home");
   const handleClickChange = (page) => {
     setRender(page);

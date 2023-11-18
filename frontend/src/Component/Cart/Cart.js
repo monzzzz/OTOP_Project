@@ -124,7 +124,7 @@ export default function Cart() {
                     <div className="d-flex flex-column justify-content-between align-items-end ">
                       <div>
                         <FontAwesomeIcon
-                          className="pe-auto"
+                          className="remove-icon"
                           onClick={() => {
                             deleteItemById(item._doc.itemId);
                           }}

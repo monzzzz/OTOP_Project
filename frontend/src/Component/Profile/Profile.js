@@ -1,5 +1,6 @@
 import { useMediaQuery } from "react-responsive";
-import Large_Screen_Profile from "./Profile_Screen/Large_Screen_Profile";
+import LargeScreenProfile from "./Profile_Screen/Large_Screen_Profile";
+import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 export default function Profile() {
   const isSmallDevice = useMediaQuery({
     query: "(max-width: 640px)",
@@ -7,16 +8,21 @@ export default function Profile() {
   const isLargeDevice = useMediaQuery({
     query: "(min-width: 640px)",
   });
+  const { user } = useAuthContext();
   return (
     <div>
-      <>
-        {isSmallDevice && <div></div>}
-        {isLargeDevice && (
-          <div>
-            <Large_Screen_Profile />
-          </div>
-        )}
-      </>
+      {user ? (
+        <>
+          {isSmallDevice && <div></div>}
+          {isLargeDevice && (
+            <div>
+              <LargeScreenProfile />
+            </div>
+          )}
+        </>
+      ) : (
+        <div>You have not login</div>
+      )}
     </div>
   );
 }
