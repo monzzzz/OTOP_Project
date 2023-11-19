@@ -7,7 +7,7 @@ export default function SearchBar() {
     setInput(value);
   };
   return (
-    <div className="nav_search_container d-inline-block">
+    <div className="nav_search_container m-0 d-inline-block">
       <div className="input-wrapper">
         <input placeholder="Search heros, items, ID" />
         <i

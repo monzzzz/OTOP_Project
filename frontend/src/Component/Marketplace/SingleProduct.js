@@ -10,6 +10,7 @@ export default function SingleProduct() {
   const [productData, setProductData] = useState(null);
   const [error, setError] = useState(null);
   const [hook, setHook] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,21 +25,23 @@ export default function SingleProduct() {
         setHook(false);
       }
     };
-    getQuantityFromURL();
-
     const fetchSingleProduct = async () => {
+      setIsLoading(true);
       const response = await fetch(`/api/market/products/${productId}`);
       const json = await response.json();
       if (response.ok) {
+        setIsLoading(false);
         setProductData(json);
         setHook(false);
       }
       if (!response.ok) {
+        setIsLoading(false);
         setError(json.error);
         navigate(-2);
         navigate(`/error?message=${error}`);
       }
     };
+    getQuantityFromURL();
     fetchSingleProduct();
   }, [hook]);
 
@@ -150,10 +153,10 @@ export default function SingleProduct() {
               </div>
             </div>
           </div>
-          <Review />
         </div>
       )}
       {/*add the review and able specific user to comment the product qualiity*/}
+      <Review />
     </div>
   );
 }

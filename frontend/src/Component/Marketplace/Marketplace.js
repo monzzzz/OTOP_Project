@@ -7,6 +7,7 @@ export default function Marketplace() {
   const { products, dispatch } = useProductContext();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
   const handleBuy = (productId) => {
     navigate(`/products/${productId}?quantity=0`);
     return false;
@@ -34,30 +35,28 @@ export default function Marketplace() {
           return (
             <div
               key={index}
-              className="card card_container rounded-4 col-sm-4 col-lg-3 mb-4"
+              className="each-card-container rounded-4 col-sm-4 col-lg-3 g-5 "
             >
-              <img
-                className="card-img-top"
-                src={product.image}
-                alt={product._doc.title}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{product._doc.title}</h5>
-                <p className="card-text">{product._doc.province}</p>
-              </div>
-              <div className="card-body d-flex justify-content-between align-items-end">
-                <h6 className="card-text">{formatPrice(product._doc.price)}</h6>
-                <a
-                  href="/marketplace"
-                  className="btn btn-primary"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleBuy(product._doc._id);
-                  }}
-                >
-                  Buy
-                </a>
-              </div>
+              <a
+                className="marketplace-buy-button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleBuy(product._doc._id);
+                }}
+              >
+                <img
+                  className="img-fluid align-self-center"
+                  src={product.image}
+                  alt={product._doc.title}
+                />
+                <div className="">
+                  <h5 className="">{product._doc.title}</h5>
+                  <p className="">{product._doc.province}</p>
+                </div>
+                <div className="d-flex justify-content-between align-items-end">
+                  <h6 className="">{formatPrice(product._doc.price)}</h6>
+                </div>
+              </a>
             </div>
           );
         })}

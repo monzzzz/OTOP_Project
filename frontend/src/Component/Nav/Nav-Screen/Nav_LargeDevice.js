@@ -9,32 +9,33 @@ export default function LargeDevice() {
   const methodValid = method === "sell";
   return (
     <nav className="Nav_Large_Device_Container ">
-      <span className="path_container">
+      <span className="path_container d-flex align-items-center">
         <span>
           <a href="/" className="LOGO">
             <img
               alt="logo"
-              src="../../../../public/logo.png"
-              width="80px"
-              height="30px"
+              src={require("../../../Assets/picture/traditee_logo.png")}
+              style={{ width: "8rem" }}
             />
           </a>
         </span>
-        {Nav_data.map((data, index) => {
-          if (data.id !== "profile") {
-            return (
-              <span key={index} className="nav_path">
-                <a
-                  href={data.href}
-                  className="text-decoration-none text-dark nav_link"
-                >
-                  <FontAwesomeIcon icon={data.icon} className="nav_icon" />
-                  {data.text}
-                </a>
-              </span>
-            );
-          }
-        })}
+        <span>
+          {Nav_data.map((data, index) => {
+            if (data.id !== "profile") {
+              return (
+                <span key={index} className="nav_path">
+                  <a
+                    href={data.href}
+                    className="text-decoration-none text-dark nav_link"
+                  >
+                    <FontAwesomeIcon icon={data.icon} className="nav_icon" />
+                    {data.text}
+                  </a>
+                </span>
+              );
+            }
+          })}
+        </span>
         <span>
           <Search />
         </span>

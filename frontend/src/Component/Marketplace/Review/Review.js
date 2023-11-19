@@ -8,10 +8,10 @@ export default function Review() {
       <div></div>{" "}
       {/*this is the container where the user can see other people's comments and it uses overflow scroll to make it */}
       {/*allow user to comment just when they already buy products*/}
-      <div className="comment-input-container w-100 d-flex justify-content-end">
-        <form className="w-50">
+      <div className=" w-100 d-flex justify-content-end">
+        <form className="input-button-container">
           <label>{/*username */}</label>
-          <input type="text" className="form-control" />
+          <input type="text" className="comment-input" />
           <button className="sent_button">
             <FontAwesomeIcon icon={faPaperPlane}></FontAwesomeIcon>
           </button>

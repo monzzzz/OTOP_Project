@@ -4,9 +4,13 @@ import Search from "./Small_Device_Component/Search/Search";
 import { Nav_data } from "../../../Data/Nav/Nav_Data";
 export default function SmallDevice() {
   return (
-    <nav className="Nav_Small_Device_Container">
+    <nav className="Nav_Small_Device_Container d-flex align-items-center">
       <a href="/" className="LOGO">
-        <img alt="logo" src="/logo.png" width="100px" height="30px" />
+        <img
+          alt="logo"
+          src={require("../../../Assets/picture/traditee_logo.png")}
+          style={{ width: "8rem" }}
+        />
       </a>
       <Search />
       <Bars data={Nav_data} />
