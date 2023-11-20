@@ -174,4 +174,13 @@
 
 .add-to-cart-button {
   margin-left: 1rem;
+  color: #1d1d1f;
+  background-color: transparent;
+  border: solid 1px #dddddd;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  transition: 0.5s;
+  margin-bottom: 0.25rem;
+  width: 100%;
 }

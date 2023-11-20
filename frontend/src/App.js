@@ -13,6 +13,7 @@ import Error from "./Component/Error/Error.js";
 import Cart from "./Component/Cart/Cart.js";
 import PromptPay from "./Component/Cart/PaymentType/PromptPay.js";
 import AboutUs from "./Component/AboutUs/AboutUs.js";
+import Handbook from "./Component/Handbook/Handbook.js";
 import PageNotFound from "./Component/PageNotFound/PageNotFound.js";
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/error" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment/promtpay" element={<PromptPay />} />
+          <Route path="/handbook" element={<Handbook />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

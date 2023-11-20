@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuthContext } from "../../../../../Hook/Authentication/useAuthContext";
 import {
-  faUser,
+  faUserCircle,
   faMagnifyingGlassDollar,
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
@@ -70,7 +70,7 @@ const Bars = (props) => {
         )}
         {user && (
           <a href="/profile" className="profile_text">
-            <FontAwesomeIcon icon={faUser} className="nav_icon" />
+            <FontAwesomeIcon icon={faUserCircle} className="nav_icon" />
             {user.username}
           </a>
         )}

@@ -139,7 +139,7 @@ export default function SingleProduct() {
                 </span>
                 <span>
                   <button
-                    className="btn btn-primary add-to-cart-button"
+                    className="add-to-cart-button"
                     onClick={() => {
                       handleAddtoCart(
                         productData._doc._id,
