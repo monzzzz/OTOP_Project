@@ -10,23 +10,10 @@ export default function Navigation() {
   const isLargeDevice = useMediaQuery({
     query: "(min-width: 1024px)",
   });
-  const [isSticky, setSticky] = useState(false);
 
-  const handleScroll = () => {
-    if (window.scrollY > 0) {
-      setSticky(true);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <>
-      <div className={`navigation-container ${isSticky ? "sticky" : ""}`}>
+      <div className={`navigation-container`}>
         {isSmallDevice && (
           <div>
             <SmallDevice />
@@ -38,7 +25,6 @@ export default function Navigation() {
           </div>
         )}
       </div>
-      {isSticky && <div className="nav-placeholder"></div>}
     </>
   );
 }

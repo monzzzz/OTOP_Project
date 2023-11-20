@@ -24,11 +24,14 @@ export default function Main() {
     query: "(min-width: 1024px)",
   });
   return (
-    <div className="Main-container">
+    <div className="main-container">
       <div className="Carousel-container">
         {isSmallDevice && <div></div>}
-        {isLargeDevice && <div><Large_Device_Carousel data={picture_carousel} />
-        </div>}
+        {isLargeDevice && (
+          <div>
+            <Large_Device_Carousel data={picture_carousel} />
+          </div>
+        )}
       </div>
       <div className="Main-top-item-container"></div>
     </div>
