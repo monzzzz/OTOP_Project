@@ -1,17 +1,65 @@
 .login_page_container {
   display: flex;
   justify-content: center;
-  padding-top: 6rem;
-  padding-inline: 1rem;
+  padding-top: 4rem;
 }
 
-.login_container {
-  background-color: #f4f4f4;
-  border-radius: 1rem;
-  padding-top: 1.4rem;
-  padding-inline: 2rem;
-  width: 18rem;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+@media only screen and (min-width: 1024px) {
+  .login_container {
+    border-radius: 1rem;
+    padding-top: 1.4rem;
+    padding-inline: 2rem;
+    width: 25rem;
+  }
+  .button_off {
+    color: #1d1d1f;
+    border: solid 1px #dddddd;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0.3rem 3.8rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.5s ease;
+  }
+  .button_on {
+    color: #1d1d1f;
+    background-color: transparent;
+    border: solid 1px #1d1d1f;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0.3rem 3.8rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.5s ease;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .login_container {
+    border-radius: 1rem;
+    padding-top: 1.4rem;
+    padding-inline: 2rem;
+    width: 20rem;
+  }
+  .button_off {
+    color: #1d1d1f;
+    border: solid 1px #dddddd;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0.3rem 1.75rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.5s ease;
+  }
+  .button_on {
+    color: #1d1d1f;
+    background-color: transparent;
+    border: solid 1px #1d1d1f;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 0.3rem 1.75rem;
+    margin-bottom: 1rem;
+    transition: background-color 0.5s ease;
+  }
 }
 
 .button_method {
@@ -19,28 +67,9 @@
   justify-content: center;
 }
 
-.button_off {
-  color: #2d81e1;
-  border-color: #2d81e1;
-  cursor: pointer;
-  border-radius: 10px;
-  padding: 0.2rem 1.75rem;
-  margin-bottom: 1rem;
-  transition: background-color 0.5s ease;
-}
-.button_on {
-  color: #ffffff;
-  background-color: #2d81e1;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  padding: 0.3rem 1.75rem;
-  margin-bottom: 1rem;
-  transition: background-color 0.5s ease;
-}
-
 .buy_method {
   margin-right: 0.3rem;
+  margin-left: 0.4rem;
 }
 .sell_method {
   margin-left: 0.3rem;

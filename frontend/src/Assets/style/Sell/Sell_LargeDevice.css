@@ -1,10 +1,10 @@
 .Sell_Large_Device_Container {
-  padding: 1.75rem 10rem;
+  padding: 5rem 20rem;
 }
 .sell_submit_button {
-  color: #ffffff;
-  background-color: #318ce7;
-  border: none;
+  color: #1d1d1f;
+  background-color: transparent;
+  border: 1px solid #1d1d1f;
   cursor: pointer;
   border-radius: 10px;
   padding: 0.55rem 1.5rem;

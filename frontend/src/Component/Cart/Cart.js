@@ -102,68 +102,75 @@ export default function Cart() {
         <div className={active ? "blur" : ""}>
           <h1 className="mb-3">Cart</h1>
           <div className="items-container">
-            {cartInfo.result.map((item) => (
-              <div
-                key={item._doc.itemId}
-                className="card item-container rounded-3 d-flex justify-content-between p-3 mb-3"
-              >
-                <div className="row">
-                  <div className="col-6">
-                    <span className="left-item-container d-flex align-content-center">
-                      <img src={item.image} alt={item.productInfo.title} />
-                      <div className="text-left">
-                        <div className="title-text">
-                          {item.productInfo.title}
-                        </div>
-                        <div className="category-text">
-                          {item.productInfo.category}
-                        </div>
-                      </div>
-                    </span>
-                  </div>
-                  <div className="col-6 d-flex justify-content-end ">
-                    <div className="d-flex flex-column justify-content-between align-items-end ">
-                      <div>
-                        <FontAwesomeIcon
-                          className="remove-icon"
-                          onClick={() => {
-                            deleteItemById(item._doc.itemId);
-                          }}
-                          icon={faRemove}
-                        />
-                      </div>
-                      <span className="right-item-container mb-3">
-                        <span className="quantity-container">
-                          <button
-                            className="remove-quantity-button"
-                            onClick={() => {
-                              decreaseQuantity(
-                                item._doc.quantity,
-                                item._doc.itemId
-                              );
-                            }}
-                          >
-                            -
-                          </button>
-                          <span className="quantity-amount">
-                            {item._doc.quantity}
-                          </span>
-                          <button
-                            className="add-quantity-button"
-                            onClick={() => {
-                              addQuantity(item._doc.quantity, item._doc.itemId);
-                            }}
-                          >
-                            +
-                          </button>
+            {cartInfo.result.map((item) => {
+              if (item._doc.quantity != 0) {
+                return (
+                  <div
+                    key={item._doc.itemId}
+                    className="card item-container rounded-3 d-flex justify-content-between p-3 mb-3"
+                  >
+                    <div className="row">
+                      <div className="col-6">
+                        <span className="left-item-container d-flex align-content-center">
+                          <img src={item.image} alt={item.productInfo.title} />
+                          <div className="text-left">
+                            <div className="title-text">
+                              {item.productInfo.title}
+                            </div>
+                            <div className="category-text">
+                              {item.productInfo.category}
+                            </div>
+                          </div>
                         </span>
-                      </span>
-                      <div></div>
+                      </div>
+                      <div className="col-6 d-flex justify-content-end ">
+                        <div className="d-flex flex-column justify-content-between align-items-end ">
+                          <div>
+                            <FontAwesomeIcon
+                              className="remove-icon"
+                              onClick={() => {
+                                deleteItemById(item._doc.itemId);
+                              }}
+                              icon={faRemove}
+                            />
+                          </div>
+                          <span className="right-item-container mb-3">
+                            <span className="quantity-container">
+                              <button
+                                className="remove-quantity-button"
+                                onClick={() => {
+                                  decreaseQuantity(
+                                    item._doc.quantity,
+                                    item._doc.itemId
+                                  );
+                                }}
+                              >
+                                -
+                              </button>
+                              <span className="quantity-amount">
+                                {item._doc.quantity}
+                              </span>
+                              <button
+                                className="add-quantity-button"
+                                onClick={() => {
+                                  addQuantity(
+                                    item._doc.quantity,
+                                    item._doc.itemId
+                                  );
+                                }}
+                              >
+                                +
+                              </button>
+                            </span>
+                          </span>
+                          <div></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+              }
+            })}
           </div>
           <div className="card conclusion-price-container ">
             <div className="d-flex justify-content-end align-content-center">

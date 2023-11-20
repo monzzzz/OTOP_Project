@@ -2,6 +2,31 @@
   padding: 1rem 2rem;
 }
 .username_input {
-  border: solid 1px #bbbbbb;
-  border-radius: 5px;
+  border: solid 1px #cccccc;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  margin-right: 10px;
+}
+
+.username_form {
+  display: inline;
+  gap: 5px;
+}
+
+.change-name-submit {
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  border: solid 1px #cccccc;
+}
+
+.change-name-submit:hover {
+  opacity: 0.9;
+}
+
+.logout-button {
+  background-color: transparent;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  border: solid 1px #cccccc;
 }

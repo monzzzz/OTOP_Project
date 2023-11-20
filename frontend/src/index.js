@@ -7,6 +7,9 @@ import "bootstrap/dist/js/bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "popper.js/dist/umd/popper";
 import "font-awesome/css/font-awesome.css";
+// google provider
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 // Context
 import { AuthContextProvider } from "./Context/AuthenticationContext/AuthContext";
 import { ProductContextProvider } from "./Context/AuthenticationContext/ProductContext";
@@ -14,11 +17,13 @@ import { ProductContextProvider } from "./Context/AuthenticationContext/ProductC
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <ProductContextProvider>
-        <App />
-      </ProductContextProvider>
-    </AuthContextProvider>
+    <GoogleOAuthProvider clientId="163951458426-d2cdh9d0t887aamna7fjt43po7ihjcvp.apps.googleusercontent.com">
+      <AuthContextProvider>
+        <ProductContextProvider>
+          <App />
+        </ProductContextProvider>
+      </AuthContextProvider>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
 

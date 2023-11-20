@@ -12,6 +12,8 @@ import SingleProduct from "./Component/Marketplace/SingleProduct.js";
 import Error from "./Component/Error/Error.js";
 import Cart from "./Component/Cart/Cart.js";
 import PromptPay from "./Component/Cart/PaymentType/PromptPay.js";
+import AboutUs from "./Component/AboutUs/AboutUs.js";
+import PageNotFound from "./Component/PageNotFound/PageNotFound.js";
 export default function App() {
   return (
     <div className="App">
@@ -26,6 +28,7 @@ export default function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/sell" element={<Sell />}></Route>
           <Route path="/buysignup" element={<BuySignup />}></Route>
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/sellsignup" element={<SellSignup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/marketplace" element={<Marketplace />}></Route>
@@ -36,6 +39,7 @@ export default function App() {
           <Route path="/error" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/payment/promtpay" element={<PromptPay />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
       <></>
