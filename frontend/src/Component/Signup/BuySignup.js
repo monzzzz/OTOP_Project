@@ -20,7 +20,7 @@ export default function BuySignup() {
             <label className="mb-1">Username</label>
             <input
               type="text"
-              className="form-control mb-1 input"
+              className="input-signup-container mb-1 input"
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
@@ -31,7 +31,7 @@ export default function BuySignup() {
             <label className="mb-1">Email</label>
             <input
               type="email"
-              className="form-control mb-1 input"
+              className="input-signup-container mb-1 "
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
@@ -42,7 +42,7 @@ export default function BuySignup() {
             <label className="mb-1">Password</label>
             <input
               type="password"
-              className="form-control mb-1 input"
+              className="input-signup-container mb-1 "
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
@@ -54,7 +54,7 @@ export default function BuySignup() {
               disabled={isLoading}
               className="buy_signup_submit_button w-100"
             >
-              Submit
+              Sign Up
             </button>
           </form>
         </div>
