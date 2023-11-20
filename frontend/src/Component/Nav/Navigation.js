@@ -25,17 +25,20 @@ export default function Navigation() {
     };
   }, []);
   return (
-    <div className={`navigation-container ${isSticky ? "sticky" : ""}`}>
-      {isSmallDevice && (
-        <div>
-          <SmallDevice />
-        </div>
-      )}
-      {isLargeDevice && (
-        <div>
-          <LargeDevice />
-        </div>
-      )}
-    </div>
+    <>
+      <div className={`navigation-container ${isSticky ? "sticky" : ""}`}>
+        {isSmallDevice && (
+          <div>
+            <SmallDevice />
+          </div>
+        )}
+        {isLargeDevice && (
+          <div>
+            <LargeDevice />
+          </div>
+        )}
+      </div>
+      {isSticky && <div className="nav-placeholder"></div>}
+    </>
   );
 }

@@ -5,3 +5,9 @@
   padding: 0.7rem;
   box-shadow: 0 1px 0 #eeeeee;
 }
+
+.logo-container {
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+}

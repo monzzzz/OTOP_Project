@@ -17,9 +17,6 @@
   }
 }
 
-.left-item-container {
-}
-
 .left-item-container img {
   width: 8rem;
   display: inline-block;
@@ -38,4 +35,18 @@
 
 .remove-icon {
   cursor: pointer;
+}
+
+.cart-checkout-button {
+  padding: 5px 10px;
+  color: #1d1d1f;
+  border-radius: 10px;
+  border: solid 1px #cccccc;
+  text-decoration: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.cart-checkout-button:hover {
+  opacity: 0.9;
 }

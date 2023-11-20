@@ -1,5 +1,5 @@
 .marketplace-page-container {
-  padding: 3rem 4rem;
+  padding: 2rem 4rem;
 }
 
 .each-card-container {
@@ -31,4 +31,7 @@
 
 .marketplace-buy-button:hover {
   opacity: 0.9;
+}
+
+.cart-checkout-button {
 }

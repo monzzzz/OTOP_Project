@@ -11,3 +11,8 @@
   backdrop-filter: blur(10px);
   z-index: 1000; /* Above other content */
 }
+
+.nav-placeholder {
+  height: 60px; /* Set this to the height of your navigation bar */
+  visibility: hidden; /* Hide the placeholder visually but let it take up space */
+}

@@ -22,6 +22,7 @@ export default function Cart() {
         if (response.ok) {
           setCartInfo(json);
           console.log(cartInfo);
+
           setHook(false);
         }
         if (!response.ok) {
@@ -172,7 +173,7 @@ export default function Cart() {
                 </span>
                 <span>
                   <button
-                    className="btn btn-primary"
+                    className="cart-checkout-button"
                     onClick={() => {
                       setActive(true);
                     }}

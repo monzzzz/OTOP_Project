@@ -3,7 +3,10 @@ import Search from "./Large_Device_Component/Search/Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Nav_data } from "../../../Data/Nav/Nav_Data";
 import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
-import { faUser, faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserCircle,
+  faCartShopping,
+} from "@fortawesome/free-solid-svg-icons";
 export default function LargeDevice() {
   const { user, method } = useAuthContext();
   const methodValid = method === "sell";
@@ -60,7 +63,7 @@ export default function LargeDevice() {
               Cart
             </a>
             <a href="/profile" className="nav_profile">
-              <FontAwesomeIcon icon={faUser} className="nav_icon" />
+              <FontAwesomeIcon icon={faUserCircle} className="nav_icon" />
               {user.username}
             </a>
           </span>
