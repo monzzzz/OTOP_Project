@@ -2,7 +2,6 @@ import { useMediaQuery } from "react-responsive";
 import SmallDevice from "./Nav-Screen/Nav_SmallDevice";
 import LargeDevice from "./Nav-Screen/Nav_LargeDevice";
 import "../../Assets/style/Nav/Navigation.css";
-import { useState, useEffect } from "react";
 export default function Navigation() {
   const isSmallDevice = useMediaQuery({
     query: "(max-width: 1024px)",

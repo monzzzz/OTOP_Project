@@ -13,18 +13,6 @@ export default function SellLogin() {
     await login(email, password);
     navigate("/");
   };
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      // dispatch({ type: "LOGIN", payload: tokenResponse.access_token });
-      localStorage.setItem(
-        "token",
-        JSON.stringify({ token: tokenResponse.access_token })
-      );
-      console.log(tokenResponse);
-    },
-
-    onError: () => console.log("fail"),
-  });
   return (
     <div className="buy_login_page_container">
       <div className="buy_login_container">
@@ -53,23 +41,15 @@ export default function SellLogin() {
               required
             />
             <p className=" mb-4 error">{passwordError}</p>
-            <button disabled={isLoading} className="buy_login_submit_button">
+            <button
+              disabled={isLoading}
+              className="buy_login_submit_button mb-5"
+            >
               Login
             </button>
           </form>
         </div>
-        <p className="d-flex justify-content-center mb-2">or</p>
-        <button
-          className="buy_login_submit_button d-flex align-items-center justify-content-center w-100 mb-4"
-          onClick={() => googleLogin()}
-        >
-          <img
-            style={{ marginRight: "5px", width: "20px" }}
-            alt="google"
-            src={require("../../../Assets/picture/Google_logo.png")}
-          />
-          <p className="mb-0 login-text">Google</p>
-        </button>
+
         <p className="no_account_text">
           Don't have an account? <a href="/sellsignup">Sign Up</a>
         </p>

@@ -1,7 +1,7 @@
 .login_page_container {
   display: flex;
   justify-content: center;
-  padding-top: 4rem;
+  margin-top: 8rem;
 }
 
 @media only screen and (min-width: 1024px) {

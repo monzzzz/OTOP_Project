@@ -103,7 +103,7 @@ export default function Cart() {
           <h1 className="mb-3">Cart</h1>
           <div className="items-container">
             {cartInfo.result.map((item) => {
-              if (item._doc.quantity != 0) {
+              if (item._doc.quantity !== 0) {
                 return (
                   <div
                     key={item._doc.itemId}

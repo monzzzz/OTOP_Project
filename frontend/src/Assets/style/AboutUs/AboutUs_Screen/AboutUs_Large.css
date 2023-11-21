@@ -1,14 +1,68 @@
 .about-us-large-container {
+  margin-top: 4rem;
+  overflow-x: hidden;
 }
 
-.introduction {
-  height: 200vh;
+.header-container {
+  padding-left: 2rem;
+  padding-top: 1rem;
 }
 
-.introduction-right {
-  background-color: #444444;
+.aboutus-header {
+  font-size: 3rem;
 }
 
 .subtopic-header {
-  margin-top: 4rem;
+  margin-top: 10rem;
+}
+
+.subtopic-text {
+  font-size: 1.9rem;
+  margin-left: 10rem;
+  margin-right: 2rem;
+}
+
+.traditee-text {
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+
+.hook-container {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+}
+
+.circle {
+  width: 17.5rem;
+  height: 17.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  border: solid 1.5px #1d1d1f;
+  transition: background-color 1s ease, transform 1s ease;
+}
+
+.circle-together {
+  font-size: 0rem;
+  font-size: 2rem;
+  background-color: #1d1d1f;
+  color: white;
+}
+
+.hook-container-right {
+  display: flex;
+  justify-content: center;
+}
+
+.two-circle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4vw;
+}
+.introduction-container {
+  height: 50rem;
+  background-color: #1d1d1f;
 }
