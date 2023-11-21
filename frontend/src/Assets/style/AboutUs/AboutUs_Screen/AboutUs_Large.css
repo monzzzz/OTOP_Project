@@ -28,8 +28,8 @@
 }
 
 .hook-container {
-  margin-top: 3rem;
-  margin-bottom: 4rem;
+  margin-top: 5rem;
+  margin-bottom: 11rem;
 }
 
 .circle {
@@ -40,7 +40,8 @@
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
-  border: solid 1.5px #1d1d1f;
+  font-weight: 500;
+  border: solid 2px #1d1d1f;
   transition: background-color 1s ease, transform 1s ease;
 }
 
@@ -60,9 +61,47 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4vw;
 }
+
 .introduction-container {
-  height: 50rem;
+  padding-bottom: 5rem;
+  color: white;
   background-color: #1d1d1f;
+}
+
+.header-introduction-container {
+  transform: translateY(0);
+}
+
+.header-introduction-container {
+  font-size: 2.5rem;
+  padding: 4rem 4rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: none;
+}
+
+.animate-from-bottom {
+  opacity: 1;
+  transform: translateY(0);
+  animation: slideUp 1s ease forwards;
+}
+
+.aboutus-introduction-body {
+  padding-inline: 4rem;
+}
+
+.aboutus-introduction-paragraph {
+  transform: translateY(0);
+}
+
+.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in-active {
+  opacity: 1;
+  transform: translateY(0);
 }
