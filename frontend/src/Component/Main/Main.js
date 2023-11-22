@@ -4,13 +4,13 @@ import "../../Assets/style/Main/Main.css";
 // temporary data test (later on, we receive data by using node js)
 const picture_carousel = [
   {
-    image: require("../../Assets/picture/silicon_valley.jpg"),
-    title: "Silicon Valley",
+    image: require("../../Assets/picture/Ads1.jpg"),
+    title: "Advertisement 2",
     description: "",
   },
   {
-    image: require("../../Assets/picture/google_hq.jpg"),
-    title: "Google Headquarter",
+    image: require("../../Assets/picture/Ads2.jpg"),
+    title: "Advertisement 1",
     description: "",
   },
 ];

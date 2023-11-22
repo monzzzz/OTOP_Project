@@ -59,8 +59,7 @@ export default function LargeDevice() {
         {user && (
           <span>
             <a href="/cart" className="cart_button">
-              <FontAwesomeIcon icon={faCartShopping} className="nav_icon" />
-              Cart
+              <FontAwesomeIcon icon={faCartShopping} className="cart_icon" />
             </a>
             <a href="/profile" className="nav_profile">
               <FontAwesomeIcon icon={faUserCircle} className="nav_icon" />

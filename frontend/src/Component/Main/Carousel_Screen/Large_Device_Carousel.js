@@ -20,7 +20,7 @@ export default function Large_Device_Carousel({ data }) {
               className="d-block w-100 rounded-5 picture-carousel"
             />
             <div className="carousel-caption">
-              <h2>{image.title}</h2>
+              <h1>{image.title}</h1>
               <p>{image.description}</p>
             </div>
           </div>

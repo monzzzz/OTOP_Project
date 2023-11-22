@@ -43,7 +43,7 @@ export default function SingleProduct() {
     };
     getQuantityFromURL();
     fetchSingleProduct();
-  }, [hook]);
+  }, [hook, error, location.search, navigate, productId]);
 
   const addQuantity = () => {
     const newQuantity = quantity + 1;
@@ -125,31 +125,36 @@ export default function SingleProduct() {
                 </div>
               </div>
               <div className="buy-function">
-                <span className="quantity-container">
-                  <button
-                    className="remove-quantity-button"
-                    onClick={removeQuantity}
-                  >
-                    -
-                  </button>
-                  <span className="quantity-amount">{quantity}</span>
-                  <button className="add-quantity-button" onClick={addQuantity}>
-                    +
-                  </button>
-                </span>
-                <span>
-                  <button
-                    className="add-to-cart-button"
-                    onClick={() => {
-                      handleAddtoCart(
-                        productData._doc._id,
-                        productData._doc.price
-                      );
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-                </span>
+                <div className="buy-function-inner">
+                  <div className="quantity-container">
+                    <button
+                      className="remove-quantity-button"
+                      onClick={removeQuantity}
+                    >
+                      -
+                    </button>
+                    <span className="quantity-amount">{quantity}</span>
+                    <button
+                      className="add-quantity-button"
+                      onClick={addQuantity}
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      className="add-to-cart-button"
+                      onClick={() => {
+                        handleAddtoCart(
+                          productData._doc._id,
+                          productData._doc.price
+                        );
+                      }}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
