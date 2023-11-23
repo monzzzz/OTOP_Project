@@ -31,4 +31,6 @@ const signupUser_buy = async (req, res) => {
   }
 };
 
+// request for the profile image username and email and make it able it be updated.
+
 module.exports = { loginUser_buy, signupUser_buy };

@@ -63,22 +63,35 @@
   align-items: center;
 }
 
-.introduction-container {
+/*mission container*/
+
+.mission-container {
+  padding-right: 5%;
   padding-bottom: 5rem;
   color: white;
   background-color: #1d1d1f;
 }
 
-.header-introduction-container {
+.header-mission-container {
   transform: translateY(0);
 }
 
-.header-introduction-container {
+.header-mission-container {
   font-size: 2.5rem;
   padding: 4rem 4rem;
   opacity: 0;
   transform: translateY(20px);
   animation: none;
+  margin-bottom: 2rem;
+}
+
+.aboutus-mission-image-container {
+  padding-left: 5rem;
+}
+
+.aboutus-mission-image {
+  width: 17.5rem;
+  height: 17.5rem;
 }
 
 .animate-from-bottom {
@@ -87,11 +100,62 @@
   animation: slideUp 1s ease forwards;
 }
 
-.aboutus-introduction-body {
+.aboutus-mission-body {
   padding-inline: 4rem;
+  padding-bottom: 4rem;
+  padding-top: 2rem;
 }
 
-.aboutus-introduction-paragraph {
+.aboutus-globe {
+  font-size: 17.5rem;
+}
+
+.aboutus-location-1 {
+  position: absolute;
+  top: 10%;
+  left: 40%;
+  font-size: 2rem;
+}
+
+.aboutus-location-2 {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  font-size: 3rem;
+}
+
+.aboutus-location-3 {
+  position: absolute;
+  top: 45%;
+  left: 80%;
+  font-size: 2.5rem;
+}
+
+.aboutus-location-4 {
+  position: absolute;
+  top: 40%;
+  left: 15%;
+  font-size: 2.2rem;
+}
+
+.fade-in-scroll-location {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in-active-location {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*right container*/
+
+.mission-paragraph-text {
+  font-size: 1.2rem;
+}
+
+.aboutus-mission-paragraph {
   transform: translateY(0);
 }
 

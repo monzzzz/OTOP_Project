@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGlobe, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import "../../../Assets/style/AboutUs/AboutUs_Screen/AboutUs_Large.css";
 import { useEffect, useState } from "react";
 
@@ -5,6 +7,7 @@ export default function AboutUsLarge() {
   const [scrollCircleProgress, setScrollCircleProgress] = useState(0);
   const [scrollIntroductionProgress, setScrollIntroductionProgress] =
     useState(0);
+  const [scrollLocationProgress, setScrollLocationProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +30,13 @@ export default function AboutUsLarge() {
         (endIntroductionScroll - startIntroductionScroll);
       introductionProgress = Math.min(Math.max(introductionProgress, 0), 1);
       setScrollIntroductionProgress(introductionProgress);
+      const startLocationScroll = 500;
+      const endLocationScroll = 600;
+      let locationProgess =
+        (scrollPosition - startLocationScroll) /
+        (endLocationScroll - startLocationScroll);
+      introductionProgress = Math.min(Math.max(introductionProgress, 0), 1);
+      setScrollLocationProgress(locationProgess);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -80,52 +90,60 @@ export default function AboutUsLarge() {
           </div>
         </div>
       </div>
-      <div className="introduction-container">
+      <div className="mission-container">
         <div
-          className={`header-introduction-container ${
-            scrollIntroductionProgress > 0.95 ? "fade-in-active" : ""
+          className={`header-mission-container ${
+            scrollIntroductionProgress > 0.5 ? "fade-in-active" : ""
           } fade-in-scroll`}
         >
-          Introduction
+          Mission
         </div>
-        <div className="aboutus-introduction-body d-flex">
+        <div className="aboutus-mission-body d-flex">
+          <div className={`aboutus-mission-image-container col-6 `}>
+            <div className="aboutus-mission-image position-relative">
+              <FontAwesomeIcon
+                icon={faGlobe}
+                className={`aboutus-globe w-80 ${
+                  scrollIntroductionProgress > 0.99 ? "fade-in-active" : ""
+                } fade-in-scroll-location`}
+              />
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className={`text-secondary aboutus-location-1 ${
+                  scrollLocationProgress > 0.1 ? "fade-in-active" : ""
+                } fade-in-scroll-location`}
+              />
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className={`text-secondary aboutus-location-2 ${
+                  scrollLocationProgress > 0.7 ? "fade-in-active" : ""
+                } fade-in-scroll-location`}
+              />
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className={`text-secondary aboutus-location-3 ${
+                  scrollLocationProgress > 0.5 ? "fade-in-active" : ""
+                } fade-in-scroll-location`}
+              />
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                className={`text-secondary aboutus-location-4 ${
+                  scrollLocationProgress > 0.3 ? "fade-in-active" : ""
+                } fade-in-scroll-location`}
+              />
+            </div>
+          </div>
           <div
-            className={`aboutus-introduction-paragraph ${
+            className={`aboutus-mission-paragraph d-flex align-items-center ${
               scrollIntroductionProgress > 0.99 ? "fade-in-active" : ""
-            } fade-in-scroll col-7`}
+            } fade-in-scroll col-6`}
           >
-            <div className="mb-3">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; At Traditee, we proudly stand as a
-              beacon of Thailand's rich heritage and craftsmanship, a unique
-              marketplace born from the heart of our villages. Our platform is
-              more than just a marketplace; it's a celebration of the
-              government-backed OTOP (One Tambon One Product) campaign, an
-              initiative that shines a light on the unparalleled skills of our
-              local artisans.
-            </div>
-            <div className="mb-3">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Here, tradition meets technology.
-              Our online platform is meticulously designed to be a free
-              marketplace, eliminating barriers and opening up a world of
-              opportunities. We are committed to increasing the income of our
-              villagers by showcasing a diverse array of traditional products to
-              a global audience. From handcrafted goods to timeless art, our
-              marketplace is a treasure trove of Thailand's cultural legacy.
-            </div>
-            <div className="mb-3">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accessibility and simplicity are the
-              cornerstones of our service. We believe that everyone, regardless
-              of their technical savviness, should have the opportunity to
-              explore and purchase these unique products. Our user-friendly
-              interface ensures that navigating through our assortment of
-              traditional offerings is a seamless and enjoyable experience.
-            </div>
-            <div className="mb-3">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Join us in our journey to empower
-              our villages, preserve our traditions, and bring a piece of
-              Thailand's soul into every home. Traditee is not just a
-              marketplace; it's a gateway to explore, appreciate, and support
-              the heart of our community craftsmanship.
+            <div className="mission-paragraph-text mb-1">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; At Traditee, our mission is to
+              bridge the gap between the rich cultural heritage of Thailand's
+              countryside and the global marketplace. We are more than just an
+              online platform; we are a community-driven initiative dedicated to
+              uplifting local artisans and small-scale producers.
             </div>
           </div>
         </div>
