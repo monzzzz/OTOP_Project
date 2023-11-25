@@ -3,7 +3,7 @@ import Script from "react-load-script";
 import "../../../Assets/style/Cart/PaymentType/PromptPay.css";
 export default function PromptPay({ paymentType }) {
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [urlLink, setUrlLink] = useState("");
+  const [data, setData] = useState("");
 
   useEffect(() => {
     if (scriptLoaded) {
@@ -56,7 +56,7 @@ export default function PromptPay({ paymentType }) {
       }
 
       const json = await response.json();
-      setUrlLink(json.imageObject.download_uri);
+      setData(json.data); //json.imageObject.download_uri
 
       // console.log("Charge created:", data);
     } catch (error) {
@@ -71,17 +71,22 @@ export default function PromptPay({ paymentType }) {
         <div className="promptpay-container">
           <h1 className="mb-5">Payment</h1>
 
-          {urlLink && (
+          {data && (
             <div className="promptpay-qr-frame d-flex">
               <div className="qrcode-image-container col-lg-5 col-md-5 col-sm-12">
                 <img
-                  src={urlLink}
+                  src={data.source.scannable_code.image.download_uri}
                   alt="promptpay-qrcode"
                   className="qrcode-image"
                   style={{ width: "80%" }}
                 />
               </div>
-              <div className="col-lg-7 col-md-7 col-sm-12"></div>
+              <div className="col-lg-7 col-md-7 col-sm-12 d-flex flex-column">
+                <div className="promptpay-qrcode-amount mb-3">
+                  Amount: {data.source.amount} {data.source.currency}
+                </div>
+                <div>Expired: {data.expires_at}</div>
+              </div>
             </div>
           )}
         </div>

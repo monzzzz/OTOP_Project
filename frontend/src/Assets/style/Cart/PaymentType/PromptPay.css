@@ -16,3 +16,7 @@
 .qrcode-image {
   border-radius: 15px;
 }
+
+.promptpay-qrcode-amount {
+  font-size: 2rem;
+}
