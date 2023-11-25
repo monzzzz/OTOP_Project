@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Script from "react-load-script";
 import "../../../Assets/style/Cart/PaymentType/PromptPay.css";
-export default function PromptPay() {
+export default function PromptPay({ paymentType }) {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [urlLink, setUrlLink] = useState("");
 
@@ -9,15 +9,16 @@ export default function PromptPay() {
     if (scriptLoaded) {
       window.Omise.setPublicKey("pkey_test_5xoev7sn4wflkzseb52");
     }
+    if (paymentType === "promptpay" && scriptLoaded === true) {
+      handleFormSubmit();
+    }
   }, [scriptLoaded]);
 
   const handleScriptLoad = () => {
     setScriptLoaded(true);
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-
+  const handleFormSubmit = () => {
     const paymentData = {
       amount: 10000, // Example amount in satangs
       currency: "THB",
@@ -40,7 +41,6 @@ export default function PromptPay() {
       console.error("Omise library not loaded");
     }
   };
-
   const sendSourceToBackend = async (sourceId, amount) => {
     try {
       const response = await fetch("/payment/promptpay", {
@@ -68,18 +68,25 @@ export default function PromptPay() {
     <div className="promptpay-payment">
       <Script url="https://cdn.omise.co/omise.js" onLoad={handleScriptLoad} />
       {scriptLoaded ? (
-        <>
-          <form onSubmit={handleFormSubmit}>
-            <button type="submit">Generate PromptPay QR Code</button>
-          </form>
+        <div className="promptpay-container">
+          <h1 className="mb-5">Payment</h1>
+
           {urlLink && (
-            <div className="qrcode-image">
-              <img src={urlLink} alt="promptpay-qrcode" />
+            <div className="promptpay-qr-frame d-flex">
+              <div className="qrcode-image-container col-lg-5 col-md-5 col-sm-12">
+                <img
+                  src={urlLink}
+                  alt="promptpay-qrcode"
+                  className="qrcode-image"
+                  style={{ width: "80%" }}
+                />
+              </div>
+              <div className="col-lg-7 col-md-7 col-sm-12"></div>
             </div>
           )}
-        </>
+        </div>
       ) : (
-        <p>Loading...</p>
+        <div>Loading</div>
       )}
     </div>
   );

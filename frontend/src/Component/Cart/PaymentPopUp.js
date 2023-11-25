@@ -2,6 +2,10 @@ import "../../Assets/style/Cart/PaymentPopUp.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 export default function PaymentPopUp(props) {
+  const selectPaymentType = (type) => {
+    props.setPaymentType(type);
+    props.setActive(false);
+  };
   return (
     <div>
       {props.active ? (
@@ -15,22 +19,24 @@ export default function PaymentPopUp(props) {
             <FontAwesomeIcon icon={faRemove} />
           </button>
           <div className="type-payment-container">
-            <a
+            <button
               className="d-flex justify-content-center border-bottom pb-3"
-              href="/payment/promtpay"
+              onClick={() => selectPaymentType("promptpay")}
             >
               <img
                 src={require("../../Assets/picture/prompt-pay-logo.jpg")}
+                alt="promptpay"
               ></img>
-            </a>
-            <a
+            </button>
+            <button
               className="d-flex justify-content-center border-bottom"
-              href="/payment/credit"
+              onClick={() => selectPaymentType("credit")}
             >
               <img
                 src={require("../../Assets/picture/visa-mastercard-logos.png")}
+                alt="credit card"
               ></img>
-            </a>
+            </button>
           </div>
         </div>
       ) : (

@@ -1,3 +1,18 @@
 .promptpay-payment {
   margin-top: 4rem;
+  display: flex;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  padding: 2rem 3rem;
+}
+
+.promptpay-container {
+  width: 100%;
+}
+
+.qrcode-image-container {
+}
+
+.qrcode-image {
+  border-radius: 15px;
 }

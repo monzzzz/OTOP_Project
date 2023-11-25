@@ -5,12 +5,13 @@ import { formatPrice } from "../../Utils/PriceFormat";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import PaymentPopUp from "./PaymentPopUp";
+import PromptPay from "./PaymentType/PromptPay";
 export default function Cart() {
   const [cartInfo, setCartInfo] = useState("");
   const [error, setError] = useState(null);
   const [hook, setHook] = useState(false);
   const [active, setActive] = useState(false);
-  const [paymenttype, setPaymentType] = useState("");
+  const [paymentType, setPaymentType] = useState("");
   const { user } = useAuthContext();
 
   const userId = user ? user.id : null;
@@ -34,7 +35,7 @@ export default function Cart() {
       }
     };
     getCartItem();
-  }, [userId, hook]);
+  }, [userId, cartInfo, hook]);
 
   const addQuantity = async (quantity, productID) => {
     if (quantity < 10) {
@@ -96,6 +97,10 @@ export default function Cart() {
     if (!response.ok) {
       setError(json.error);
     }
+  };
+
+  const handlePaymentTypeChange = (type) => {
+    setPaymentType(type);
   };
 
   return (
@@ -195,7 +200,19 @@ export default function Cart() {
           </div>
         </div>
       )}
-      <PaymentPopUp active={active} setActive={setActive} />
+      <div className="payment-operation-container">
+        {paymentType === "promptpay" ? (
+          <PromptPay paymentType={paymentType} />
+        ) : (
+          ""
+        )}
+      </div>
+
+      <PaymentPopUp
+        active={active}
+        setPaymentType={handlePaymentTypeChange}
+        setActive={setActive}
+      />
     </div>
   );
 }

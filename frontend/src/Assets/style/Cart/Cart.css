@@ -52,3 +52,10 @@
 .cart-checkout-button:hover {
   opacity: 0.9;
 }
+
+.quantity-amount {
+  padding-inline: 0.6rem;
+  padding-top: 5px;
+  padding-bottom: 5.5px;
+  background-color: #f9f9f9;
+}
