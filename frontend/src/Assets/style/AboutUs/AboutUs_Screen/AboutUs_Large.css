@@ -72,6 +72,12 @@
   background-color: #1d1d1f;
 }
 
+/*global*/
+
+.aboutus-global-container {
+  margin-bottom: 7rem;
+}
+
 .header-mission-container {
   transform: translateY(0);
 }
@@ -86,7 +92,7 @@
 }
 
 .aboutus-mission-image-container {
-  padding-left: 5rem;
+  padding-left: 7.5%;
 }
 
 .aboutus-mission-image {
@@ -152,7 +158,7 @@
 /*right container*/
 
 .mission-paragraph-text {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
 }
 
 .aboutus-mission-paragraph {
@@ -168,4 +174,10 @@
 .fade-in-active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/*villager*/
+
+.aboutus-villager-mission-paragraph {
+  font-size: 1.05rem;
 }

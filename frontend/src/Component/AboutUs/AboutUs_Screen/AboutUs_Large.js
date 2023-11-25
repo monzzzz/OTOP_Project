@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 
 export default function AboutUsLarge() {
   const [scrollCircleProgress, setScrollCircleProgress] = useState(0);
-  const [scrollIntroductionProgress, setScrollIntroductionProgress] =
+  const [scrollInternationalProgress, setScrollInternationalProgress] =
     useState(0);
+  const [scrollVillagerProgress, setScrollVillagerProgress] = useState(0);
   const [scrollLocationProgress, setScrollLocationProgress] = useState(0);
 
   useEffect(() => {
@@ -22,21 +23,30 @@ export default function AboutUsLarge() {
       circleProgress = Math.min(Math.max(circleProgress, 0), 1);
       setScrollCircleProgress(circleProgress);
 
-      // Logic for Introduction Scroll
+      // Logic for internatinal mission Scroll
       const startIntroductionScroll = 150;
-      const endIntroductionScroll = 200;
+      const endIntroductionScroll = 300;
       let introductionProgress =
         (scrollPosition - startIntroductionScroll) /
         (endIntroductionScroll - startIntroductionScroll);
       introductionProgress = Math.min(Math.max(introductionProgress, 0), 1);
-      setScrollIntroductionProgress(introductionProgress);
+      setScrollInternationalProgress(introductionProgress);
+      //
       const startLocationScroll = 500;
       const endLocationScroll = 600;
       let locationProgess =
         (scrollPosition - startLocationScroll) /
         (endLocationScroll - startLocationScroll);
-      introductionProgress = Math.min(Math.max(introductionProgress, 0), 1);
+      locationProgess = Math.min(Math.max(locationProgess, 0), 1);
       setScrollLocationProgress(locationProgess);
+      // villager mission scroll
+      const startVillagerScroll = 600;
+      const endVillagerScroll = 700;
+      let villagerProgess =
+        (scrollPosition - startVillagerScroll) /
+        (endVillagerScroll - startVillagerScroll);
+      villagerProgess = Math.min(Math.max(villagerProgess, 0), 1);
+      setScrollVillagerProgress(villagerProgess);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -93,57 +103,90 @@ export default function AboutUsLarge() {
       <div className="mission-container">
         <div
           className={`header-mission-container ${
-            scrollIntroductionProgress > 0.5 ? "fade-in-active" : ""
+            scrollInternationalProgress > 0.5 ? "fade-in-active" : ""
           } fade-in-scroll`}
         >
           Mission
         </div>
-        <div className="aboutus-mission-body d-flex">
-          <div className={`aboutus-mission-image-container col-6 `}>
-            <div className="aboutus-mission-image position-relative">
-              <FontAwesomeIcon
-                icon={faGlobe}
-                className={`aboutus-globe w-80 ${
-                  scrollIntroductionProgress > 0.99 ? "fade-in-active" : ""
-                } fade-in-scroll-location`}
-              />
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                className={`text-secondary aboutus-location-1 ${
-                  scrollLocationProgress > 0.1 ? "fade-in-active" : ""
-                } fade-in-scroll-location`}
-              />
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                className={`text-secondary aboutus-location-2 ${
-                  scrollLocationProgress > 0.7 ? "fade-in-active" : ""
-                } fade-in-scroll-location`}
-              />
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                className={`text-secondary aboutus-location-3 ${
-                  scrollLocationProgress > 0.5 ? "fade-in-active" : ""
-                } fade-in-scroll-location`}
-              />
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                className={`text-secondary aboutus-location-4 ${
-                  scrollLocationProgress > 0.3 ? "fade-in-active" : ""
-                } fade-in-scroll-location`}
-              />
+        <div className="aboutus-mission-body">
+          <div className="aboutus-global-container d-flex">
+            <div className="aboutus-mission-image-container col-6 d-flex align-items-center ">
+              <div className="aboutus-mission-image position-relative">
+                <FontAwesomeIcon
+                  icon={faGlobe}
+                  className={`aboutus-globe w-80 ${
+                    scrollInternationalProgress > 0.99 ? "fade-in-active" : ""
+                  } fade-in-scroll-location`}
+                />
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className={`text-secondary aboutus-location-1 ${
+                    scrollLocationProgress > 0.1 ? "fade-in-active" : ""
+                  } fade-in-scroll-location`}
+                />
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className={`text-secondary aboutus-location-2 ${
+                    scrollLocationProgress > 0.7 ? "fade-in-active" : ""
+                  } fade-in-scroll-location`}
+                />
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className={`text-secondary aboutus-location-3 ${
+                    scrollLocationProgress > 0.5 ? "fade-in-active" : ""
+                  } fade-in-scroll-location`}
+                />
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className={`text-secondary aboutus-location-4 ${
+                    scrollLocationProgress > 0.3 ? "fade-in-active" : ""
+                  } fade-in-scroll-location`}
+                />
+              </div>
+            </div>
+            <div
+              className={`aboutus-mission-paragraph d-flex align-items-center ${
+                scrollInternationalProgress > 0.99 ? "fade-in-active" : ""
+              } fade-in-scroll col-6`}
+            >
+              <div className="mission-paragraph-text mb-1">
+                <h3 className="mb-3">Globalizing Thai Traditions</h3>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Our foremost mission is to bring
+                the vibrant and rich traditions of Thailand to the global stage,
+                creating a bridge between local Thai culture and international
+                travelers. Through our platform, we offer an English-language
+                feature specifically designed to cater to global audiences,
+                ensuring that the beauty and authenticity of Thai traditions are
+                easily accessible and appreciated worldwide. By providing this
+                gateway, we aim to foster a deeper understanding and
+                appreciation of Thai culture among international visitors,
+                making it effortless for them to explore and connect with the
+                unique heritage and traditions that Thailand has to offer.
+              </div>
             </div>
           </div>
-          <div
-            className={`aboutus-mission-paragraph d-flex align-items-center ${
-              scrollIntroductionProgress > 0.99 ? "fade-in-active" : ""
-            } fade-in-scroll col-6`}
-          >
-            <div className="mission-paragraph-text mb-1">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; At Traditee, our mission is to
-              bridge the gap between the rich cultural heritage of Thailand's
-              countryside and the global marketplace. We are more than just an
-              online platform; we are a community-driven initiative dedicated to
-              uplifting local artisans and small-scale producers.
+          <div className="aboutus-villager-mission-container d-flex">
+            <div className="col-6"></div>
+            <div
+              className={`col-6 aboutus-villager-mission-paragraph ${
+                scrollVillagerProgress > 0.99 ? "fade-in-active" : ""
+              } fade-in-scroll `}
+            >
+              <h3 className="mb-3">Supporting Villagers</h3>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; At the heart of our mission is a
+              commitment to empowering Thai villagers, particularly those
+              participating in the OTOP (One Tambon One Product) program. Our
+              marketplace is uniquely positioned as a non-profit platform,
+              charging the minimal possible fees to ensure that the maximum
+              benefits reach the local artisans and producers. This approach not
+              only aids in increasing the income of these villagers but also
+              enhances their ability to sell their products to a broader
+              audience. By eliminating financial barriers and providing an
+              easy-to-use platform, we aim to uplift these communities, ensuring
+              that their skills and crafts not only survive but thrive in the
+              modern market. Our goal is to create a sustainable ecosystem where
+              tradition meets opportunity, and local talents find a global
+              audience.
             </div>
           </div>
         </div>

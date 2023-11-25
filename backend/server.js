@@ -2,6 +2,7 @@
 const userSellRoute = require("./routes/register/registerSellUser");
 const userBuyRoute = require("./routes/register/registerBuyUser");
 const marketProducts = require("./routes/products/products");
+const payment = require("./routes/payment/promptpay");
 const cart = require("./routes/cart/cart");
 // library
 require("dotenv").config();
@@ -16,6 +17,7 @@ app.use("/api/user/buy", userBuyRoute);
 app.use("/api/market", marketProducts);
 app.use("/api/cart", cart);
 app.use("/images", express.static(__dirname + "/images"));
+app.use("/payment", payment);
 
 mongoose
   .connect(process.env.MONGO_URI)

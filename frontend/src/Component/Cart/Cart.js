@@ -10,7 +10,9 @@ export default function Cart() {
   const [error, setError] = useState(null);
   const [hook, setHook] = useState(false);
   const [active, setActive] = useState(false);
+  const [paymenttype, setPaymentType] = useState("");
   const { user } = useAuthContext();
+
   const userId = user ? user.id : null;
 
   //
