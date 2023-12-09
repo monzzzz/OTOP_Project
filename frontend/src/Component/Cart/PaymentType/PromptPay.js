@@ -44,7 +44,7 @@ export default function PromptPay({ paymentType }) {
   };
   const sendSourceToBackend = async (sourceId, amount) => {
     try {
-      const response = await fetch("/payment/promptpay", {
+      const response = await fetch("/api/payment/promptpay", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
