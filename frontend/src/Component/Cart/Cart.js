@@ -35,7 +35,7 @@ export default function Cart() {
       }
     };
     getCartItem();
-  }, [userId, cartInfo, hook]);
+  }, [userId, hook]);
 
   const addQuantity = async (quantity, productID) => {
     if (quantity < 10) {

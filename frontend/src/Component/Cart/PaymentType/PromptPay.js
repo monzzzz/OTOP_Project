@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Script from "react-load-script";
 import "../../../Assets/style/Cart/PaymentType/PromptPay.css";
+import { CountdownTimer } from "./CountdownExpires";
 export default function PromptPay({ paymentType }) {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [data, setData] = useState("");
@@ -85,7 +86,9 @@ export default function PromptPay({ paymentType }) {
                 <div className="promptpay-qrcode-amount mb-3">
                   Amount: {data.source.amount} {data.source.currency}
                 </div>
-                <div>Expired: {data.expires_at}</div>
+                <div>
+                  Expired: <CountdownTimer expiryDate={data.expires_at} />
+                </div>
               </div>
             </div>
           )}

@@ -19,9 +19,9 @@ const createPromptPay = async (req, res) => {
         },
       }
     );
-    console.log(chargeResponse.data.source.scannable_code.image); //chargeResponse.source.scannable_code.image
-    imageObject = chargeResponse.data.source.scannable_code.image;
-    res.status(200).json({ imageObject });
+    const data = chargeResponse.data; //.scannable_code.image'
+    console.log(data);
+    res.status(200).json({ data });
   } catch (error) {
     console.error("Error creating charge:", error);
   }

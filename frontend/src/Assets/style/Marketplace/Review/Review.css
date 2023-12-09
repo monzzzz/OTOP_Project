@@ -1,3 +1,41 @@
+.inside-comment-container {
+  max-height: 20vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+}
+
+.product-comment-username {
+  font-weight: 500;
+}
+
+.product-comment-time {
+  color: #333333;
+}
+
+.each-comment-container {
+  padding: 1rem 1rem;
+  border: solid 1px #dddddd;
+  border-radius: 10px;
+}
+
+.inside-comment-container::-webkit-scrollbar {
+  width: 0.3rem;
+}
+
+.inside-comment-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.inside-comment-container::-webkit-scrollbar-thumb {
+  background: #aaaaaa;
+  border-radius: 6px;
+}
+
+.inside-comment-container::-webkit-scrollbar-thumb:hover {
+  background: #aaaaaa;
+}
+
 .sent_button {
   border: none;
   padding: 0.5rem 0.7rem;

@@ -4,7 +4,9 @@ import "../../Assets/style/Marketplace/SingleProduct.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
+import ContentLoader from "react-content-loader";
 import Review from "./Review/Review";
+
 export default function SingleProduct() {
   const { productId } = useParams();
   const [productData, setProductData] = useState(null);
@@ -95,71 +97,87 @@ export default function SingleProduct() {
   };
   return (
     <div className="single-product-page-container">
-      {productData && (
-        <div className="single-product-container">
-          <div className="row g-0 mb-5">
-            <div className="col-sm-12 col-lg-6 product-image">
-              <img src={productData.image} alt={productData._doc.title} />
-            </div>
-            <div className="col-sm-12 col-lg-6">
-              <div className="top-part mb-4 border-bottom">
-                <div className="single-product-title">
-                  {productData._doc.title}
-                </div>
-                {productData._doc.category === "-" ? (
-                  <h6 className="mb-4">No Category</h6>
-                ) : (
-                  <h6 className="mb-4">{productData._doc.category}</h6>
-                )}
-                <div className="single-product-price mb-3">
-                  {formatPrice(productData._doc.price)}
-                </div>
-              </div>
-              <div className="bottom-part mb-3">
-                <div className="single-product-history-title">History</div>
-                <div className="single-product-province mb-2">
-                  Origin: {productData._doc.province}
-                </div>
-                <div className="single-product-history">
-                  {productData._doc.history}
-                </div>
-              </div>
-              <div className="buy-function">
-                <div className="buy-function-inner">
-                  <div className="quantity-container">
-                    <button
-                      className="remove-quantity-button"
-                      onClick={removeQuantity}
-                    >
-                      -
-                    </button>
-                    <span className="quantity-amount">{quantity}</span>
-                    <button
-                      className="add-quantity-button"
-                      onClick={addQuantity}
-                    >
-                      +
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      className="add-to-cart-button"
-                      onClick={() => {
-                        handleAddtoCart(
-                          productData._doc._id,
-                          productData._doc.price
-                        );
-                      }}
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div>
+        {isLoading ? (
+          <div className="single-product-container">
+            <ContentLoader viewBox="0 0 380 140">
+              {/* Only SVG shapes */}
+              <rect x="0" y="0" rx="5" ry="5" width="110" height="125" />
+              <rect x="175" y="10" rx="4" ry="4" width="200" height="13" />
+              <rect x="175" y="40" rx="3" ry="3" width="200" height="10" />
+              <rect x="175" y="60" rx="3" ry="3" width="200" height="10" />
+              <rect x="225" y="80" rx="3" ry="3" width="150" height="10" />
+              <rect x="325" y="100" rx="3" ry="3" width="50" height="10" />
+            </ContentLoader>
           </div>
-        </div>
-      )}
+        ) : (
+          productData && (
+            <div className="single-product-container">
+              <div className="row g-0 mb-5">
+                <div className="col-sm-12 col-lg-6 product-image">
+                  <img src={productData.image} alt={productData._doc.title} />
+                </div>
+                <div className="col-sm-12 col-lg-6">
+                  <div className="top-part mb-4 border-bottom">
+                    <div className="single-product-title">
+                      {productData._doc.title}
+                    </div>
+                    {productData._doc.category === "-" ? (
+                      <h6 className="mb-4">No Category</h6>
+                    ) : (
+                      <h6 className="mb-4">{productData._doc.category}</h6>
+                    )}
+                    <div className="single-product-price mb-3">
+                      {formatPrice(productData._doc.price)}
+                    </div>
+                  </div>
+                  <div className="bottom-part mb-3">
+                    <div className="single-product-history-title">History</div>
+                    <div className="single-product-province mb-2">
+                      Origin: {productData._doc.province}
+                    </div>
+                    <div className="single-product-history">
+                      {productData._doc.history}
+                    </div>
+                  </div>
+                  <div className="buy-function">
+                    <div className="buy-function-inner">
+                      <div className="quantity-container">
+                        <button
+                          className="remove-quantity-button"
+                          onClick={removeQuantity}
+                        >
+                          -
+                        </button>
+                        <span className="quantity-amount">{quantity}</span>
+                        <button
+                          className="add-quantity-button"
+                          onClick={addQuantity}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          className="add-to-cart-button"
+                          onClick={() => {
+                            handleAddtoCart(
+                              productData._doc._id,
+                              productData._doc.price
+                            );
+                          }}
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        )}
+      </div>
       {/*add the review and able specific user to comment the product qualiity*/}
       <Review />
     </div>

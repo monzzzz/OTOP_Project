@@ -74,6 +74,9 @@
     display: flex;
     justify-content: center;
   }
+  .single-product-top-part {
+    height: 100vh;
+  }
   .product-image {
     display: flex;
     justify-content: center;
