@@ -38,7 +38,7 @@ export default function Review({ productId }) {
   useEffect(() => {
     const fetchComment = async () => {
       const response = await fetch(`/api/comment/products/${productId}`);
-      const json = await response.json;
+      const json = await response.json();
       if (!response.ok) {
         setError(json.error);
       }
@@ -56,7 +56,7 @@ export default function Review({ productId }) {
       <h3 className="mb-4">Comment</h3>
       {/*this is the container where the user can see other people's comments and it uses overflow scroll to make it */}
       {/*allow user to comment just when they already buy products*/}
-      <div className=" w-100 d-flex justify-content-end mb-3">
+      <div className=" w-100 d-flex justify-content-end mb-4">
         {user && (
           <form
             className="input-button-container"
