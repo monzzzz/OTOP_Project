@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import Script from "react-load-script";
 import "../../../Assets/style/Cart/PaymentType/PromptPay.css";
 import { CountdownTimer } from "./CountdownExpires";
-export default function PromptPay({ paymentType }) {
+import ContentLoader from "react-content-loader";
+export default function PromptPay({ paymentType, amount }) {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [data, setData] = useState("");
 
@@ -21,7 +22,7 @@ export default function PromptPay({ paymentType }) {
 
   const handleFormSubmit = () => {
     const paymentData = {
-      amount: 10000, // Example amount in satangs
+      amount: amount, // Example amount in satangs
       currency: "THB",
     };
 
@@ -72,7 +73,7 @@ export default function PromptPay({ paymentType }) {
         <div className="promptpay-container">
           <h1 className="mb-5">Payment</h1>
 
-          {data && (
+          {data ? (
             <div className="promptpay-qr-frame d-flex">
               <div className="qrcode-image-container col-lg-5 col-md-5 col-sm-12">
                 <img
@@ -86,15 +87,25 @@ export default function PromptPay({ paymentType }) {
                 <div className="promptpay-qrcode-amount mb-3">
                   Amount: {data.source.amount} {data.source.currency}
                 </div>
-                <div>
+                <div className="promptpay-expired-date">
                   Expired: <CountdownTimer expiryDate={data.expires_at} />
                 </div>
               </div>
             </div>
+          ) : (
+            <div>
+              <ContentLoader viewBox="0 0 380 200">
+                <rect x="0" y="0" rx="5" ry="5" width="110" height="150" />
+                <rect x="175" y="10" rx="3" ry="3" width="200" height="10" />
+                <rect x="175" y="30" rx="3" ry="3" width="200" height="10" />
+                <rect x="225" y="60" rx="3" ry="3" width="150" height="10" />
+                <rect x="325" y="80" rx="3" ry="3" width="50" height="10" />
+              </ContentLoader>
+            </div>
           )}
         </div>
       ) : (
-        <div>Loading</div>
+        <div></div>
       )}
     </div>
   );

@@ -202,7 +202,7 @@ export default function Cart() {
       )}
       <div className="payment-operation-container">
         {paymentType === "promptpay" ? (
-          <PromptPay paymentType={paymentType} />
+          <PromptPay paymentType={paymentType} amount={cartInfo.total_price} />
         ) : (
           ""
         )}

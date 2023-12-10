@@ -1,22 +1,51 @@
 .promptpay-payment {
   margin-top: 4rem;
   display: flex;
-  border: 1px solid #cccccc;
   border-radius: 10px;
   padding: 2rem 3rem;
+  height: 100vh;
 }
 
-.promptpay-container {
-  width: 100%;
+@media (max-width: 760px) and (min-width: 550px) {
+  .promptpay-container {
+    width: 50%;
+  }
 }
 
-.qrcode-image-container {
+@media (min-width: 1024px) {
+  .promptpay-container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 550px) {
+  .promptpay-container {
+    width: 90%;
+  }
 }
 
 .qrcode-image {
   border-radius: 15px;
 }
 
-.promptpay-qrcode-amount {
-  font-size: 2rem;
+@media (min-width: 1024px) {
+  .promptpay-qrcode-amount {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1024px) {
+  .promptpay-qrcode-amount {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .promptpay-qrcode-amount {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  .promptpay-expired-date {
+    font-size: 0.8rem;
+  }
 }

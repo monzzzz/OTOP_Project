@@ -47,40 +47,40 @@ export default function SingleProduct() {
     fetchSingleProduct();
   }, [hook, error, location.search, navigate, productId]);
 
-  const addQuantity = () => {
-    const newQuantity = quantity + 1;
-    updateURL(newQuantity);
-    setHook(true);
+  const addQuantity = (e) => {
+    e.preventDefault();
+    if (quantity < 10) {
+      const newQuantity = quantity + 1;
+      setQuantity(newQuantity);
+      updateURL(newQuantity);
+    }
   };
-  const removeQuantity = () => {
+  const removeQuantity = (e) => {
+    e.preventDefault();
     if (quantity > 0) {
       const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
       updateURL(newQuantity);
-      setHook(true);
     }
   };
   // quantity update in the URL
   const updateURL = (newQuantity) => {
-    const searchParams = new URLSearchParams(location.search);
-    if (!newQuantity) {
-      newQuantity = 0;
-    }
-    searchParams.set("quantity", newQuantity);
-    const pathname = location.pathname;
-    const newURL = pathname + "?" + searchParams.toString();
-    navigate(newURL, { replace: true });
+    const newSearchParams = new URLSearchParams(location.search);
+    newSearchParams.set("quantity", newQuantity);
+
+    // Use the 'replace' method to update the URL without adding a history entry
+    const newUrl = `${location.pathname}?${newSearchParams.toString()}`;
+    window.history.replaceState({}, "", newUrl);
   };
   const handleAddtoCart = async (itemId, price) => {
     // in the database before navigate to the cart page, we have to check if the quantity numberr user summited less than the quantity of products avaiable
     if (!user.id) {
     }
     if (user.id) {
-      const searchParams = new URLSearchParams(location.search);
-      const quantityParam = searchParams.get("quantity");
       const ownerID = user.id;
-      if (quantityParam !== "0") {
+      if (quantity !== "0") {
         const response = await fetch(
-          `/api/cart/${itemId}?quantity=${quantityParam}`,
+          `/api/cart/${itemId}?quantity=${quantity}`,
           {
             method: "POST",
             body: JSON.stringify({ ownerID: ownerID, price }),
@@ -145,14 +145,14 @@ export default function SingleProduct() {
                       <div className="quantity-container">
                         <button
                           className="remove-quantity-button"
-                          onClick={removeQuantity}
+                          onClick={(e) => removeQuantity(e)}
                         >
                           -
                         </button>
                         <span className="quantity-amount">{quantity}</span>
                         <button
                           className="add-quantity-button"
-                          onClick={addQuantity}
+                          onClick={(e) => addQuantity(e)}
                         >
                           +
                         </button>
