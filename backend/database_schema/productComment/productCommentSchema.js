@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const productCommentSchema = new Schema(
   {
     productId: { type: String, required: true },
-    userId: { type: String, require: true },
+    userId: { type: String, required: true },
+    username: { type: String, required: true },
     text: { type: String },
   },
   { timestamps: true }
@@ -12,6 +13,7 @@ const productCommentSchema = new Schema(
 
 productCommentSchema.statics.postComment = async function (
   userId,
+  username,
   productId,
   text
 ) {
@@ -24,7 +26,7 @@ productCommentSchema.statics.postComment = async function (
   if (!text) {
     throw Error("text must be filled");
   }
-  await this.create({ productId, userId, text });
+  await this.create({ productId, username, userId, text });
 };
 
 module.exports = mongoose.model("productCommentSchema", productCommentSchema);

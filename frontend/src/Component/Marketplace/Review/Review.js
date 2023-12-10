@@ -3,17 +3,13 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import "../../../Assets/style/Marketplace/Review/Review.css";
 import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
-const comment_list = [
-  { username: "Elmond", time: "5 minutes ago", text: "Good Product" },
-  { username: "Elmond", time: "5 minutes ago", text: "Good Product" },
-  { username: "Elmond", time: "5 minutes ago", text: "Good Product" },
-  { username: "Elmond", time: "5 minutes ago", text: "Good Product" },
-];
+import moment from "moment";
+
 export default function Review({ productId }) {
   const [error, setError] = useState(null);
   const { user } = useAuthContext();
   const [commentText, setCommentText] = useState("");
-  const [commentList, setCommentList] = useState("");
+  const [commentList, setCommentList] = useState([]);
   const postComment = async (e) => {
     e.preventDefault();
     console.log(commentText);
@@ -21,11 +17,13 @@ export default function Review({ productId }) {
       console.log("text must be filled");
     }
     const userId = user.id;
+    const username = user.username;
     const response = await fetch("/api/comment/products", {
       method: "POST",
       body: JSON.stringify({
         text: commentText,
         userId: userId,
+        username: username,
         productId: productId,
       }),
       headers: { "Content-Type": "application/json" },
@@ -78,18 +76,22 @@ export default function Review({ productId }) {
           </form>
         )}
       </div>
+
       <div className="inside-comment-container w-100">
-        {comment_list.map((comment, index) => (
-          <div className="each-comment-container mb-3" key={index}>
-            <div className="top-comment-box">
-              <span className="product-comment-username">
-                {comment.username}
-              </span>
-              <span className="m-2 product-comment-time">{comment.time}</span>
+        {commentList &&
+          commentList.map((comment, index) => (
+            <div className="each-comment-container mb-3" key={index}>
+              <div className="top-comment-box">
+                <span className="product-comment-username">
+                  {comment.username}
+                </span>
+                <span className="m-2 product-comment-time">
+                  {moment(comment.createdAt).fromNow()}
+                </span>
+              </div>
+              <div>{comment.text}</div>
             </div>
-            <div>{comment.text}</div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );
