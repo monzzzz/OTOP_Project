@@ -6,102 +6,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import PaymentPopUp from "./PaymentPopUp";
 import PromptPay from "./PaymentType/PromptPay";
+import useCart from "../../Hook/Cart/useCart";
 export default function Cart() {
-  const [cartInfo, setCartInfo] = useState("");
-  const [error, setError] = useState(null);
-  const [hook, setHook] = useState(false);
   const [active, setActive] = useState(false);
-  const [paymentType, setPaymentType] = useState("");
   const { user } = useAuthContext();
-
   const userId = user ? user.id : null;
+  const {
+    cartInfo,
+    error,
+    process,
+    paymentType,
+    addQuantity,
+    deleteItemById,
+    getCartItem,
+    decreaseQuantity,
+    handlePaymentTypeChange,
+  } = useCart(active);
 
   //
   useEffect(() => {
-    const getCartItem = async () => {
-      if (userId) {
-        const response = await fetch(`/api/cart/${userId}`, { method: "GET" });
-        const json = await response.json();
-        if (response.ok) {
-          setCartInfo(json);
-          console.log(cartInfo);
-
-          setHook(false);
-        }
-        if (!response.ok) {
-          setError(json.error);
-          setHook(false);
-        }
-      }
-    };
     getCartItem();
-  }, [userId, hook]);
-
-  const addQuantity = async (quantity, productID) => {
-    if (quantity < 10) {
-      const newQuantity = quantity + 1;
-      const response = await fetch("/api/cart", {
-        method: "PUT",
-        body: JSON.stringify({
-          quantity: newQuantity,
-          ownerID: userId,
-          productID: productID,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      const json = await response.json();
-      console.log(json);
-      if (!response.ok) {
-        setError(json.error);
-      }
-      if (response.ok) {
-        setHook(true);
-      }
-    }
-  };
-  const decreaseQuantity = async (quantity, productID) => {
-    if (quantity > 0) {
-      const newQuantity = quantity - 1;
-      const response = await fetch("/api/cart", {
-        method: "PUT",
-        body: JSON.stringify({
-          quantity: newQuantity,
-          ownerID: userId,
-          productID: productID,
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      const json = await response.json();
-      console.log(json);
-      if (!response.ok) {
-        setError(json.error);
-      }
-      if (response.ok) {
-        setHook(true);
-      }
-    }
-  };
-
-  const deleteItemById = async (itemId) => {
-    const response = await fetch(`/api/cart/${userId}`, {
-      method: "DELETE",
-      body: JSON.stringify({ itemId: itemId }),
-      headers: { "Content-Type": "application/json" },
-    });
-    const json = await response.json();
-    if (response.ok) {
-      setHook(true);
-    }
-    if (!response.ok) {
-      setError(json.error);
-    }
-  };
-
-  const handlePaymentTypeChange = (type) => {
-    setPaymentType(type);
-  };
+  }, [userId, process]);
 
   return (
     <div className="cart-page-container">
