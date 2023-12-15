@@ -35,8 +35,7 @@ export const useBuyLogin = () => {
       const data = { json: json, method: "buy" };
       localStorage.setItem("user", JSON.stringify(data));
       dispatch({ type: "LOGIN", payload: json, method: "buy" });
-      navigate(-1);
-      navigate("home");
+      navigate("/");
     }
   };
 

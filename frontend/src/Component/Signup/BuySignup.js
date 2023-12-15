@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useBuySignup } from "../../Hook/Authentication/Buy/useBuySignup";
-import "../../Assets/style/Signup/BuySignup.css";
+import "../../Assets/style/Signup/Signup.css";
 export default function BuySignup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,7 +9,8 @@ export default function BuySignup() {
     useBuySignup();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(username, email, password);
+    const status = false;
+    await signup(username, email, password, status);
   };
   return (
     <div className="buy_signup_page_container">

@@ -10,7 +10,7 @@ export const useBuySignup = () => {
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
 
-  const signup = async (username, email, password) => {
+  const signup = async (username, email, password, status) => {
     setIsLoading(true);
     setEmailError(null);
     setPasswordError(null);
@@ -18,7 +18,7 @@ export const useBuySignup = () => {
     const response = await fetch("/api/user/buy/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ username, email, password, status }),
     });
     const json = await response.json();
     if (!response.ok) {
@@ -45,8 +45,7 @@ export const useBuySignup = () => {
       localStorage.setItem("user", JSON.stringify(data));
       // update the useAuthContext
       dispatch({ type: "LOGIN", payload: json, method: "buy" });
-      navigate(-1);
-      navigate("home");
+      navigate("/buysignup/verify");
       setIsLoading(false);
     }
   };

@@ -17,6 +17,12 @@
   font-size: 12px;
 }
 
+.forgot-password-text {
+  font-size: 10px;
+  text-decoration: none;
+  color: #1d1d1f;
+}
+
 .input-container h3 {
   margin-top: 0.75rem;
   margin-bottom: 1rem;

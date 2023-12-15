@@ -3,24 +3,34 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcrypt");
 const validator = require("validator");
 
-const BuyUserSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
+const BuyUserSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    sixDigits: { type: Number },
+    isVerified: { type: Boolean, default: false },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+  { timestamps: true }
+);
 
-BuyUserSchema.statics.signup = async function (username, email, password) {
+BuyUserSchema.statics.signup = async function (
+  username,
+  email,
+  password,
+  sixDigits
+) {
   if (!email || !password || !username) {
     throw Error("All field must be filled");
   }
@@ -41,7 +51,12 @@ BuyUserSchema.statics.signup = async function (username, email, password) {
 
   const salt = await bcrypt.genSalt();
   const hash = await bcrypt.hash(password, salt);
-  const user = await this.create({ username, email, password: hash });
+  const user = await this.create({
+    username,
+    email,
+    password: hash,
+    sixDigits,
+  });
   return user;
 };
 

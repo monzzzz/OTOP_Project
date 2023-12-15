@@ -1,0 +1,18 @@
+.buy-signup-verify-container {
+  padding: 12rem 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.digit-input {
+  border: solid 1px #cccccc;
+  border-radius: 5px;
+  margin: 0.5rem;
+}
+
+.verify-button {
+  background-color: transparent;
+  border: solid 1px #1d1d1f;
+  padding: 0.5rem 12rem;
+  border-radius: 10px;
+}

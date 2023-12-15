@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSellSignup } from "../../Hook/Authentication/Sell/useSellSignup";
-import "../../Assets/style/Signup/BuySignup.css";
+import "../../Assets/style/Signup/Signup.css";
 export default function SellSignup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../Assets/style/Marketplace/Marketplace.css";
 import { formatPrice } from "../../Utils/PriceFormat";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Marketplace() {
   const { products, dispatch } = useProductContext();

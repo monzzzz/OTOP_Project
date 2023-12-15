@@ -6,6 +6,7 @@ export default function BuyLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { emailError, passwordError, isLoading, login } = useBuyLogin();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
@@ -50,7 +51,13 @@ export default function BuyLogin() {
               value={password}
               required
             />
-            <p className=" mb-4 error">{passwordError}</p>
+            <div className="d-flex justify-content-between mb-4">
+              <span className="error">{passwordError}</span>
+              <a href="/forget" className="forgot-password-text">
+                Forgot password?
+              </a>
+            </div>
+
             <button disabled={isLoading} className="buy_login_submit_button">
               Login
             </button>

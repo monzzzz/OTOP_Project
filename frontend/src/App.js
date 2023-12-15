@@ -14,6 +14,7 @@ import Cart from "./Component/Cart/Cart.js";
 import AboutUs from "./Component/AboutUs/AboutUs.js";
 import Handbook from "./Component/Handbook/Handbook.js";
 import PageNotFound from "./Component/PageNotFound/PageNotFound.js";
+import BuySignupVerify from "./Component/Signup/BuySignupVerify.js";
 export default function App() {
   return (
     <div className="App">
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/error" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/handbook" element={<Handbook />} />
+          <Route path="/buysignup/verify" element={<BuySignupVerify />}></Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>

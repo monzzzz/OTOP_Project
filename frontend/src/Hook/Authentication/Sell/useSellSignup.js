@@ -49,7 +49,7 @@ export const useSellSignup = () => {
       authDispatch({ type: "LOGIN", payload: json, method: "sell" });
 
       console.log("update");
-
+      navigate("/");
       setIsLoading(false);
     }
   };

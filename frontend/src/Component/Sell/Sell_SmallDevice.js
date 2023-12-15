@@ -25,7 +25,7 @@ export default function SellSmallDevice() {
         <label className="mb-1">Title</label>
         <input
           type="text"
-          className="form-control mb-3"
+          className="sell-small-device-input mb-3"
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -35,56 +35,62 @@ export default function SellSmallDevice() {
         <label className="mb-1">Price</label>
         <input
           type="number"
-          className="form-control mb-3"
+          className="sell-small-device-input mb-3"
           onChange={(e) => {
             setPrice(e.target.value);
           }}
           value={price}
           required
         />
-        <label className="mb-1">Category</label>
-        <select
-          className="form-select mb-3"
-          aria-label="Default select example"
-          onChange={(e) => {
-            setCategory(e.target.value);
-          }}
-          value={category}
-        >
-          <option value>-</option>
-          {category_eng.map((province, index) => (
-            <option key={index} value={province}>
-              {province}
-            </option>
-          ))}
-        </select>
-        <label className="mb-1">Province</label>
-        <select
-          className="form-select mb-3"
-          aria-label="Default select example"
-          onChange={(e) => {
-            setProvince(e.target.value);
-          }}
-          value={province}
-        >
-          <option value>-</option>
-          {province_eng.map((province, index) => (
-            <option key={index} value={province}>
-              {province}
-            </option>
-          ))}
-        </select>
-        <label className="mb-1">History</label>
-        <textarea
-          type="text"
-          className="form-control mb-3"
-          onChange={(e) => {
-            setHistory(e.target.value);
-          }}
-          value={history}
-          maxLength={2000}
-          required
-        />
+        <div className="d-flex flex-column">
+          <label className="mb-1">Category</label>
+          <select
+            className="sell-small-device-input mb-3"
+            aria-label="Default select example"
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
+            value={category}
+          >
+            <option value>-</option>
+            {category_eng.map((province, index) => (
+              <option key={index} value={province}>
+                {province}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="d-flex flex-column">
+          <label className="mb-1">Province</label>
+          <select
+            className="sell-small-device-input mb-3"
+            aria-label="Default select example"
+            onChange={(e) => {
+              setProvince(e.target.value);
+            }}
+            value={province}
+          >
+            <option value>-</option>
+            {province_eng.map((province, index) => (
+              <option key={index} value={province}>
+                {province}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="d-flex flex-column">
+          <label className="mb-1">History</label>
+          <textarea
+            type="text"
+            className="sell-small-device-input mb-3"
+            onChange={(e) => {
+              setHistory(e.target.value);
+            }}
+            value={history}
+            maxLength={2000}
+            required
+          />
+        </div>
         <div className="mb-3">
           <label className="form-label">Picture</label>
           <input

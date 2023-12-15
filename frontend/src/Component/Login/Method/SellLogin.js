@@ -11,7 +11,6 @@ export default function SellLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
-    navigate("/");
   };
   return (
     <div className="buy_login_page_container">
@@ -40,7 +39,12 @@ export default function SellLogin() {
               value={password}
               required
             />
-            <p className=" mb-4 error">{passwordError}</p>
+            <div className="d-flex justify-content-between mb-4">
+              <span className="error">{passwordError}</span>
+              <a href="/forget" className="forgot-password-text">
+                Forgot password?
+              </a>
+            </div>
             <button
               disabled={isLoading}
               className="buy_login_submit_button mb-5"
