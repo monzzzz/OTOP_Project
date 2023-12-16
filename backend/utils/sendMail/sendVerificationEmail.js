@@ -5,8 +5,8 @@ const sendVerificationEmail = (user, sixdigit) => {
   const mailOptions = {
     from: { name: "Traditee", address: process.env.EMAIL },
     to: user.email,
-    subject: "Verify you email",
-    html: `<p>Hello ${user.username}, you verification passcode is ${sixdigit}</p>`,
+    subject: "Verify your email",
+    html: `<p>Hello ${user.username}, your verification code is ${sixdigit}</p>`,
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {

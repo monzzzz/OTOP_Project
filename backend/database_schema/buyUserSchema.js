@@ -76,6 +76,9 @@ BuyUserSchema.statics.login = async function (email, password) {
   if (!match) {
     throw Error("The password is incorrect");
   }
+  if (!user.isVerified) {
+    throw Error("please verify your email");
+  }
   return user;
 };
 

@@ -9,8 +9,7 @@ export default function BuySignup() {
     useBuySignup();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const status = false;
-    await signup(username, email, password, status);
+    await signup(username, email, password);
   };
   return (
     <div className="buy_signup_page_container">

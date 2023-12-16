@@ -1,4 +1,7 @@
+import { useAuthContext } from "../useAuthContext";
+
 export default function useBuySignupVerification() {
+  const { dispatch } = useAuthContext();
   const verify = async (passcode, userId) => {
     const response = await fetch("/api/user/buy/verify", {
       method: "POST",
@@ -7,7 +10,10 @@ export default function useBuySignupVerification() {
     });
     const json = await response.json();
     if (response.ok) {
-      return json.userState;
+      const data = { json: json, method: "buy" };
+      localStorage.setItem("user", JSON.stringify(data));
+      dispatch({ type: "LOGIN", payload: json, method: "buy" });
+      return "successfully";
     }
     if (!response.ok) {
       return json.error;

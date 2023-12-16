@@ -10,7 +10,7 @@ export const useBuySignup = () => {
   const { dispatch } = useAuthContext();
   const navigate = useNavigate();
 
-  const signup = async (username, email, password, status) => {
+  const signup = async (username, email, password) => {
     setIsLoading(true);
     setEmailError(null);
     setPasswordError(null);
@@ -18,7 +18,7 @@ export const useBuySignup = () => {
     const response = await fetch("/api/user/buy/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, email, password, status }),
+      body: JSON.stringify({ username, email, password }),
     });
     const json = await response.json();
     if (!response.ok) {
