@@ -31,7 +31,7 @@ export default function Cart() {
   return (
     <div className="cart-page-container">
       {cartInfo &&
-        (cartInfo.result.length == 0 ? (
+        (cartInfo.result.length <= 0 ? (
           <div>
             <h1>No item in the Cart</h1>
           </div>

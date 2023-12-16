@@ -7,6 +7,7 @@ export default function BuySignupVerify() {
   // change the page if the user verify or maybe send the sign that help user
   const [code, setCode] = useState(new Array(6).fill(""));
   const [codeResponse, setCodeResponse] = useState("");
+  const [backendMessage, setBackendMessage] = useState(null);
   const inputRefs = Array.from({ length: 6 }, () => createRef());
   const { user } = useAuthContext();
   const { verify } = useBuySignupVerification();
@@ -33,7 +34,7 @@ export default function BuySignupVerify() {
     try {
       const message = await verify(verificationCode, userId);
       console.log(message);
-      setCodeResponse(message);
+      setBackendMessage(message);
     } catch (error) {
       console.error("Verification error:", error);
     }
@@ -53,7 +54,7 @@ export default function BuySignupVerify() {
                 A 6-digit code has been sent to your email. Please enter it
                 below to verify your account.
               </p>
-              <div className="mb-5">
+              <div className="mb-1">
                 {code.map((singleCode, index) => (
                   <input
                     key={index}
@@ -71,6 +72,7 @@ export default function BuySignupVerify() {
                   />
                 ))}
               </div>
+              <div className="mb-5 error">{backendMessage}</div>
               <button className="verify-button" onClick={handleSubmit}>
                 Verify
               </button>
