@@ -1,26 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Script from "react-load-script";
 import "../../../Assets/style/Cart/PaymentType/PromptPay.css";
 import { CountdownTimer } from "./CountdownExpires";
 import ContentLoader from "react-content-loader";
 import usePromptpay from "../../../Hook/Cart/PaymentType/usePromptpay";
 import { formatPrice } from "../../../Utils/PriceFormat";
-export default function PromptPay({ paymentType, amount }) {
+export default function PromptPay(props) {
+  const [qrCodeLoad, setQrCodeLoad] = useState(false);
   const {
     isLoading,
     paymentInfo,
     scriptLoaded,
     handleFormSubmit,
     handleScriptLoad,
-  } = usePromptpay(amount, paymentType);
+  } = usePromptpay(props.amount, props.paymentType);
   useEffect(() => {
     if (scriptLoaded) {
       window.Omise.setPublicKey("pkey_test_5xoev7sn4wflkzseb52");
     }
-    if (paymentType === "promptpay" && scriptLoaded === true) {
-      handleFormSubmit(amount);
+    if (props.paymentType === "promptpay" && scriptLoaded === true) {
+      handleFormSubmit(props.amount);
     }
   }, [scriptLoaded]);
+  const handleQrCodeLoad = () => {
+    setQrCodeLoad(true);
+  };
+  useEffect(() => {
+    if (!isLoading && paymentInfo && qrCodeLoad) {
+      props.onQrCodeReady();
+    }
+  }, [isLoading, paymentInfo, qrCodeLoad, props.onQrCodeReady]);
 
   return (
     <div className="promptpay-payment">
@@ -46,6 +55,9 @@ export default function PromptPay({ paymentType, amount }) {
                   <img
                     src={paymentInfo.source.scannable_code.image.download_uri}
                     alt="promptpay-qrcode"
+                    onLoad={() => {
+                      handleQrCodeLoad();
+                    }}
                     className="qrcode-image"
                     style={{ width: "80%" }}
                   />

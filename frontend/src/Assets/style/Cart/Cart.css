@@ -4,7 +4,7 @@
 
 @media (min-width: 641px) {
   .cart-page-container {
-    padding: 3rem 5rem;
+    padding: 3rem 5rem 0rem 5rem;
     margin-top: 3rem;
   }
   .title-text {
@@ -64,3 +64,11 @@
   border-radius: 10px;
   margin-right: 2rem;
 }
+
+.cart-page-space {
+  height: 100vh;
+}
+
+/* .no-scroll {
+  overflow: hidden;
+} */

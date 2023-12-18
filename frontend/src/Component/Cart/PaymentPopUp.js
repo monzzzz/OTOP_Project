@@ -5,6 +5,7 @@ export default function PaymentPopUp(props) {
   const selectPaymentType = (type) => {
     props.setPaymentType(type);
     props.setActive(false);
+    props.setSelect(true);
   };
   return (
     <div>
