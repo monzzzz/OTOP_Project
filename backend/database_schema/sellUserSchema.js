@@ -18,7 +18,7 @@ const SellUserSchema = new Schema({
     type: String,
     required: true,
   },
-  status: { type: String, required: true },
+  // status: { type: String, required: true },
 });
 
 SellUserSchema.statics.signup = async function (username, email, password) {

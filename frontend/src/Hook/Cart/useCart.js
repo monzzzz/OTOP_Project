@@ -82,6 +82,7 @@ export default function useCart(active) {
         setProcess(false);
       }
       if (!response.ok) {
+        console.log(error);
         setError(json.error);
         setProcess(false);
       }

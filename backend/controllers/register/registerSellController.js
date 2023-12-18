@@ -5,6 +5,15 @@ const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET_SELL, { expiresIn: "3d" });
 };
 
+const deleteAllUserAccount = async (req, res) => {
+  try {
+    await SellUser.deleteMany({});
+    res.status(200).json({ mssg: "deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const loginUser_sell = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -33,4 +42,4 @@ const signupUser_sell = async (req, res) => {
 
 // request for the profile image username and email and make it able it be updated.
 
-module.exports = { loginUser_sell, signupUser_sell };
+module.exports = { loginUser_sell, signupUser_sell, deleteAllUserAccount };

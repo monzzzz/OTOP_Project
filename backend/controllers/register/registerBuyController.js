@@ -38,6 +38,15 @@ const signupUser_buy = async (req, res) => {
   }
 };
 
+const deleteAllUserAccount = async (req, res) => {
+  try {
+    await BuyUser.deleteMany({});
+    res.status(200).json({ mssg: "deleted successfully" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const getUserInfo = async (req, res) => {
   const userId = req.params;
   try {
@@ -64,4 +73,9 @@ const deleteUserbyId = async (req, res) => {
 
 // request for the profile image username and email and make it able it be updated.
 
-module.exports = { loginUser_buy, signupUser_buy, deleteUserbyId };
+module.exports = {
+  loginUser_buy,
+  signupUser_buy,
+  deleteUserbyId,
+  deleteAllUserAccount,
+};

@@ -11,7 +11,7 @@ export default function usePromptpay(amount, paymentType) {
   const handleFormSubmit = () => {
     setIsLoading(true);
     const paymentData = {
-      amount: amount, // Example amount in satangs
+      amount: parseFloat(amount.toFixed(2)), // Example amount in satangs
       currency: "THB",
     };
 

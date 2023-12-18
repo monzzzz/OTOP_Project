@@ -29,7 +29,7 @@ const getItemByID = async (req, res) => {
     for (const item of cart[0].items) {
       const eachItemId = item.itemId;
       const productInfo = await ProductInfo.findById(eachItemId);
-
+      console.log(productInfo);
       result.push({
         ...item,
         productInfo,
@@ -61,8 +61,8 @@ const deleteById = async (req, res) => {
     // update price
     const product = cart.items.find((item) => item.itemId === itemId);
     const productInfo = await ProductInfo.findById(itemId);
-    cart.total_price = cart.total_price - product.quantity * productInfo.price;
-
+    const priceToSubtract = product.quantity * productInfo.price;
+    cart.total_price = Math.max(0, cart.total_price - priceToSubtract);
     // delete the elementn from the cart
     await CartSchema.updateOne(
       { owner: ownerID },
@@ -90,8 +90,10 @@ const updateQuantity = async (req, res) => {
     const product = cart.items.find((item) => item.itemId === productID);
     // add price to the dictionary
     const productInfo = await ProductInfo.findById(productID);
-    cart.total_price =
-      cart.total_price + (quantity - product.quantity) * productInfo.price;
+    cart.total_price = Math.max(
+      0,
+      cart.total_price + (quantity - product.quantity) * productInfo.price
+    );
 
     if (!product) {
       return res.status(404).json({ error: "Product not found in the cart" });

@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useAuthContext } from "./Hook/Authentication/useAuthContext.js";
 import Main from "./Component/Main/Main.js";
 import Navigation from "./Component/Nav/Navigation.js";
 import Sell from "./Component/Sell/Sell.js";
@@ -16,6 +17,8 @@ import Handbook from "./Component/Handbook/Handbook.js";
 import PageNotFound from "./Component/PageNotFound/PageNotFound.js";
 import BuySignupVerify from "./Component/Signup/BuySignupVerify.js";
 export default function App() {
+  const { user } = useAuthContext();
+  console.log(user);
   return (
     <div className="App">
       <meta
@@ -26,7 +29,10 @@ export default function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Main />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/" /> : <Login />}
+          ></Route>
           <Route path="/sell" element={<Sell />}></Route>
           <Route path="/buysignup" element={<BuySignup />}></Route>
           <Route path="/about" element={<AboutUs />} />
