@@ -17,8 +17,8 @@ import Handbook from "./Component/Handbook/Handbook.js";
 import PageNotFound from "./Component/PageNotFound/PageNotFound.js";
 import BuySignupVerify from "./Component/Signup/BuySignupVerify.js";
 export default function App() {
-  const { user } = useAuthContext();
-  console.log(user);
+  const { user, method } = useAuthContext();
+
   return (
     <div className="App">
       <meta
@@ -34,6 +34,7 @@ export default function App() {
             element={user ? <Navigate to="/" /> : <Login />}
           ></Route>
           <Route path="/sell" element={<Sell />}></Route>
+
           <Route path="/buysignup" element={<BuySignup />}></Route>
           <Route path="/about" element={<AboutUs />} />
           <Route path="/sellsignup" element={<SellSignup />}></Route>

@@ -1,11 +1,9 @@
 import { useMediaQuery } from "react-responsive";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
+import { Navigate } from "react-router-dom";
 import SellSmallDevice from "./Sell_SmallDevice";
 import SellLargeDevice from "./Sell_LargeDevice";
-import {
-  NotAuthenticatedLargeScreen,
-  NotAuthenticatedSmallScreen,
-} from "./Sell_Not_Authenticated";
+import { invalid } from "moment";
 
 export default function Sell() {
   const isSmallDevice = useMediaQuery({
@@ -29,20 +27,6 @@ export default function Sell() {
           {isLargeDevice && (
             <div>
               <SellLargeDevice />
-            </div>
-          )}
-        </>
-      )}
-      {(!user || !validMethod) && (
-        <>
-          {isSmallDevice && (
-            <div>
-              <NotAuthenticatedSmallScreen />
-            </div>
-          )}
-          {isLargeDevice && (
-            <div>
-              <NotAuthenticatedLargeScreen />
             </div>
           )}
         </>

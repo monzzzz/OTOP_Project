@@ -22,3 +22,20 @@
 .sell-large-device-input:focus {
   border: 1px solid #1d1d1f;
 }
+
+.upload-prop {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+}
+
+.crop-image-button {
+  border: solid 1px #fcfcfc;
+  background-color: #fcfcfc;
+  padding: 0.5rem;
+  border-radius: 10px;
+}

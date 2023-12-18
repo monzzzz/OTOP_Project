@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const sellProducts = async (req, res) => {
   const { title, sellerId, price, history, province, category } = req.body;
+  console.log(req.file);
   const imagename = req.file.filename;
   if (req.file.size > 5 * 1024 * 1024) {
     res.json(400).json({ error: "image size is too large" });
