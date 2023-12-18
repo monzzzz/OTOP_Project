@@ -48,8 +48,9 @@ export default function Cart() {
                     >
                       <div className="row">
                         <div className="col-6">
-                          <span className="left-item-container d-flex align-content-center">
+                          <span className="left-item-container py-3 px-2 d-flex align-content-center">
                             <img
+                              className="cart-page-product-image"
                               src={item.image}
                               alt={item.productInfo.title}
                             />

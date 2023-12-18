@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.single-product-page-image {
+  border-radius: 20px;
+}
+
 @media only screen and (max-width: 480px) {
   .buy-function {
     display: flex;

@@ -115,7 +115,11 @@ export default function SingleProduct() {
             <div className="single-product-container">
               <div className="row g-0 mb-5">
                 <div className="col-sm-12 col-lg-6 product-image">
-                  <img src={productData.image} alt={productData._doc.title} />
+                  <img
+                    className="single-product-page-image"
+                    src={productData.image}
+                    alt={productData._doc.title}
+                  />
                 </div>
                 <div className="col-sm-12 col-lg-6">
                   <div className="top-part mb-4 border-bottom">

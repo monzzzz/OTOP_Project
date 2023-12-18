@@ -59,3 +59,8 @@
   padding-bottom: 5.5px;
   background-color: #f9f9f9;
 }
+
+.cart-page-product-image {
+  border-radius: 10px;
+  margin-right: 2rem;
+}
