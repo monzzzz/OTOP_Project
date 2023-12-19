@@ -3,6 +3,8 @@ import Script from "react-load-script";
 import "../../../Assets/style/Cart/PaymentType/PromptPay.css";
 import { CountdownTimer } from "./CountdownExpires";
 import ContentLoader from "react-content-loader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import usePromptpay from "../../../Hook/Cart/PaymentType/usePromptpay";
 import { formatPrice } from "../../../Utils/PriceFormat";
 export default function PromptPay(props) {
@@ -18,25 +20,43 @@ export default function PromptPay(props) {
     if (scriptLoaded) {
       window.Omise.setPublicKey("pkey_test_5xoev7sn4wflkzseb52");
     }
-    if (props.paymentType === "promptpay" && scriptLoaded === true) {
+    if (
+      props.paymentType === "promptpay" &&
+      scriptLoaded === true &&
+      props.onPaymentType === true
+    ) {
       handleFormSubmit(props.amount);
     }
-  }, [scriptLoaded]);
+  }, [scriptLoaded, props.onPaymentType]);
   const handleQrCodeLoad = () => {
     setQrCodeLoad(true);
   };
   useEffect(() => {
     if (!isLoading && paymentInfo && qrCodeLoad) {
       props.onQrCodeReady();
+      setQrCodeLoad(false);
     }
   }, [isLoading, paymentInfo, qrCodeLoad, props.onQrCodeReady]);
+
+  const scrollToTop = () => {
+    props.clickScrollToTop();
+    props.setPaymentTypeClick(false);
+  };
 
   return (
     <div className="promptpay-payment">
       <Script url="https://cdn.omise.co/omise.js" onLoad={handleScriptLoad} />
       {scriptLoaded ? (
         <div className="promptpay-container">
-          <h1 className="mb-5">Payment</h1>
+          <div className="d-flex justify-content-between align-items-center">
+            <h1 className="mb-5">Payment</h1>
+
+            <FontAwesomeIcon
+              icon={faArrowUp}
+              onClick={scrollToTop}
+              className="arrow-font-size"
+            ></FontAwesomeIcon>
+          </div>
 
           {isLoading ? (
             <div>

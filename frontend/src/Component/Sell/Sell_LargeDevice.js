@@ -4,7 +4,6 @@ import { category_eng } from "../../Data/Sell/Sell";
 import { useState, useRef } from "react";
 import useOffer from "../../Hook/Offer/useOffer";
 import ReactCrop, {
-  Crop,
   convertToPixelCrop,
   makeAspectCrop,
 } from "react-image-crop";

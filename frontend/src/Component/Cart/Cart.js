@@ -3,14 +3,16 @@ import "../../Assets/style/Cart/Cart.css";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRemove } from "@fortawesome/free-solid-svg-icons";
+import { faRemove, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import PaymentPopUp from "./PaymentPopUp";
 import PromptPay from "./PaymentType/PromptPay";
 import useCart from "../../Hook/Cart/useCart";
 export default function Cart() {
   const [active, setActive] = useState(false);
   const [select, setSelect] = useState(false);
+  const [paymentTypeClick, setPaymentTypeClick] = useState(false);
   const paymentRef = useRef(null);
+  const itemsRef = useRef(null);
   const { user } = useAuthContext();
   const userId = user ? user.id : null;
   const {
@@ -47,9 +49,17 @@ export default function Cart() {
   const handleQrCodeReady = () => {
     scrollToPayment();
   };
+
+  const handleScrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  console.log(paymentTypeClick);
   return (
     <div className="cart-page-container">
-      <div className="top-cart-page-container">
+      <div ref={itemsRef} className="top-cart-page-container">
         {cartInfo &&
           (cartInfo.total_price <= 0 ? (
             <div>
@@ -156,13 +166,21 @@ export default function Cart() {
           ))}
       </div>
       {select && <div className="cart-page-space"></div>}
-      <div ref={paymentRef} className="payment-operation-container">
+      <div
+        ref={paymentRef}
+        className="payment-operation-container d-flex flex-column"
+      >
         {paymentType === "promptpay" ? (
-          <PromptPay
-            paymentType={paymentType}
-            amount={cartInfo.total_price}
-            onQrCodeReady={handleQrCodeReady}
-          />
+          <div>
+            <PromptPay
+              paymentType={paymentType}
+              amount={cartInfo.total_price}
+              onQrCodeReady={handleQrCodeReady}
+              clickScrollToTop={handleScrollTop}
+              setPaymentTypeClick={setPaymentTypeClick}
+              onPaymentType={paymentTypeClick}
+            />
+          </div>
         ) : (
           ""
         )}
@@ -173,6 +191,7 @@ export default function Cart() {
         setPaymentType={handlePaymentTypeChange}
         setActive={setActive}
         setSelect={setSelect}
+        setPaymentTypeClick={setPaymentTypeClick}
       />
     </div>
   );
