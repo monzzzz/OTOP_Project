@@ -156,6 +156,7 @@
 .single-product-history {
   overflow: auto;
   max-height: 9rem;
+  padding-right: 1rem;
   border-radius: 10px;
 }
 .single-product-history::-webkit-scrollbar {
@@ -193,4 +194,30 @@
   flex-direction: row;
   align-items: center;
   gap: 1rem;
+}
+
+.share-icon-single-product-page {
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-inline: 0.2rem;
+}
+
+.share-icon-single-product-page:hover {
+  background-color: #fafafa;
+  color: #555555;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.heart-icon-single-product-page {
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-inline: 0.2rem;
+}
+
+.heart-icon-single-product-page:hover {
+  background-color: #fafafa;
+  color: red;
+  padding: 0.5rem;
+  border-radius: 10px;
 }

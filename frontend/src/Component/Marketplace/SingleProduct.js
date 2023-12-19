@@ -4,6 +4,13 @@ import "../../Assets/style/Marketplace/SingleProduct.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faShareSquare,
+  faHeart,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
+import { CopyToClipBoard } from "../../Utils/CopyToClipBoard/CopyToClipBoard";
 import ContentLoader from "react-content-loader";
 import Review from "./Review/Review";
 
@@ -13,6 +20,7 @@ export default function SingleProduct() {
   const [error, setError] = useState(null);
   const [hook, setHook] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [copyToClipBoardResponse, setCopyToClipBoardResponse] = useState(false);
   const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
@@ -95,6 +103,13 @@ export default function SingleProduct() {
       }
     }
   };
+
+  const handleCopyToClipBoard = () => {
+    // const message = CopyToClipBoard(window.location.href);
+    setCopyToClipBoardResponse(true);
+    setTimeout(() => setCopyToClipBoardResponse(false), 2000);
+  };
+
   return (
     <div className="single-product-page-container">
       <div>
@@ -123,8 +138,28 @@ export default function SingleProduct() {
                 </div>
                 <div className="col-sm-12 col-lg-6">
                   <div className="top-part mb-4 border-bottom">
-                    <div className="single-product-title">
-                      {productData._doc.title}
+                    <div className="d-flex justigy-content-center align-items-center justify-content-between">
+                      <span className="single-product-title">
+                        {productData._doc.title}
+                      </span>
+                      <span>
+                        <FontAwesomeIcon
+                          className="heart-icon-single-product-page"
+                          icon={faHeart}
+                        ></FontAwesomeIcon>
+                        {copyToClipBoardResponse ? (
+                          <FontAwesomeIcon
+                            className="share-icon-single-product-page"
+                            icon={faCheck}
+                          ></FontAwesomeIcon>
+                        ) : (
+                          <FontAwesomeIcon
+                            className="share-icon-single-product-page"
+                            icon={faShareSquare}
+                            onClick={() => handleCopyToClipBoard()}
+                          ></FontAwesomeIcon>
+                        )}
+                      </span>
                     </div>
                     {productData._doc.category === "-" ? (
                       <h6 className="mb-4">No Category</h6>

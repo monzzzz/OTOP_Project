@@ -10,6 +10,17 @@ export default function Review({ productId }) {
   const { user } = useAuthContext();
   const [commentText, setCommentText] = useState("");
   const [commentList, setCommentList] = useState([]);
+  const fetchComment = async () => {
+    const response = await fetch(`/api/comment/products/${productId}`);
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error);
+    }
+    if (response.ok) {
+      setCommentList(json.comment);
+      console.log(json.comment);
+    }
+  };
   const postComment = async (e) => {
     e.preventDefault();
     console.log(commentText);
@@ -32,19 +43,9 @@ export default function Review({ productId }) {
     if (!response.ok) {
       setError(json.error);
     }
+    fetchComment();
   };
   useEffect(() => {
-    const fetchComment = async () => {
-      const response = await fetch(`/api/comment/products/${productId}`);
-      const json = await response.json();
-      if (!response.ok) {
-        setError(json.error);
-      }
-      if (response.ok) {
-        setCommentList(json.comment);
-        console.log(json.comment);
-      }
-    };
     if (productId) {
       fetchComment();
     }

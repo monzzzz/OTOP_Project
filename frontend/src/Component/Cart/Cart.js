@@ -3,7 +3,7 @@ import "../../Assets/style/Cart/Cart.css";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRemove, faArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import PaymentPopUp from "./PaymentPopUp";
 import PromptPay from "./PaymentType/PromptPay";
 import useCart from "../../Hook/Cart/useCart";
@@ -11,6 +11,7 @@ export default function Cart() {
   const [active, setActive] = useState(false);
   const [select, setSelect] = useState(false);
   const [paymentTypeClick, setPaymentTypeClick] = useState(false);
+
   const paymentRef = useRef(null);
   const itemsRef = useRef(null);
   const { user } = useAuthContext();
