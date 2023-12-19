@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useMediaQuery } from "react-responsive";
 import {
   faShareSquare,
   faHeart,
@@ -25,7 +26,9 @@ export default function SingleProduct() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuthContext();
-  // const { dispatch } = useCartContext();
+  const isLargeDevice = useMediaQuery({
+    query: "(min-width: 991px)",
+  });
   useEffect(() => {
     const getQuantityFromURL = () => {
       const searchParams = new URLSearchParams(location.search);
@@ -114,17 +117,28 @@ export default function SingleProduct() {
     <div className="single-product-page-container">
       <div>
         {isLoading ? (
-          <div>
-            <ContentLoader viewBox="0 0 380 200">
-              <rect x="0" y="0" rx="5" ry="5" width="125" height="150" />
-              <rect x="175" y="10" rx="4" ry="4" width="200" height="13" />
-              <rect x="175" y="40" rx="3" ry="3" width="50" height="10" />
-              <rect x="175" y="60" rx="3" ry="3" width="50" height="10" />
-              <rect x="175" y="80" rx="3" ry="3" width="75" height="10" />
-              <rect x="175" y="100" rx="3" ry="3" width="200" height="30" />
-              <rect x="300" y="150" rx="3" ry="3" width="75" height="10" />
-            </ContentLoader>
-          </div>
+          isLargeDevice ? (
+            <div>
+              <ContentLoader viewBox="0 0 380 200">
+                <rect x="0" y="0" rx="5" ry="5" width="125" height="150" />
+                <rect x="175" y="10" rx="4" ry="4" width="200" height="13" />
+                <rect x="175" y="40" rx="3" ry="3" width="50" height="10" />
+                <rect x="175" y="60" rx="3" ry="3" width="50" height="10" />
+                <rect x="175" y="80" rx="3" ry="3" width="75" height="10" />
+                <rect x="175" y="100" rx="3" ry="3" width="200" height="30" />
+                <rect x="300" y="150" rx="3" ry="3" width="75" height="10" />
+              </ContentLoader>
+            </div>
+          ) : (
+            <div>
+              <ContentLoader viewBox="0 0 400 1000">
+                <rect x="40" y="0" rx="5" ry="5" width="300" height="400" />
+                <rect x="20" y="470" rx="5" ry="5" width="360" height="20" />
+                <rect x="20" y="505" rx="5" ry="5" width="100" height="20" />
+                <rect x="20" y="550" rx="5" ry="5" width="360" height="100" />
+              </ContentLoader>
+            </div>
+          )
         ) : (
           productData && (
             <div className="single-product-container">

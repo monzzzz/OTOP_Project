@@ -21,7 +21,7 @@ export default function Cart() {
   const isLargeDevice = useMediaQuery({
     query: "(min-width: 1024px)",
   });
-
+  const isMediumScreen = useMediaQuery({ maxWidth: 1023, minWidth: 641 });
   const isSmallScreen = useMediaQuery({ maxWidth: 640 });
   const {
     cartInfo,
@@ -127,11 +127,24 @@ export default function Cart() {
                             </div>
                             {!isLargeDevice && (
                               <div className="d-flex justify-content-between align-self-end">
-                                <span className="item-total-price-cart d-flex align-items-center">
-                                  {formatPrice(
-                                    item.productInfo.price * item._doc.quantity
-                                  )}
-                                </span>
+                                {isSmallScreen && (
+                                  <span className="item-total-price-cart d-flex align-items-center">
+                                    Total Price:{"  "}
+                                    {formatPrice(
+                                      item.productInfo.price *
+                                        item._doc.quantity
+                                    )}
+                                  </span>
+                                )}
+                                {isMediumScreen && (
+                                  <span className="item-total-price-cart d-flex align-items-center">
+                                    {formatPrice(
+                                      item.productInfo.price *
+                                        item._doc.quantity
+                                    )}
+                                  </span>
+                                )}
+
                                 <span className="d-flex align-items-center">
                                   <span className="quantity-container">
                                     <button
