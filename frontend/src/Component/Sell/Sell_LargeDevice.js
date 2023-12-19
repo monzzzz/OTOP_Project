@@ -14,7 +14,7 @@ import { faRemove } from "@fortawesome/free-solid-svg-icons";
 import setCanvasPreview from "../../Utils/Crop/CropImage";
 
 const MIN_DIMENSION = 100;
-const ASPECT_RATIO = 1;
+const ASPECT_RATIO = 3 / 4;
 
 export default function SellLargeDevice() {
   const [error, setError] = useState(null);
@@ -151,7 +151,7 @@ export default function SellLargeDevice() {
           <label className="mb-1">History</label>
           <textarea
             type="text"
-            className="sell-large-device-input mb-3"
+            className="sell-large-device-text-area mb-3"
             onChange={(e) => {
               setHistory(e.target.value);
             }}

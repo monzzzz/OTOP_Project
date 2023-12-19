@@ -108,7 +108,7 @@
     font-size: 2.5rem;
   }
   .single-product-page-container {
-    padding: 9.5rem 10rem;
+    padding: 8.75rem 10rem;
   }
   .single-product-title {
     font-size: 3rem;
@@ -121,7 +121,7 @@
   }
   .single-product-history-title {
     font-weight: 500;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -155,9 +155,7 @@
 
 .single-product-history {
   overflow: auto;
-  max-height: 5rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid #eeeeee;
+  max-height: 9rem;
   border-radius: 10px;
 }
 .single-product-history::-webkit-scrollbar {

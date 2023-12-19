@@ -135,12 +135,14 @@ export default function SingleProduct() {
                       {formatPrice(productData._doc.price)}
                     </div>
                   </div>
-                  <div className="bottom-part mb-3">
-                    <div className="single-product-history-title">History</div>
-                    <div className="single-product-province mb-2">
+                  <div className="bottom-part mb-4">
+                    <div className="single-product-history-title mb-2">
+                      History
+                    </div>
+                    <div className="single-product-province mb-3">
                       Origin: {productData._doc.province}
                     </div>
-                    <div className="single-product-history">
+                    <div className="single-product-history mb-4">
                       {productData._doc.history}
                     </div>
                   </div>

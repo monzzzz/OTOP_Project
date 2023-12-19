@@ -15,7 +15,7 @@ export default function PromptPay(props) {
     scriptLoaded,
     handleFormSubmit,
     handleScriptLoad,
-  } = usePromptpay(props.amount, props.paymentType);
+  } = usePromptpay(props.amount * 100, props.paymentType);
   useEffect(() => {
     if (scriptLoaded) {
       window.Omise.setPublicKey("pkey_test_5xoev7sn4wflkzseb52");
@@ -84,7 +84,7 @@ export default function PromptPay(props) {
                 </div>
                 <div className="col-lg-7 col-md-7 col-sm-12 d-flex flex-column">
                   <div className="promptpay-qrcode-amount mb-3">
-                    Amount: {formatPrice(paymentInfo.source.amount)}{" "}
+                    Amount: {formatPrice(paymentInfo.source.amount / 100)}{" "}
                   </div>
                   <div className="promptpay-expired-date">
                     Expired:{" "}

@@ -1,5 +1,5 @@
 .Sell_Large_Device_Container {
-  margin-top: 3rem;
+  margin-top: 1rem;
   padding: 5.5rem 20rem;
 }
 .sell_submit_button {
@@ -17,6 +17,13 @@
   border: 1px solid #dddddd;
   padding: 0.5rem 0.9rem;
   border-radius: 7px;
+}
+
+.sell-large-device-text-area {
+  border: 1px solid #dddddd;
+  padding: 0.5rem 0.9rem;
+  border-radius: 7px;
+  height: 7.5rem;
 }
 
 .sell-large-device-input:focus {
