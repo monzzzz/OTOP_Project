@@ -177,7 +177,7 @@ export default function SellLargeDevice() {
               <div className="d-flex flex-column upload-prop-container">
                 <div className="d-flex justify-content-end">
                   <FontAwesomeIcon
-                    className="mb-4"
+                    className="mb-4 close-crop-pop"
                     icon={faRemove}
                     onClick={() => {
                       setUploadProp(false);

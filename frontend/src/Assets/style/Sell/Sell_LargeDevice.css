@@ -30,6 +30,15 @@
   border: 1px solid #1d1d1f;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .upload-prop {
   background-color: #f5f5f5;
   padding: 1rem;
@@ -38,6 +47,7 @@
   left: 50%;
   border-radius: 10px;
   transform: translate(-50%, -50%);
+  animation: fadeIn 0.5s;
 }
 
 .crop-image-button {
@@ -45,4 +55,8 @@
   background-color: #fcfcfc;
   padding: 0.5rem;
   border-radius: 10px;
+}
+
+.close-crop-pop {
+  cursor: pointer;
 }

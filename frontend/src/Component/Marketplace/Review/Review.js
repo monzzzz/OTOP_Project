@@ -4,13 +4,16 @@ import { useEffect, useState } from "react";
 import "../../../Assets/style/Marketplace/Review/Review.css";
 import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
 import moment from "moment";
+import ContentLoader from "react-content-loader";
 
 export default function Review({ productId }) {
   const [error, setError] = useState(null);
   const { user } = useAuthContext();
   const [commentText, setCommentText] = useState("");
+  const [isCommentLoading, setCommentIsLoading] = useState(false);
   const [commentList, setCommentList] = useState([]);
   const fetchComment = async () => {
+    setCommentIsLoading(true);
     const response = await fetch(`/api/comment/products/${productId}`);
     const json = await response.json();
     if (!response.ok) {
@@ -20,6 +23,7 @@ export default function Review({ productId }) {
       setCommentList(json.comment);
       console.log(json.comment);
     }
+    setCommentIsLoading(false);
   };
   const postComment = async (e) => {
     e.preventDefault();
@@ -80,18 +84,28 @@ export default function Review({ productId }) {
 
       <div className="inside-comment-container w-100">
         {commentList &&
-          commentList.map((comment, index) => (
-            <div className="each-comment-container mb-3" key={index}>
-              <div className="top-comment-box">
-                <span className="product-comment-username">
-                  {comment.username}
-                </span>
-                <span className="m-2 product-comment-time">
-                  {moment(comment.createdAt).fromNow()}
-                </span>
-              </div>
-              <div>{comment.text}</div>
+          (isCommentLoading ? (
+            <div>
+              <ContentLoader viewBox="0 0 380 200">
+                <rect x="0" y="0" rx="3" ry="3" width="400" height="25" />
+                <rect x="0" y="30" rx="3" ry="3" width="400" height="25" />
+                <rect x="0" y="60" rx="3" ry="3" width="400" height="25" />
+              </ContentLoader>
             </div>
+          ) : (
+            commentList.map((comment, index) => (
+              <div className="each-comment-container mb-3" key={index}>
+                <div className="top-comment-box">
+                  <span className="product-comment-username">
+                    {comment.username}
+                  </span>
+                  <span className="m-2 product-comment-time">
+                    {moment(comment.createdAt).fromNow()}
+                  </span>
+                </div>
+                <div>{comment.text}</div>
+              </div>
+            ))
           ))}
       </div>
     </div>

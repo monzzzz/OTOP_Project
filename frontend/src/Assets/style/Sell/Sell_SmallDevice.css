@@ -1,5 +1,5 @@
 .Sell_Small_Device_Container {
-  margin-top: 5rem;
+  margin-top: 3rem;
   padding: 3rem 4rem;
   display: flex;
   align-items: center;
@@ -24,4 +24,11 @@
 
 .sell-small-device-input:focus {
   border: 1px solid #1d1d1f;
+}
+
+.crop-image-button-small {
+  background-color: #fafafa;
+  border: 1px solid #1d1d1f;
+  border-radius: 10px;
+  padding: 0.25rem 0rem;
 }

@@ -105,7 +105,7 @@ export default function SingleProduct() {
   };
 
   const handleCopyToClipBoard = () => {
-    // const message = CopyToClipBoard(window.location.href);
+    const message = CopyToClipBoard(window.location.href);
     setCopyToClipBoardResponse(true);
     setTimeout(() => setCopyToClipBoardResponse(false), 2000);
   };
@@ -116,13 +116,13 @@ export default function SingleProduct() {
         {isLoading ? (
           <div>
             <ContentLoader viewBox="0 0 380 200">
-              <rect x="0" y="0" rx="5" ry="5" width="110" height="125" />
+              <rect x="0" y="0" rx="5" ry="5" width="125" height="150" />
               <rect x="175" y="10" rx="4" ry="4" width="200" height="13" />
-              <rect x="175" y="40" rx="3" ry="3" width="200" height="10" />
-              <rect x="175" y="60" rx="3" ry="3" width="200" height="10" />
-              <rect x="225" y="80" rx="3" ry="3" width="150" height="10" />
-              <rect x="325" y="100" rx="3" ry="3" width="50" height="10" />
-              <rect x="0" y="150" rx="3" ry="3" width="375" height="10" />
+              <rect x="175" y="40" rx="3" ry="3" width="50" height="10" />
+              <rect x="175" y="60" rx="3" ry="3" width="50" height="10" />
+              <rect x="175" y="80" rx="3" ry="3" width="75" height="10" />
+              <rect x="175" y="100" rx="3" ry="3" width="200" height="30" />
+              <rect x="300" y="150" rx="3" ry="3" width="75" height="10" />
             </ContentLoader>
           </div>
         ) : (
