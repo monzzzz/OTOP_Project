@@ -4,9 +4,11 @@ import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import { formatPrice } from "../../Utils/PriceFormat";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
+import { useMediaQuery } from "react-responsive";
 import PaymentPopUp from "./PaymentPopUp";
 import PromptPay from "./PaymentType/PromptPay";
 import useCart from "../../Hook/Cart/useCart";
+
 export default function Cart() {
   const [active, setActive] = useState(false);
   const [select, setSelect] = useState(false);
@@ -16,6 +18,11 @@ export default function Cart() {
   const itemsRef = useRef(null);
   const { user } = useAuthContext();
   const userId = user ? user.id : null;
+  const isLargeDevice = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
+
+  const isSmallScreen = useMediaQuery({ maxWidth: 640 });
   const {
     cartInfo,
     error,
@@ -32,14 +39,14 @@ export default function Cart() {
     getCartItem();
   }, [userId, process]);
   useEffect(() => {
-    // When the component mounts
-    document.body.classList.add("no-scroll");
+    if (paymentTypeClick) {
+      document.body.classList.add("no-scroll");
+    }
 
-    // When the component unmounts
-    return () => {
+    if (!paymentTypeClick) {
       document.body.classList.remove("no-scroll");
-    };
-  }, []);
+    }
+  }, [[paymentTypeClick]]);
   useEffect(() => {});
   const scrollToPayment = () => {
     paymentRef.current?.scrollIntoView({
@@ -57,7 +64,7 @@ export default function Cart() {
       behavior: "smooth",
     });
   };
-  console.log(paymentTypeClick);
+
   return (
     <div className="cart-page-container">
       <div ref={itemsRef} className="top-cart-page-container">
@@ -75,70 +82,141 @@ export default function Cart() {
                     return (
                       <div
                         key={item._doc.itemId}
-                        className="card item-container rounded-3 d-flex justify-content-between p-3 mb-3"
+                        className={
+                          "item-container rounded-3 d-flex flex-center justify-content-between p-3 mb-3"
+                        }
                       >
-                        <div className="row">
-                          <div className="col-6">
-                            <span className="left-item-container p-2 d-flex align-content-center">
-                              <img
-                                className="cart-page-product-image"
-                                src={item.image}
-                                alt={item.productInfo.title}
+                        <div
+                          className={
+                            isSmallScreen
+                              ? "d-flex flex-column py-2 px-3"
+                              : "cart-item-left-container p-2"
+                          }
+                        >
+                          {isSmallScreen && (
+                            <div className="d-flex justify-content-end mb-3">
+                              <FontAwesomeIcon
+                                className="remove-icon"
+                                onClick={() => {
+                                  deleteItemById(item._doc.itemId);
+                                }}
+                                icon={faRemove}
                               />
-                              <div className="text-left">
-                                <div className="title-text">
-                                  {item.productInfo.title}
-                                </div>
-                                <div className="category-text">
-                                  {item.productInfo.category}
-                                </div>
-                              </div>
-                            </span>
-                          </div>
-                          <div className="col-6 d-flex justify-content-end ">
-                            <div className="d-flex flex-column justify-content-between align-items-end ">
-                              <div>
-                                <FontAwesomeIcon
-                                  className="remove-icon"
-                                  onClick={() => {
-                                    deleteItemById(item._doc.itemId);
-                                  }}
-                                  icon={faRemove}
-                                />
-                              </div>
-                              <span className="right-item-container mb-3">
-                                <span className="quantity-container">
-                                  <button
-                                    className="remove-quantity-button"
-                                    onClick={() => {
-                                      decreaseQuantity(
-                                        item._doc.quantity,
-                                        item._doc.itemId
-                                      );
-                                    }}
-                                  >
-                                    -
-                                  </button>
-                                  <span className="quantity-amount">
-                                    {item._doc.quantity}
-                                  </span>
-                                  <button
-                                    className="add-quantity-button"
-                                    onClick={() => {
-                                      addQuantity(
-                                        item._doc.quantity,
-                                        item._doc.itemId
-                                      );
-                                    }}
-                                  >
-                                    +
-                                  </button>
-                                </span>
-                              </span>
-                              <div></div>
                             </div>
+                          )}
+                          <img
+                            className={
+                              isSmallScreen
+                                ? "cart-page-product-image-small  mb-3"
+                                : "cart-page-product-image-large"
+                            }
+                            src={item.image}
+                            alt={item.productInfo.title}
+                          />
+                          <div className=" text-left ">
+                            <div>
+                              <div className="title-text">
+                                {item.productInfo.title}
+                              </div>
+                              <div className="category-text">
+                                {item.productInfo.category}
+                              </div>
+                              <div className="price-text">
+                                {formatPrice(item.productInfo.price)}
+                              </div>
+                            </div>
+                            {!isLargeDevice && (
+                              <div className="d-flex justify-content-between align-self-end">
+                                <span className="item-total-price-cart d-flex align-items-center">
+                                  {formatPrice(
+                                    item.productInfo.price * item._doc.quantity
+                                  )}
+                                </span>
+                                <span className="d-flex align-items-center">
+                                  <span className="quantity-container">
+                                    <button
+                                      className="remove-quantity-button"
+                                      onClick={() => {
+                                        decreaseQuantity(
+                                          item._doc.quantity,
+                                          item._doc.itemId
+                                        );
+                                      }}
+                                    >
+                                      -
+                                    </button>
+                                    <span className="quantity-amount">
+                                      {item._doc.quantity}
+                                    </span>
+                                    <button
+                                      className="add-quantity-button"
+                                      onClick={() => {
+                                        addQuantity(
+                                          item._doc.quantity,
+                                          item._doc.itemId
+                                        );
+                                      }}
+                                    >
+                                      +
+                                    </button>
+                                  </span>
+                                </span>
+                              </div>
+                            )}
                           </div>
                         </div>
+                        {isLargeDevice && (
+                          <>
+                            <div className="d-flex align-items-center">
+                              {formatPrice(
+                                item.productInfo.price * item._doc.quantity
+                              )}
+                            </div>
+                            <div className="d-flex align-items-center">
+                              <span className="quantity-container">
+                                <button
+                                  className="remove-quantity-button"
+                                  onClick={() => {
+                                    decreaseQuantity(
+                                      item._doc.quantity,
+                                      item._doc.itemId
+                                    );
+                                  }}
+                                >
+                                  -
+                                </button>
+                                <span className="quantity-amount">
+                                  {item._doc.quantity}
+                                </span>
+                                <button
+                                  className="add-quantity-button"
+                                  onClick={() => {
+                                    addQuantity(
+                                      item._doc.quantity,
+                                      item._doc.itemId
+                                    );
+                                  }}
+                                >
+                                  +
+                                </button>
+                              </span>
+                            </div>
+                          </>
+                        )}
+
+                        {!isSmallScreen && (
+                          <span>
+                            <div>
+                              <FontAwesomeIcon
+                                className="remove-icon"
+                                onClick={() => {
+                                  deleteItemById(item._doc.itemId);
+                                }}
+                                icon={faRemove}
+                              />
+                            </div>
+                          </span>
+                        )}
                       </div>
                     );
                   }
@@ -171,20 +249,21 @@ export default function Cart() {
         ref={paymentRef}
         className="payment-operation-container d-flex flex-column"
       >
-        {paymentType === "promptpay" ? (
-          <div>
-            <PromptPay
-              paymentType={paymentType}
-              amount={cartInfo.total_price}
-              onQrCodeReady={handleQrCodeReady}
-              clickScrollToTop={handleScrollTop}
-              setPaymentTypeClick={setPaymentTypeClick}
-              onPaymentType={paymentTypeClick}
-            />
-          </div>
-        ) : (
-          ""
-        )}
+        {paymentTypeClick &&
+          (paymentType === "promptpay" ? (
+            <div>
+              <PromptPay
+                paymentType={paymentType}
+                amount={cartInfo.total_price}
+                onQrCodeReady={handleQrCodeReady}
+                clickScrollToTop={handleScrollTop}
+                setPaymentTypeClick={setPaymentTypeClick}
+                onPaymentType={paymentTypeClick}
+              />
+            </div>
+          ) : (
+            ""
+          ))}
       </div>
 
       <PaymentPopUp
