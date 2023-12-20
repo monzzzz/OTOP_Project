@@ -67,11 +67,19 @@ export default function Cart() {
 
   return (
     <div className="cart-page-container">
-      <div ref={itemsRef} className="top-cart-page-container">
+      <div
+        ref={itemsRef}
+        className={
+          cartInfo.total_price <= 0
+            ? "top-cart-page-container-no-item"
+            : "top-cart-page-container"
+        }
+      >
         {cartInfo &&
           (cartInfo.total_price <= 0 ? (
-            <div>
-              <h1>No item in the Cart</h1>
+            <div className="no-item-in-cart-container">
+              <img src={require("../../Assets/picture/noItemInCart.png")}></img>
+              <h1>No Items In Cart</h1>
             </div>
           ) : (
             <div className={active ? "blur" : ""}>

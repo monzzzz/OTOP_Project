@@ -100,3 +100,16 @@
 .top-cart-page-container {
   margin-bottom: 5rem;
 }
+
+.top-cart-page-container-no-item {
+  padding-top: 1.5rem;
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.no-item-in-cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
