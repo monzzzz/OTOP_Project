@@ -10,6 +10,7 @@ export const useEditProduct = () => {
   const [pictureUrl, setPictureUrl] = useState("");
   const [category, setCategory] = useState("");
   const [province, setProvince] = useState("");
+  const [productUpdated, setProductUpdated] = useState(false);
   const checkUserCredential = async (userId, productId) => {
     setIsLoading(true);
     const response = await fetch(`/api/market/products/${productId}`);
@@ -30,11 +31,41 @@ export const useEditProduct = () => {
     }
     setIsLoading(false);
   };
-  //   const changeProductInfo = async (productId) => {
-  //     const response = await fetch("/api/market")
-  //   }
+
+  const updateProductInfo = async (
+    newTitle,
+    newPrice,
+    newCategory,
+    newProvince,
+    newHistory,
+    newPicture
+  ) => {
+    const response = await fetch("/api/market", {
+      method: "PUT",
+      body: JSON.stringify(
+        newTitle,
+        newPrice,
+        newCategory,
+        newProvince,
+        newHistory,
+        newPicture
+      ),
+      headers: { "Content-Type": "application/json" },
+    });
+    const json = await response.json();
+    if (response.ok) {
+      setProductUpdated(true); // show the message when productUpdated == true
+      setTimeout(() => {
+        setProductUpdated(false);
+      }, 3000);
+    }
+    if (!response.ok) {
+      setError(json.error);
+    }
+  };
   return {
     checkUserCredential,
+    updateProductInfo,
     credential,
     isLoading,
     error,

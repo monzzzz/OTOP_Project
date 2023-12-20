@@ -33,6 +33,7 @@ export default function EditProduct() {
   const { user } = useAuthContext();
   const {
     checkUserCredential,
+    updateProductInfo,
     credential,
     isLoading,
     title,
@@ -108,7 +109,14 @@ export default function EditProduct() {
   };
 
   const handleInfoUpdate = () => {
-    // set function from useEditProduct
+    updateProductInfo(
+      newTitle,
+      newPrice,
+      newCategory,
+      newProvince,
+      newHistory,
+      newPicture
+    );
   };
   return (
     <div className="edit-your-product-page">
