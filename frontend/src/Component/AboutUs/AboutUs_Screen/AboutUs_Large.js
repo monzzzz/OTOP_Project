@@ -166,27 +166,35 @@ export default function AboutUsLarge() {
             </div>
           </div>
           <div className="aboutus-villager-mission-container d-flex">
-            <div className="col-6"></div>
+            <div className="col-6 d-flex ">
+              <img
+                src={require("../../../Assets/picture/aboutUsVillager.png")}
+              ></img>
+            </div>
             <div
-              className={`col-6 aboutus-villager-mission-paragraph ${
+              className={`col-6 d-flex flex-column pt-5  aboutus-villager-mission-paragraph ${
                 scrollVillagerProgress > 0.99 ? "fade-in-active" : ""
               } fade-in-scroll `}
             >
-              <h3 className="mb-3">Supporting Villagers</h3>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; At the heart of our mission is a
-              commitment to empowering Thai villagers, particularly those
-              participating in the OTOP (One Tambon One Product) program. Our
-              marketplace is uniquely positioned as a non-profit platform,
-              charging the minimal possible fees to ensure that the maximum
-              benefits reach the local artisans and producers. This approach not
-              only aids in increasing the income of these villagers but also
-              enhances their ability to sell their products to a broader
-              audience. By eliminating financial barriers and providing an
-              easy-to-use platform, we aim to uplift these communities, ensuring
-              that their skills and crafts not only survive but thrive in the
-              modern market. Our goal is to create a sustainable ecosystem where
-              tradition meets opportunity, and local talents find a global
-              audience.
+              <div>
+                <h3 className="mb-3">Supporting Villagers</h3>
+              </div>
+              <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; At the heart of our mission is a
+                commitment to empowering Thai villagers, particularly those
+                participating in the OTOP (One Tambon One Product) program. Our
+                marketplace is uniquely positioned as a non-profit platform,
+                charging the minimal possible fees to ensure that the maximum
+                benefits reach the local artisans and producers. This approach
+                not only aids in increasing the income of these villagers but
+                also enhances their ability to sell their products to a broader
+                audience. By eliminating financial barriers and providing an
+                easy-to-use platform, we aim to uplift these communities,
+                ensuring that their skills and crafts not only survive but
+                thrive in the modern market. Our goal is to create a sustainable
+                ecosystem where tradition meets opportunity, and local talents
+                find a global audience.
+              </div>
             </div>
           </div>
         </div>

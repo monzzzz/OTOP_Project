@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useAuthContext } from "./Hook/Authentication/useAuthContext.js";
 import Main from "./Component/Main/Main.js";
