@@ -1,5 +1,5 @@
 .edit-your-product-page {
-  padding: 6rem 6rem;
+  padding: 7.5rem 6rem 0rem 6rem;
 }
 
 .edit-your-product-picture {
@@ -23,6 +23,16 @@
   border-radius: 20px;
   padding: 0.4rem 1.2rem;
   font-weight: 500;
+}
+
+.delete-button {
+  background-color: transparent;
+  border: solid 1px #dddddd;
+  border-radius: 20px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 500;
+  color: red;
+  margin-right: 1rem;
 }
 
 .edit-your-product-text-area {

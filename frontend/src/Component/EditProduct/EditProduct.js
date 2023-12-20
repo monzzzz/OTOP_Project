@@ -128,6 +128,7 @@ export default function EditProduct() {
                 <img
                   className="edit-your-product-picture"
                   src={newPicture}
+                  style={{ width: "90%" }}
                 ></img>
               </div>
               <div className="col-8">
@@ -228,6 +229,9 @@ export default function EditProduct() {
                   </div>
                 </div>
                 <div className="d-flex justify-content-end">
+                  <button type="button" className="delete-button">
+                    Delete
+                  </button>
                   <button className="save-button">Save</button>
                 </div>
               </div>
