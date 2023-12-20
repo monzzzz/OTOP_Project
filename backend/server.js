@@ -5,7 +5,7 @@ const marketProductsRoute = require("./routes/products/products");
 const paymentRoute = require("./routes/payment/promptpay");
 const productCommentRoute = require("./routes/productComment/productComment");
 const cartRoute = require("./routes/cart/cart");
-const profileRoute = require("./routes/profile/home");
+const profileRoute = require("./routes/profile/profile");
 // library
 require("dotenv").config();
 const express = require("express");

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Home_Profile from "./Context/Home_Profile";
+import YourProduct from "./Context/YourProduct";
 import "../../../Assets/style/Profile/Large_Screen_Profile.css";
 import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
 export default function LargeScreenProfile() {
@@ -40,14 +41,17 @@ export default function LargeScreenProfile() {
             <li
               className="mb-3"
               onClick={() => {
-                handleClickChange("merchant");
+                handleClickChange("yourproduct");
               }}
             >
               Your product
             </li>
           )}
         </div>
-        <div className="col-9">{render === "home" && <Home_Profile />}</div>
+        <div className="col-9">
+          {render === "home" && <Home_Profile />}
+          {render === "yourproduct" && <YourProduct />}
+        </div>
       </div>
     </div>
   );

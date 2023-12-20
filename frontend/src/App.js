@@ -16,6 +16,7 @@ import AboutUs from "./Component/AboutUs/AboutUs.js";
 import Handbook from "./Component/Handbook/Handbook.js";
 import PageNotFound from "./Component/PageNotFound/PageNotFound.js";
 import BuySignupVerify from "./Component/Signup/BuySignupVerify.js";
+import EditProduct from "./Component/EditProduct/EditProduct.js";
 export default function App() {
   const { user, method } = useAuthContext();
 
@@ -34,11 +35,14 @@ export default function App() {
             element={user ? <Navigate to="/" /> : <Login />}
           ></Route>
           <Route path="/sell" element={<Sell />}></Route>
-
           <Route path="/buysignup" element={<BuySignup />}></Route>
           <Route path="/about" element={<AboutUs />} />
           <Route path="/sellsignup" element={<SellSignup />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route
+            path="/edit/your-product/:productId"
+            element={<EditProduct />}
+          ></Route>
           <Route path="/marketplace" element={<Marketplace />}></Route>
           <Route
             path="/products/:productId"

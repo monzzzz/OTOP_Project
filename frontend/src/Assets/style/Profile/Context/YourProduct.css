@@ -1,0 +1,24 @@
+.your-product-container {
+  padding: 1rem 2rem;
+}
+
+.each-your-product-container {
+  padding: 1rem;
+  border: solid 1px #dddddd;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  display: flex;
+}
+
+.your-product-image {
+  border-radius: 10px;
+}
+.your-product-image-container {
+  margin-right: 1rem;
+}
+
+.your-product-title {
+  font-weight: 500;
+  font-size: 1.25rem;
+}

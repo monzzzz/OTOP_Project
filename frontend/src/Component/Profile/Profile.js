@@ -3,10 +3,10 @@ import LargeScreenProfile from "./Profile_Screen/Large_Screen_Profile";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 export default function Profile() {
   const isSmallDevice = useMediaQuery({
-    query: "(max-width: 640px)",
+    query: "(max-width: 1024px)",
   });
   const isLargeDevice = useMediaQuery({
-    query: "(min-width: 640px)",
+    query: "(min-width:1024px)",
   });
   const { user } = useAuthContext();
   return (
