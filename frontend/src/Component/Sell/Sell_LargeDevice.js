@@ -172,7 +172,7 @@ export default function SellLargeDevice() {
           />
         </div>
         {uploadProp && (
-          <div className="upload-prop">
+          <div className="upload-prop-edit-product">
             {
               <div className="d-flex flex-column upload-prop-container">
                 <div className="d-flex justify-content-end">

@@ -1,0 +1,63 @@
+.edit-your-product-page {
+  padding: 6rem 6rem;
+}
+
+.edit-your-product-picture {
+  border-radius: 20px;
+}
+
+.edit-your-product-text-input {
+  border: 1px solid #eeeeee;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+
+.edit-your-product-input-label {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.save-button {
+  background-color: transparent;
+  border: solid 1px #dddddd;
+  border-radius: 20px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 500;
+}
+
+.edit-your-product-text-area {
+  border: 1px solid #dddddd;
+  overflow: auto;
+  padding: 0.5rem 0.9rem;
+  height: 10rem;
+  border-radius: 10px;
+}
+
+.edit-your-product-text-area::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.edit-your-product-text-area::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.edit-your-product-text-area::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+.edit-your-product-text-area::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.upload-prop-edit-product {
+  background-color: #f5f5f5;
+  padding: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  animation: fadeIn 0.5s;
+}
