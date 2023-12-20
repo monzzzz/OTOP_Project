@@ -166,8 +166,13 @@ export default function AboutUsLarge() {
             </div>
           </div>
           <div className="aboutus-villager-mission-container d-flex">
-            <div className="col-6 d-flex ">
+            <div
+              className={`col-6 d-flex align-items-center ${
+                scrollVillagerProgress > 0.99 ? "fade-in-active" : ""
+              } fade-in-scroll `}
+            >
               <img
+                className=""
                 src={require("../../../Assets/picture/aboutUsVillager.png")}
               ></img>
             </div>
@@ -199,6 +204,9 @@ export default function AboutUsLarge() {
           </div>
         </div>
       </div>
+      {/* <div className="vision-container">
+        <h3>Vision</h3>
+      </div> */}
     </div>
   );
 }

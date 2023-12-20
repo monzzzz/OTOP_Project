@@ -9,7 +9,8 @@ export const authReducer = (state, action) => {
       return { user: action.payload, method: action.method };
     case "LOGOUT":
       return { user: null, method: null };
-
+    case "CHANGE_NAME":
+      return { user: action.payload, method: action.method };
     default:
       return state;
   }
@@ -25,6 +26,7 @@ export const AuthContextProvider = ({ children }) => {
     if (user) {
       dispatch({ type: "LOGIN", payload: user.json, method: user.method });
     }
+    console.log(user);
   }, []);
   console.log(state);
   return (

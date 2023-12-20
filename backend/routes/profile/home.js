@@ -3,6 +3,6 @@ const router = express.Router();
 
 const { changeName } = require("../../controllers/profile/home/changeName");
 
-router.post("/home", changeName);
+router.put("/home", changeName);
 
 module.exports = router;
