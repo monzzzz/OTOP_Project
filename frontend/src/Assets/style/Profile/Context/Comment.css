@@ -1,0 +1,20 @@
+.profile-comment-container {
+  padding: 1rem 2rem;
+}
+
+.profile-each-comment {
+  padding: 1rem 1.5rem;
+  border: solid 1px #dddddd;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-comment-moment {
+  font-weight: 500;
+}
+
+.profile-comment-trash {
+  cursor: pointer;
+}

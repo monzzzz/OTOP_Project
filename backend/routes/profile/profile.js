@@ -9,8 +9,13 @@ const {
   getYourProduct,
 } = require("../../controllers/profile/yourProduct/getYourProductController");
 
+const {
+  getCommentByUserId,
+} = require("../../controllers/profile/comment/getCommentByUserController");
+
 router.get("/order-history", getOrderHistory);
 router.get("/your-product/:userId", getYourProduct);
+router.get("/comment/:userId", getCommentByUserId);
 router.put("/home", changeName);
 
 module.exports = router;

@@ -108,7 +108,7 @@ export default function SingleProduct() {
   };
 
   const handleCopyToClipBoard = () => {
-    const message = CopyToClipBoard(window.location.href);
+    CopyToClipBoard(window.location.href);
     setCopyToClipBoardResponse(true);
     setTimeout(() => setCopyToClipBoardResponse(false), 2000);
   };

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Home_Profile from "./Context/Home_Profile";
+import HomeProfile from "./Context/HomeProfile";
 import YourProduct from "./Context/YourProduct";
+import Comment from "./Context/Comment";
 import "../../../Assets/style/Profile/Large_Screen_Profile.css";
 import { useAuthContext } from "../../../Hook/Authentication/useAuthContext";
 export default function LargeScreenProfile() {
@@ -49,8 +50,9 @@ export default function LargeScreenProfile() {
           )}
         </div>
         <div className="col-9">
-          {render === "home" && <Home_Profile />}
+          {render === "home" && <HomeProfile />}
           {render === "yourproduct" && <YourProduct />}
+          {render === "comment" && <Comment />}
         </div>
       </div>
     </div>

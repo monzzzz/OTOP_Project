@@ -10,8 +10,6 @@ import "react-image-crop/dist/ReactCrop.css";
 import useOffer from "../../Hook/Offer/useOffer";
 import { useAuthContext } from "../../Hook/Authentication/useAuthContext";
 import setCanvasPreview from "../../Utils/Crop/CropImage";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRemove } from "@fortawesome/free-solid-svg-icons";
 
 const MIN_DIMENSION = 100;
 const ASPECT_RATIO = 3 / 4;

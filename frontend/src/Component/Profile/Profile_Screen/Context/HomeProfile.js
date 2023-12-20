@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useChangeName } from "../../../../Hook/Profile/useChangeName";
 import { useState } from "react";
 import { useAuthContext } from "../../../../Hook/Authentication/useAuthContext";
-export default function Home_Profile() {
+export default function HomeProfile() {
   // const [error, setError] = useState(null);
   const [newUsername, setNewUsername] = useState("");
   const [showSucess, setShowSuccess] = useState(false);

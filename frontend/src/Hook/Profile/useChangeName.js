@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { useAuthContext } from "../Authentication/useAuthContext";
 
 export const useChangeName = () => {
   const [homeError, setHomeError] = useState(null);
-  const { dispatch } = useAuthContext();
   const changeName = async (userId, method, newName, onSuccess) => {
     setHomeError(null);
     const response = await fetch("/api/profile/home", {
