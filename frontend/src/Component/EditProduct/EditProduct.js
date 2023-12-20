@@ -115,7 +115,7 @@ export default function EditProduct() {
       {!isLoading &&
         (credential ? (
           <form onSubmit={handleInfoUpdate}>
-            <div className="row">
+            <div className="d-flex">
               <div className="col-4">
                 <img
                   className="edit-your-product-picture"
