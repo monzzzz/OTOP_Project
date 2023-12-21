@@ -108,16 +108,20 @@ export default function EditProduct() {
     setCrop(crop);
   };
 
-  const handleInfoUpdate = () => {
+  const handleInfoUpdate = async (e) => {
+    e.preventDefault();
+    console.log(newPicture);
     updateProductInfo(
       newTitle,
       newPrice,
       newCategory,
       newProvince,
       newHistory,
-      newPicture
+      newPicture,
+      productId
     );
   };
+
   return (
     <div className="edit-your-product-page">
       {!isLoading &&

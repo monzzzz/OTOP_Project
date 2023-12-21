@@ -25,6 +25,37 @@ const sellProducts = async (req, res) => {
   }
 };
 
+const updateProduct = async (req, res) => {
+  const {
+    newTitle,
+    newPrice,
+    newCategory,
+    newProvince,
+    newHistory,
+    userId,
+    productId,
+  } = req.body;
+  const imagename = req.file.filename;
+  if (req.file.size > 5 * 1024 * 1024) {
+    res.json(400).json({ error: "image size is too large" });
+  }
+  try {
+    const updatedProduct = await ProductInfo.findOne({ _id: productId });
+    if (updatedProduct.sellerId != userId) {
+      throw Error("You are not the owner");
+    }
+    updatedProduct.title = newTitle;
+    updatedProduct.price = newPrice;
+    updatedProduct.history = newHistory;
+    updatedProduct.province = newProvince;
+    updatedProduct.category = newCategory;
+    updatedProduct.image = imagename;
+    updatedProduct.save();
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const getProductById = async (req, res) => {
   const id = req.params.id;
   try {
@@ -63,4 +94,10 @@ const deleteProducts = async (req, res) => {
   res.status(200).json(product);
 };
 
-module.exports = { sellProducts, getProducts, deleteProducts, getProductById };
+module.exports = {
+  sellProducts,
+  getProducts,
+  deleteProducts,
+  getProductById,
+  updateProduct,
+};
