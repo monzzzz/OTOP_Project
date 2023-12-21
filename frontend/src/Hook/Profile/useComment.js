@@ -13,5 +13,15 @@ export const useComment = () => {
       setError(json.error);
     }
   };
-  return { getCommentByUserId, commentList, error };
+  const deleteComment = async (userId, commentId) => {
+    const response = await fetch(
+      `/api/profile/comment/${userId}?commentId=${commentId}`,
+      { method: "DELETE" }
+    );
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error);
+    }
+  };
+  return { getCommentByUserId, deleteComment, commentList, error };
 };

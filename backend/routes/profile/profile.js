@@ -11,6 +11,7 @@ const {
 
 const {
   getCommentByUserId,
+  deleteComment,
 } = require("../../controllers/profile/comment/getCommentByUserController");
 
 const {
@@ -22,6 +23,7 @@ const {
 router.get("/order-history", getOrderHistory);
 router.get("/your-product/:userId", getYourProduct);
 router.get("/comment/:userId", getCommentByUserId);
+router.delete("/comment/:userId", deleteComment);
 router.put("/home", changeName);
 router.get("/home/address/:userId", getUserAddress);
 router.post("/home/address", addUserAddress);

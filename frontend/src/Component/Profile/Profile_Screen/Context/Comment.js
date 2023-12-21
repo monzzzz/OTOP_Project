@@ -7,13 +7,18 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Comment() {
-  const { getCommentByUserId, commentList, error } = useComment();
+  const { getCommentByUserId, deleteComment, commentList, error } =
+    useComment();
   const { user } = useAuthContext();
   useEffect(() => {
     if (user) {
       getCommentByUserId(user.id);
     }
   }, []);
+  const handleDeleteComment = async (e, commentId) => {
+    e.preventDefault();
+    deleteComment(user.id, commentId);
+  };
   return (
     <div className="profile-comment-container">
       <h3 className="mb-4">Your Comment</h3>
@@ -28,7 +33,10 @@ export default function Comment() {
                 <div>{comment.text}</div>
               </div>
               <div className="d-flex align-items-center profile-comment-trash">
-                <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                <FontAwesomeIcon
+                  onClick={(e) => handleDeleteComment(e, comment._id)}
+                  icon={faTrash}
+                ></FontAwesomeIcon>
               </div>
             </div>
           ))
