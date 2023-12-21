@@ -1,4 +1,5 @@
 // Schema
+const { findOne } = require("../../database_schema/buyUserSchema");
 const ProductInfo = require("../../database_schema/products/productsSchema");
 require("dotenv").config();
 
@@ -94,7 +95,24 @@ const deleteProducts = async (req, res) => {
   res.status(200).json(product);
 };
 
+const deleteProductById = async (req, res) => {
+  const { productId } = req.params;
+  const { userId } = req.query;
+  try {
+    const product = await ProductInfo.findOne({ _id: productId });
+    if (product.sellerId.toString() == userId) {
+      await ProductInfo.deleteOne({ _id: productId });
+      res.status(200).json({ mssg: "deleted successfully" });
+    } else {
+      throw Error("You are not the owner");
+    }
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
+  deleteProductById,
   sellProducts,
   getProducts,
   deleteProducts,

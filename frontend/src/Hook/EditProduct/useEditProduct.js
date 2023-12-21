@@ -75,9 +75,20 @@ export const useEditProduct = () => {
       setError(json.error);
     }
   };
+  const deleteProduct = async (productId) => {
+    const response = await fetch(
+      `/api/market/products/${productId}?userId=${user.id}`,
+      { method: "DELETE" }
+    );
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error);
+    }
+  };
   return {
     checkUserCredential,
     updateProductInfo,
+    deleteProduct,
     credential,
     isLoading,
     error,

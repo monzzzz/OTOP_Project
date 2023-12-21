@@ -34,6 +34,7 @@ export default function EditProduct() {
   const {
     checkUserCredential,
     updateProductInfo,
+    deleteProduct,
     credential,
     isLoading,
     title,
@@ -120,6 +121,11 @@ export default function EditProduct() {
       newPicture,
       productId
     );
+  };
+
+  const handleDeleteProduct = async (e) => {
+    e.preventDefault();
+    deleteProduct(productId);
   };
 
   return (
@@ -233,7 +239,11 @@ export default function EditProduct() {
                   </div>
                 </div>
                 <div className="d-flex justify-content-end">
-                  <button type="button" className="delete-button">
+                  <button
+                    type="button"
+                    className="delete-button"
+                    onClick={(e) => handleDeleteProduct(e)}
+                  >
                     Delete
                   </button>
                   <button className="save-button">Save</button>

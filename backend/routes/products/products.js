@@ -9,6 +9,7 @@ const {
   deleteProducts,
   getProductById,
   updateProduct,
+  deleteProductById,
 } = require("../../controllers/products/productsControllers");
 
 const storage = multer.diskStorage({
@@ -33,5 +34,6 @@ router.put("/products", upload.single("file"), updateProduct);
 router.get("/products", getProducts);
 router.get("/products/:id", getProductById);
 router.delete("/products", deleteProducts);
+router.delete("/products/:productId", deleteProductById);
 
 module.exports = router;
