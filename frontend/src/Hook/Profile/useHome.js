@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useChangeName = () => {
+export const useHome = () => {
   const [homeError, setHomeError] = useState(null);
   const changeName = async (userId, method, newName, onSuccess) => {
     setHomeError(null);
