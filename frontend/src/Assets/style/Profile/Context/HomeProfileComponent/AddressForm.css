@@ -1,0 +1,45 @@
+.username_form {
+  display: inline;
+  gap: 5px;
+}
+
+.profile-subtopic-label {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.address-input {
+  border: solid 1px #cccccc;
+  border-radius: 20px;
+  padding: 0.5rem 1.25rem;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.profile-add-address-button {
+  background-color: transparent;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+}
+
+.profile-address-icon {
+  color: #555555;
+  cursor: pointer;
+}
+
+.profile-number-address {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.each-profile-address {
+  padding: 0.75rem 1.25rem;
+  border: solid 1px #dddddd;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.profile-address-name {
+  font-weight: 500;
+}
