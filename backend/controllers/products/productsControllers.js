@@ -1,6 +1,6 @@
 // Schema
-const { findOne } = require("../../database_schema/buyUserSchema");
 const ProductInfo = require("../../database_schema/products/productsSchema");
+const productCommentSchema = require("../../database_schema/productComment/productCommentSchema");
 require("dotenv").config();
 
 const sellProducts = async (req, res) => {
@@ -95,13 +95,16 @@ const deleteProducts = async (req, res) => {
   res.status(200).json(product);
 };
 
+// delete product by id
 const deleteProductById = async (req, res) => {
   const { productId } = req.params;
   const { userId } = req.query;
   try {
+    // delete product comment schema
     const product = await ProductInfo.findOne({ _id: productId });
     if (product.sellerId.toString() == userId) {
       await ProductInfo.deleteOne({ _id: productId });
+      await productCommentSchema.deleteMany({ productId: productId });
       res.status(200).json({ mssg: "deleted successfully" });
     } else {
       throw Error("You are not the owner");
